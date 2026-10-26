@@ -10,14 +10,14 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:#f4f2eb;color:var(--ink);font:18px/1.65 Georgia,"Times New Roman",serif}a{color:#096b65;text-underline-offset:3px}a:hover{color:#104840}a:focus-visible,[tabindex]:focus-visible{outline:3px solid #ca9344;outline-offset:4px}
 .page{max-width:1160px;margin:36px auto;padding:54px 64px 48px;background:var(--paper);border-top:7px solid var(--accent)}header{border-bottom:1px solid var(--rule);padding-bottom:28px;margin-bottom:26px}.eyebrow{font:700 12px/1.5 system-ui,sans-serif;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent)}h1,h2,h3,nav,table,.hierarchy{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}h1{font-size:clamp(32px,5vw,52px);line-height:1.1;letter-spacing:-1.4px;margin:17px 0 22px;max-width:850px}.header-links{font:14px/1.6 system-ui,sans-serif;color:var(--muted)}h2{font-size:28px;line-height:1.25;margin:58px 0 20px;padding-top:20px;border-top:1px solid var(--rule);letter-spacing:-.5px}h3{font-size:21px;margin:30px 0 12px}p{margin:16px 0}strong{font-weight:700}li{margin:9px 0}ul,ol{padding-left:25px}nav{margin:27px 0 34px;border-left:3px solid var(--accent);padding:6px 0 6px 20px;font-size:14px;line-height:1.5}nav strong{display:block;margin-bottom:8px}nav a{display:block;margin:6px 0;text-decoration:none}nav a:hover{text-decoration:underline}
 .table-wrap{overflow-x:auto;margin:25px 0;border:1px solid var(--rule)}table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.55;text-align:left}th{background:var(--wash);font-size:13px;font-weight:700;color:#294c43}th,td{padding:14px 16px;vertical-align:top;border-bottom:1px solid var(--rule)}td:first-child{font-weight:600;min-width:150px}tr:last-child td{border-bottom:0}tr:nth-child(even) td{background:#fafbf7}code{font: .88em/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:#edf2ed;padding:2px 5px;border-radius:3px}pre{overflow-x:auto;padding:25px;background:#edf3ef;border-left:3px solid #5d8c78;font:14px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;margin:28px 0}pre code{background:none;padding:0;font:inherit;white-space:pre}
-.hierarchy{margin:32px 0;padding:30px 32px;background:var(--wash);border:1px solid var(--rule)}figcaption{font-size:20px;font-weight:700;line-height:1.35;margin-bottom:25px}figcaption span{display:block;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:8px}.hierarchy ol{list-style:none;padding:0;margin:0}.hierarchy li{margin:0 0 4px;margin-left:calc(var(--level)*36px)}.node{padding:13px 18px;background:var(--paper);border-left:4px solid var(--accent)}.node strong{font-size:19px;display:block;line-height:1.4}.node small{font-size:12px;color:var(--muted);display:block;margin-bottom:2px}.node span{font-size:14px;line-height:1.5;display:block;margin-top:3px}.relation{font-size:12px;line-height:1.5;color:var(--accent);margin:6px 0}.diagram-note{font-size:13px;line-height:1.55;color:var(--muted);margin:25px 0 0;border-top:1px solid #ccdbd1;padding-top:16px}footer{border-top:1px solid var(--rule);margin-top:36px;padding-top:18px;font:13px/1.5 system-ui,sans-serif;color:var(--muted)}
-@media(max-width:700px){body{font-size:17px}.page{margin:0;padding:30px 20px 36px;border-top-width:5px}h1{letter-spacing:-.8px}h2{font-size:24px;margin-top:42px}table{min-width:660px}.hierarchy{padding:21px 15px}.hierarchy li{margin-left:calc(var(--level)*9px)}.node{padding:12px}.node strong{font-size:17px}.relation{font-size:11px}.node span{font-size:13px}pre{font-size:12px;padding:18px 14px}nav{padding-left:15px}}
-@media print{@page{size:A4;margin:16mm}body{font-size:10.5pt;line-height:1.5;background:white}.page{max-width:none;padding:0;margin:0;border:0}header{padding-bottom:12px}h1{font-size:28pt}h2{font-size:17pt;margin-top:24px;break-after:avoid}h3{font-size:12pt;break-after:avoid}nav{display:none}a{color:inherit}table{font-size:9pt;min-width:0}th,td{padding:7px 8px}.table-wrap{overflow:visible}tr{break-inside:avoid}pre{font-size:7.8pt;overflow:visible;white-space:pre-wrap;break-inside:avoid;padding:12px}pre code{white-space:pre-wrap}.hierarchy{break-inside:avoid;padding:14px 18px}.hierarchy li{margin-left:calc(var(--level)*21px)}.node{padding:7px 11px}.node strong{font-size:11pt}.node span{font-size:9pt}.relation{font-size:8pt}.diagram-note{font-size:8pt}figcaption{font-size:13pt;margin-bottom:14px}footer{font-size:8pt}}
+.process-figure{margin:32px 0;padding:30px 32px;background:#fffefa;border:1px solid var(--rule);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.process-figure figcaption{padding:12px;text-align:center;border:2px solid #d89316;border-radius:8px}.process-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;margin:20px 0 12px}.process-step{position:relative;border:2px solid #d89316;border-radius:10px;padding:15px 14px;background:#fffefa}.process-step:not(:last-child)::after{content:"→";position:absolute;right:-27px;top:calc(50% - 14px);font-size:24px;font-weight:800;color:#193e75}.process-step h4{margin:0 0 10px;font-size:16px;line-height:1.3}.process-step p{margin:0;font-size:14px;line-height:1.5}.hierarchy{margin:32px 0;padding:30px 32px;background:var(--wash);border:1px solid var(--rule)}figcaption{font-size:20px;font-weight:700;line-height:1.35;margin-bottom:25px}figcaption span{display:block;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:8px}.hierarchy ol{list-style:none;padding:0;margin:0}.hierarchy li{margin:0 0 4px;margin-left:calc(var(--level)*36px)}.node{padding:13px 18px;background:var(--paper);border-left:4px solid var(--accent)}.node strong{font-size:19px;display:block;line-height:1.4}.node small{font-size:12px;color:var(--muted);display:block;margin-bottom:2px}.node span{font-size:14px;line-height:1.5;display:block;margin-top:3px}.relation{font-size:12px;line-height:1.5;color:var(--accent);margin:6px 0}.diagram-note{font-size:13px;line-height:1.55;color:var(--muted);margin:25px 0 0;border-top:1px solid #ccdbd1;padding-top:16px}footer{border-top:1px solid var(--rule);margin-top:36px;padding-top:18px;font:13px/1.5 system-ui,sans-serif;color:var(--muted)}
+@media(max-width:700px){.process-steps{grid-template-columns:1fr;gap:20px}.process-step:not(:last-child)::after{content:"↓";right:calc(50% - 8px);top:auto;bottom:-25px}body{font-size:17px}.page{margin:0;padding:30px 20px 36px;border-top-width:5px}h1{letter-spacing:-.8px}h2{font-size:24px;margin-top:42px}table{min-width:660px}.hierarchy{padding:21px 15px}.hierarchy li{margin-left:calc(var(--level)*9px)}.node{padding:12px}.node strong{font-size:17px}.relation{font-size:11px}.node span{font-size:13px}pre{font-size:12px;padding:18px 14px}nav{padding-left:15px}}
+@media print{@page{size:A4;margin:16mm}.process-figure{break-inside:avoid;padding:12px 14px}.process-steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.process-step{padding:8px}.process-step h4{font-size:8.5pt}.process-step p{font-size:7.5pt}.process-step:not(:last-child)::after{right:-15px;font-size:14pt}body{font-size:10.5pt;line-height:1.5;background:white}.page{max-width:none;padding:0;margin:0;border:0}header{padding-bottom:12px}h1{font-size:28pt}h2{font-size:17pt;margin-top:24px;break-after:avoid}h3{font-size:12pt;break-after:avoid}nav{display:none}a{color:inherit}table{font-size:9pt;min-width:0}th,td{padding:7px 8px}.table-wrap{overflow:visible}tr{break-inside:avoid}pre{font-size:7.8pt;overflow:visible;white-space:pre-wrap;break-inside:avoid;padding:12px}pre code{white-space:pre-wrap}.hierarchy{break-inside:avoid;padding:14px 18px}.hierarchy li{margin-left:calc(var(--level)*21px)}.node{padding:7px 11px}.node strong{font-size:11pt}.node span{font-size:9pt}.relation{font-size:8pt}.diagram-note{font-size:8pt}figcaption{font-size:13pt;margin-bottom:14px}footer{font-size:8pt}}
 </style>
 </head>
 <body><div class="page">
-<header><div class="eyebrow">Управление данными предприятия · Тема 4</div><h1>Планирование ТОиР<br>в 1С:ERP</h1><div class="header-links">Семинар 1 по управлению активами · <a href="seminar1_toir_notes.md">Версия Markdown</a> · <a href="INDEX.md">Индекс курса</a></div></header>
-<nav aria-label="Содержание"><strong>В этой записке</strong><a href="#section-1">1. Объекты эксплуатации, узлы ОЭ, классы ОЭ, номенклатуры</a>
+<header><div class="eyebrow">Управление данными предприятия · Тема 4</div><h1>Планирование ТОиР<br>в 1С:ERP</h1><div class="header-links"><a href="https://docs.google.com/presentation/d/109eD0A_a8kYas-_4LkptvQvo3ecQEMDt/edit">Практическая работа · презентация семинара</a><br>Семинар 1 по управлению активами · <a href="seminar1_toir_notes.md">Версия Markdown</a> · <a href="INDEX.md">Индекс курса</a></div></header>
+<nav aria-label="Содержание"><strong>В этой записке</strong><a href="#process-map">Схема службы эксплуатации и ремонтов</a><a href="#section-1">1. Объекты эксплуатации, узлы ОЭ, классы ОЭ, номенклатуры</a>
 <a href="#section-2">2. Структура предприятия и Ресурсные спецификации</a>
 <a href="#section-3">3. Упражнение: Планирование работ ТОиР</a>
 <a href="#section-4">Источники и навигация</a></nav>
@@ -26,9 +26,45 @@
 <p><strong>Главная задача семинара:</strong> описать оборудование и правила его обслуживания, подготовить технологию ремонтных работ и получить заказы на ремонт своего объекта эксплуатации.</p>
 <p>Материал относится к теме 4 курса «Управление данными предприятия» — «Управление активами». Он использует уже знакомые по теме 2 понятия: номенклатура, подразделение, рабочий центр и ресурсная спецификация. Номер «семинар 1» здесь относится к циклу занятий по ТОиР и не совпадает с вводным семинаром курса о работе аналитика.</p>
 <p>Записка построена по тем же трём разделам, что и практическая работа. В каждом разделе приведены определения, схемы объектов, порядок действий и проверяемый результат.</p>
+<p><strong>Практическая работа:</strong> <a href="https://docs.google.com/presentation/d/109eD0A_a8kYas-_4LkptvQvo3ecQEMDt/edit">презентация семинара «Процессы управления активами в 1С»</a>.</p>
 <p><strong>Обозначения на схемах.</strong> Реквизит-ссылка (<code>att</code> на рукописном эскизе) хранит выбор другого объекта. Табличная часть (<code>list</code>) содержит строки со ссылками, количествами и другими данными. Отступы показывают подписанные отношения: состав, принадлежность или переход по ссылке. Стрелка «на основании» обозначает создание документа.</p>
 <p>Сокращения: <strong>ТОиР</strong> — техническое обслуживание и ремонт, <strong>ОЭ</strong> — объект эксплуатации, <strong>ТР</strong> — текущий ремонт, <strong>КР</strong> — капитальный ремонт, <strong>ВРЦ</strong> — вид рабочего центра, <strong>РЦ</strong> — рабочий центр. Определения даны в учебном смысле применительно к рассматриваемой базе 1С:ERP.</p>
 <p>Во всех собственных наименованиях используйте <strong>xx.yy</strong>, где <code>xx</code> — код группы, <code>yy</code> — номер студента в журнале. Значения <code>00.00</code> и <code>00.03</code> на слайдах служат примерами и обозначениями шаблонов.</p>
+<h3 id="processes-service">Процессы службы эксплуатации и ремонтов</h3>
+<p>На слайде 6 презентации показано, как служба эксплуатации и ремонтов переходит от описания оборудования к программе ТОиР. Сначала предприятие определяет парк производственных активов и стратегии их обслуживания. Затем для оборудования задают технологию и нормативы ремонта. Данные о состоянии оборудования помогают установить фактическую потребность в работах и скорректировать программу.</p>
+<figure class="process-figure" id="process-map" aria-label="Схема процессов службы эксплуатации и ремонтов со слайда 6">
+<figcaption>Служба эксплуатации и ремонтов <span>Последовательность процессов · слайд 6 презентации</span></figcaption>
+<div class="process-steps">
+<section class="process-step"><h4>1. Производственные активы</h4><p>Определить парк оборудования, его роль и стратегию обслуживания.</p></section>
+<section class="process-step"><h4>2. Технология ремонта</h4><p>Задать нормативы и порядок работ, материалы, инструменты и требования к персоналу.</p></section>
+<section class="process-step"><h4>3. Техническое состояние</h4><p>Оценить состояние и наработку, определить потребность в ремонте и корректирующих мерах.</p></section>
+<section class="process-step"><h4>4. План мероприятий ТОиР</h4><p>Сформировать долгосрочную и годовую программы, уточнять их по кварталам и месяцам.</p></section>
+</div><p class="diagram-note">Стрелки на слайде задают последовательность четырёх процессов службы. В следующих разделах показаны объекты 1С, которые создаются в рамках практической работы.</p></figure>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Таблица с горизонтальной прокруткой"><table>
+<thead>
+<tr>
+<th>Этап процесса</th>
+<th>Что определяет или проверяет служба</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Производственные активы</td>
+<td>Какое оборудование есть на предприятии, к какой категории оно относится и по какой стратегии его обслуживать</td>
+</tr>
+<tr>
+<td>Технология ремонта</td>
+<td>Какие нужны нормативы, материалы, инструменты, специалисты и последовательность работ</td>
+</tr>
+<tr>
+<td>Состояние оборудования</td>
+<td>Каковы состояние, наработка и показатели эксплуатации; какие объекты требуют обслуживания или корректирующих действий</td>
+</tr>
+<tr>
+<td>План мероприятий ТОиР</td>
+<td>Как сформировать долгосрочную и годовую программы и как уточнять их по кварталам или месяцам</td>
+</tr>
+</tbody></table></div>
+<p>Это схема процессов службы. Следующие три раздела показывают, какие данные студент заводит в 1С, чтобы описать часть этих процессов.</p>
 <h2 id="section-1">1. Объекты эксплуатации, узлы ОЭ, классы ОЭ, номенклатуры</h2>
 <p><strong>Слайды 8–17. Цель:</strong> определить, что ремонтируется, к какому классу относится оборудование и какие ремонтные работы для него предусмотрены.</p>
 <h3 id="section-1-1">1.1. Определения</h3>
@@ -214,6 +250,45 @@
 <figure class="hierarchy" id="scheme-structure" aria-label="Подразделения и рабочие центры"><figcaption>Подразделения и рабочие центры<span>Раздел 2 · организационные связи</span></figcaption><ol><li style="--level:0"><p class="relation">Два отдельных элемента справочника «Структура предприятия»</p><div class="node"><strong>Подразделение-диспетчер</strong><span>Дисп. рем. xx.yy · отвечает за выполнение заказов на производство</span></div></li><li style="--level:0"><p class="relation">Второе подразделение</p><div class="node"><strong>Ремонтный цех</strong><span>Цех рем. обсл. xx.yy · производственные настройки и график работы</span></div></li><li style="--level:1"><p class="relation">↳ ВРЦ относится к ремонтному цеху</p><div class="node"><strong>Вид рабочего центра xx.yy</strong><span>Реквизит «Подразделение» ссылается на цех</span></div></li><li style="--level:2"><p class="relation">↳ РЦ относится к выбранному виду</p><div class="node"><strong>Рабочий центр xx.yy</strong><span>Реквизит «Вид» ссылается на свой ВРЦ</span></div></li></ol><p class="diagram-note">Диспетчер указывается в спецификации и производственном заказе. Цех и ВРЦ — в этапе, РЦ — в операции. Организационное подчинение цеха диспетчеру здесь не задано.</p></figure>
 <p>Диспетчер и ремонтный цех здесь показаны как две отдельные записи справочника. Из назначения диспетчера не следует, что цех обязательно должен быть вложен в него в организационной иерархии. ВРЦ принадлежит производственному подразделению, а РЦ относится к виду РЦ; они создаются через структуру рабочих центров.</p>
 <p><strong>Как эти объекты используются:</strong> диспетчер указывается в спецификации и производственном заказе, исполнительное подразделение и ВРЦ — в этапе спецификации, конкретный РЦ — в операции. Зависимые рабочие центры ремонтируемого ОЭ из раздела 1 и рабочие центры ремонтного цеха имеют разные роли: первые могут простаивать из-за ремонта, вторые выполняют ремонтную работу.</p>
+<h4>Что такое вид РЦ и что такое сам РЦ</h4>
+<p><strong>Вид РЦ</strong> — тип или группа совместимых рабочих мест внутри производственного подразделения. Он сообщает планировщику, какого рода ресурс нужен операции и какие общие правила планирования для него действуют. <strong>Рабочий центр</strong> — конкретное место или оборудование, которое может выполнить эту операцию. Связь между ними «один вид — один или несколько рабочих центров» позволяет планировать потребность по группе, а затем учитывать доступность каждого конкретного места.</p>
+<p>Примеры из практической методички относятся к мебельному производству. Они иллюстрируют типы ресурсов в 1С, а не обязательные наименования для ремонтного цеха семинара.</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="Таблица с горизонтальной прокруткой"><table>
+<thead>
+<tr>
+<th>Производственное подразделение из методички</th>
+<th>Вид РЦ</th>
+<th>Примеры конкретных РЦ</th>
+<th>Зачем разделены</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>«Участок столярный (позаказно)»</td>
+<td>«Место столяра»</td>
+<td>«Место столяра (позаказно) 1», «… 2»</td>
+<td>Два конкретных места относятся к одному виду. В методичке для второго задан коэффициент времени 0,5, чтобы планировщик учитывал отличающуюся производительность</td>
+</tr>
+<tr>
+<td>«Участок столярный (позаказно)»</td>
+<td>«Место плотника»</td>
+<td>Рабочее место плотника, связанное с этим видом</td>
+<td>Отдельный вид описывает другую специализацию ресурса в том же подразделении</td>
+</tr>
+<tr>
+<td>«Участок столярный (пооперационно)»</td>
+<td>«Место столяра (пооперационно)»</td>
+<td>«Место столяра (пооперационно) 1», «… 2»</td>
+<td>Операция может назначаться на подходящий станок или рабочее место, при этом для конкретных РЦ задаются собственные коэффициенты времени и расценки</td>
+</tr>
+<tr>
+<td>«Участок столярный (регистрация операций)»</td>
+<td>«Место столяра (регистрация операций)»</td>
+<td>«Место столяра (регистрация операций) 1» и «… 2» для разных участков</td>
+<td>В упражнении вид также можно задать количеством: 4 центра. Ограничение пропускной способности по этому виду отключено</td>
+</tr>
+</tbody></table></div>
+<p>В упражнении по ТОиР логика та же, названия будут свои: в ремонтном цехе создаётся ВРЦ нужного для операции типа и один или несколько РЦ, входящих в этот вид. В ресурсной спецификации на этапе указывают подразделение и, при необходимости, ВРЦ. В операции задают конкретный РЦ либо ВРЦ, если допустим выбор из нескольких подходящих мест. Это нужно, чтобы составить расписание, проверить доступную мощность, учесть график и характеристики рабочего места. Если конкретных рабочих мест пока не моделируют, методичка также позволяет задавать их количеством в настройках ВРЦ.</p>
+<p><strong>Практический вопрос при создании объектов:</strong> какие реальные ремонтные посты, станки или бригады системы планируют как ресурс и чем конкретно эти ресурсы отличаются? Однотипные и взаимозаменяемые места объединяют одним ВРЦ. Для конкретных РЦ задают отдельные графики, участки, производительность или стоимость, когда эти различия нужны учёту и расписанию. Не стоит создавать РЦ, отличающиеся только названием, если планирование не использует это различие.</p>
 <h3 id="section-2-3">2.3. Схема ресурсной спецификации и связь с разделом 1</h3>
 <p>В семинаре в «Материалах и работах» вида ремонта указывается <strong>работа как позиция номенклатуры</strong>. Для выполнения этой работы создаётся ресурсная спецификация. Например, вид ремонта «ТР xx.yy» содержит работу «ТР тех. уст. xx.yy» в количестве 1 шт., а спецификация описывает, как эту работу выполнить.</p>
 <figure class="hierarchy" id="scheme-specification" aria-label="Состав ресурсной спецификации"><figcaption>Состав ресурсной спецификации<span>Раздел 2 · одинаковая структура для ТР и КР</span></figcaption><ol><li style="--level:0"><p class="relation">Связь с разделом 1</p><div class="node"><strong>Вид ремонта → номенклатура работы</strong><span>Например: ТР xx.yy → «ТР тех. уст. xx.yy», 1 шт.</span></div></li><li style="--level:0"><p class="relation">Для этой работы создаётся самостоятельный норматив</p><div class="node"><strong>Ресурсная спецификация ТР / КР</strong><span>Две отдельные спецификации. Ниже показан состав каждой.</span></div></li><li style="--level:1"><p class="relation">↳ основные реквизиты</p><div class="node"><strong>Результат и подразделение-диспетчер</strong><span>Результат — та же ремонтная работа. Диспетчер — «Дисп. рем. xx.yy».</span></div></li><li style="--level:1"><p class="relation">↳ вкладка «Производственный процесс»</p><div class="node"><strong>Этап спецификации</strong><span>Исполнительное подразделение → свой ремонтный цех<br>Вид рабочего центра → свой ВРЦ</span></div></li><li style="--level:2"><p class="relation">↳ детализация этапа</p><div class="node"><strong>Операция спецификации</strong><span>Рабочий центр → свой РЦ; параметры выполнения операции</span></div></li><li style="--level:1"><p class="relation">↳ ресурсный состав спецификации</p><div class="node"><strong>Материалы, работы и трудозатраты</strong><span>Номенклатура ресурсов и количества; виды работ и нормы труда</span></div></li></ol><p class="diagram-note">Вид ремонта и спецификация связаны через номенклатуру работы. Этап и операция внутри спецификации описывают норматив, а не факт выполнения конкретного заказа.</p></figure>
@@ -333,7 +408,7 @@
 </ul>
 <h2 id="section-4">Источники и навигация</h2>
 <ol>
-<li><a href="https://docs.google.com/presentation/d/109eD0A_a8kYas-_4LkptvQvo3ecQEMDt/edit">Презентация семинара 1 «Планирование ТОиР»</a>. Изучены 41 слайд; параметры интерфейса приведены по учебному примеру. Дата обращения: 26 октября 2026 года.</li>
+<li><a href="https://docs.google.com/presentation/d/109eD0A_a8kYas-_4LkptvQvo3ecQEMDt/edit">Презентация практической работы «Планирование ТОиР»</a>. Схема процессов службы эксплуатации и ремонтов — слайд 6; параметры интерфейса приведены по учебному примеру. Изучены 41 слайд. Дата обращения: 26 октября 2026 года.</li>
 <li><a href="mes.md">Методические материалы 1С:ERP — mes.md</a>: § 1.2.1–1.2.2, 1.2.5 и раздел 2 «Управление ремонтами». <a href="mes.html">Версия с иллюстрациями</a>.</li>
 <li><a href="edm.md">Рабочая программа дисциплины — edm.md</a>: § 5.1, темы 2 «Производство» и 4 «Управление активами».</li>
 <li>Рукописная схема, приложенная к запросу: исходная логика переходов ОЭ → класс → ремонтный цикл → вид ремонта → материалы и работы → номенклатура.</li>
