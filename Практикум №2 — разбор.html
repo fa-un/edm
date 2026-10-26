@@ -1,21 +1,32 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Учебные материалы курса «Управление данными предприятия»: Практикум № 2"><title>Практикум № 2 — Управление данными предприятия</title><style>:root{color-scheme:light;--ink:#23332f;--muted:#5c6e67;--accent:#167364;--line:#dbe5df;--paper:#fffefa;--wash:#eef5f0}*{box-sizing:border-box}body{margin:0;background:#f2f3ee;color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:#086c61;text-underline-offset:3px}a:focus-visible{outline:3px solid #d19b48;outline-offset:3px}.page{max-width:1040px;margin:32px auto;padding:42px 54px;background:var(--paper);border-top:6px solid var(--accent)}header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:26px}.crumb{font-size:14px;color:var(--muted)}h1,h2,h3{line-height:1.25;letter-spacing:-.025em}h1{font-size:clamp(30px,4vw,44px)}h2{font-size:28px;margin-top:46px;padding-top:16px;border-top:1px solid var(--line)}h3{font-size:21px;margin-top:32px}p,li{max-width:82ch}li{margin:.35em 0}blockquote{margin:24px 0;padding:4px 18px;border-left:4px solid #89ad9e;background:var(--wash);color:#3e5750}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:15px}th,td{border:1px solid var(--line);padding:10px 13px;text-align:left;vertical-align:top}th{background:var(--wash)}pre{overflow:auto;background:#edf2ed;padding:18px;border-left:3px solid #78a28d;font-size:14px;line-height:1.6}code{background:#edf2ed;padding:2px 4px;border-radius:3px}pre code{background:transparent;padding:0}img{max-width:100%;height:auto}footer{margin-top:46px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}@media(max-width:700px){.page{margin:0;padding:24px 18px}body{font-size:16px}h2{font-size:24px}}@media print{body{background:#fff}.page{margin:0;padding:0;border:0}a{color:inherit;text-decoration:none}h2,h3{break-after:avoid}pre,table,blockquote{break-inside:avoid}}</style></head><body><main class="page"><header><div class="crumb"><a href="index.html">← Программа курса</a> · <a href="Практикум №2 — разбор.md">Исходный md</a></div></header><article><h1>Практикум № 2</h1>
-<h2>Пояснение: что и зачем создаётся</h2>
-<h3>Сначала — конкретные объекты</h3>
-<p>В практикуме создаются вполне конкретные объекты учебного производства мебели.</p>
-<p>Сначала перечислим их без классификации:</p>
-<ul>
-<li>«Полка “Стандарт”»;</li>
-<li>«Основание полки»;</li>
-<li>«Боковина полки»;</li>
-<li>«Доска»;</li>
-<li>«Шпон стандарт»;</li>
-<li>«Шпон люкс»;</li>
-<li>«Лак “Текнос”»;</li>
-<li>«Лак столярный»;</li>
-<li>«Клей».</li>
-</ul>
-<p>Теперь уточним, что каждый из этих объектов означает в производстве и как он представлен в 1С.</p>
+<h2>Базовые определения</h2>
+<table><thead><tr><th>Понятие</th><th>Простое определение</th><th>Пример в практикуме</th></tr></thead><tbody>
+<tr><td>Номенклатура</td><td>Отдельная запись справочника для товара, материала или изделия</td><td>«Доска» или «Полка “Стандарт”»</td></tr>
+<tr><td>Тип номенклатуры</td><td>Общая категория учёта номенклатуры</td><td>Все позиции задания имеют тип «Товар»</td></tr>
+<tr><td>Вид номенклатуры</td><td>Настройка, которая задаёт правила учёта и доступные характеристики для связанных записей</td><td>«Материалы с характеристиками»</td></tr>
+<tr><td>Свойство характеристики</td><td>Признак, по которому описывают вариант номенклатуры</td><td>«Вид материала» или «Шпон»</td></tr>
+<tr><td>Значение свойства</td><td>Конкретное значение признака</td><td>«Дуб» для свойства «Вид материала»</td></tr>
+<tr><td>Характеристика номенклатуры</td><td>Запись с одним или несколькими значениями свойств, отличающая вариант изделия или материала</td><td>«Доска — Дуб» или вариант полки из дуба со шпоном</td></tr>
+<tr><td>Производственная роль</td><td>Роль позиции в изготовлении: материал, полуфабрикат или готовое изделие</td><td>Роль уточняется ресурсной спецификацией, а не одним названием</td></tr>
+<tr><td>Организация</td><td>Юридическое лицо, от имени которого оформляют хозяйственные документы</td><td>«Мебель Комплект»</td></tr>
+<tr><td>Склад</td><td>Место учёта запасов и движения материалов и продукции</td><td>«Основной учебный склад»</td></tr>
+</tbody></table>
+<h2>Краткая схема объектов</h2>
+<pre><code>ВИДЫ НОМЕНКЛАТУРЫ (3 ЗАПИСИ)
+├─ мебель с характеристиками
+│  └─ номенклатура (1 запись)
+│     └─ характеристики вариантов
+├─ материалы с характеристиками
+│  └─ номенклатуры (3 записи)
+│     └─ характеристики для тех позиций, где они предусмотрены
+└─ материалы без характеристик
+   └─ номенклатуры (5 записей)
+
+Организация — отдельная запись справочника
+Склад — отдельная запись справочника</code></pre>
+<h2>Подробная схема и карточки</h2>
+<h3>Номенклатура и её виды</h3>
 <p>Сначала фиксируем объект 1С. Каждый перечисленный объект создаётся как элемент справочника <strong>«Номенклатура»</strong>. Для всех устанавливается тип номенклатуры <strong>«Товар»</strong>. Эти общие значения не будем повторять в каждой строке; в таблице укажем только различия между позициями.</p>
 <table>
 <thead>
