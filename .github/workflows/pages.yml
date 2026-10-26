@@ -1,0 +1,60 @@
+name: Publish course materials to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out materials and LFS images
+        uses: actions/checkout@v7.0.1
+        with:
+          lfs: true
+          persist-credentials: false
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v6.0.0
+
+      - name: Prepare static site
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          cp -- *.html *.md _site/
+          cp -R -- images _site/images
+          touch _site/.nojekyll
+          if grep -RIl '^version https://git-lfs.github.com/spec/v1' _site; then
+            echo 'Unresolved Git LFS pointers in the site artifact.' >&2
+            exit 1
+          fi
+          test -s _site/index.html
+          test -s _site/seminar1_toir_notes.html
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5.0.1
