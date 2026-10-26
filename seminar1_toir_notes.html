@@ -1,19 +1,11 @@
 <!doctype html>
 <html lang="ru">
-<head>
+<head><link rel="stylesheet" href="assets/styles.css">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Три раздела практической работы по ТОиР в 1С:ERP: оборудование и нормативы, структура предприятия и ресурсные спецификации, планирование и заказы. Определения и схемы объектов каждого раздела.">
 <title>Планирование ТОиР в 1С:ERP — пояснительная записка</title>
-<style>
-:root{color-scheme:light;--ink:#20322f;--muted:#526662;--accent:#176c61;--rule:#d7e2dd;--paper:#fffefa;--wash:#eef5f0}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:#f4f2eb;color:var(--ink);font:18px/1.65 Georgia,"Times New Roman",serif}a{color:#096b65;text-underline-offset:3px}a:hover{color:#104840}a:focus-visible,[tabindex]:focus-visible{outline:3px solid #ca9344;outline-offset:4px}
-.page{max-width:1160px;margin:36px auto;padding:54px 64px 48px;background:var(--paper);border-top:7px solid var(--accent)}header{border-bottom:1px solid var(--rule);padding-bottom:28px;margin-bottom:26px}.eyebrow{font:700 12px/1.5 system-ui,sans-serif;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent)}h1,h2,h3,nav,table,.hierarchy{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}h1{font-size:clamp(32px,5vw,52px);line-height:1.1;letter-spacing:-1.4px;margin:17px 0 22px;max-width:850px}.header-links{font:14px/1.6 system-ui,sans-serif;color:var(--muted)}h2{font-size:28px;line-height:1.25;margin:58px 0 20px;padding-top:20px;border-top:1px solid var(--rule);letter-spacing:-.5px}h3{font-size:21px;margin:30px 0 12px}p{margin:16px 0}strong{font-weight:700}li{margin:9px 0}ul,ol{padding-left:25px}nav{margin:27px 0 34px;border-left:3px solid var(--accent);padding:6px 0 6px 20px;font-size:14px;line-height:1.5}nav strong{display:block;margin-bottom:8px}nav a{display:block;margin:6px 0;text-decoration:none}nav a:hover{text-decoration:underline}
-.table-wrap{overflow-x:auto;margin:25px 0;border:1px solid var(--rule)}table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.55;text-align:left}th{background:var(--wash);font-size:13px;font-weight:700;color:#294c43}th,td{padding:14px 16px;vertical-align:top;border-bottom:1px solid var(--rule)}td:first-child{font-weight:600;min-width:150px}tr:last-child td{border-bottom:0}tr:nth-child(even) td{background:#fafbf7}code{font: .88em/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:#edf2ed;padding:2px 5px;border-radius:3px}pre{overflow-x:auto;padding:25px;background:#edf3ef;border-left:3px solid #5d8c78;font:14px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;margin:28px 0}pre code{background:none;padding:0;font:inherit;white-space:pre}
-.process-figure{margin:32px 0;padding:30px 32px;background:#fffefa;border:1px solid var(--rule);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.process-figure figcaption{padding:12px;text-align:center;border:2px solid #d89316;border-radius:8px}.process-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;margin:20px 0 12px}.process-step{position:relative;border:2px solid #d89316;border-radius:10px;padding:15px 14px;background:#fffefa}.process-step:not(:last-child)::after{content:"→";position:absolute;right:-27px;top:calc(50% - 14px);font-size:24px;font-weight:800;color:#193e75}.process-step h4{margin:0 0 10px;font-size:16px;line-height:1.3}.process-step p{margin:0;font-size:14px;line-height:1.5}.hierarchy{margin:32px 0;padding:30px 32px;background:var(--wash);border:1px solid var(--rule)}figcaption{font-size:20px;font-weight:700;line-height:1.35;margin-bottom:25px}figcaption span{display:block;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:8px}.hierarchy ol{list-style:none;padding:0;margin:0}.hierarchy li{margin:0 0 4px;margin-left:calc(var(--level)*36px)}.node{padding:13px 18px;background:var(--paper);border-left:4px solid var(--accent)}.node strong{font-size:19px;display:block;line-height:1.4}.node small{font-size:12px;color:var(--muted);display:block;margin-bottom:2px}.node span{font-size:14px;line-height:1.5;display:block;margin-top:3px}.relation{font-size:12px;line-height:1.5;color:var(--accent);margin:6px 0}.diagram-note{font-size:13px;line-height:1.55;color:var(--muted);margin:25px 0 0;border-top:1px solid #ccdbd1;padding-top:16px}footer{border-top:1px solid var(--rule);margin-top:36px;padding-top:18px;font:13px/1.5 system-ui,sans-serif;color:var(--muted)}
-@media(max-width:700px){.process-steps{grid-template-columns:1fr;gap:20px}.process-step:not(:last-child)::after{content:"↓";right:calc(50% - 8px);top:auto;bottom:-25px}body{font-size:17px}.page{margin:0;padding:30px 20px 36px;border-top-width:5px}h1{letter-spacing:-.8px}h2{font-size:24px;margin-top:42px}table{min-width:660px}.hierarchy{padding:21px 15px}.hierarchy li{margin-left:calc(var(--level)*9px)}.node{padding:12px}.node strong{font-size:17px}.relation{font-size:11px}.node span{font-size:13px}pre{font-size:12px;padding:18px 14px}nav{padding-left:15px}}
-@media print{@page{size:A4;margin:16mm}.process-figure{break-inside:avoid;padding:12px 14px}.process-steps{grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.process-step{padding:8px}.process-step h4{font-size:8.5pt}.process-step p{font-size:7.5pt}.process-step:not(:last-child)::after{right:-15px;font-size:14pt}body{font-size:10.5pt;line-height:1.5;background:white}.page{max-width:none;padding:0;margin:0;border:0}header{padding-bottom:12px}h1{font-size:28pt}h2{font-size:17pt;margin-top:24px;break-after:avoid}h3{font-size:12pt;break-after:avoid}nav{display:none}a{color:inherit}table{font-size:9pt;min-width:0}th,td{padding:7px 8px}.table-wrap{overflow:visible}tr{break-inside:avoid}pre{font-size:7.8pt;overflow:visible;white-space:pre-wrap;break-inside:avoid;padding:12px}pre code{white-space:pre-wrap}.hierarchy{break-inside:avoid;padding:14px 18px}.hierarchy li{margin-left:calc(var(--level)*21px)}.node{padding:7px 11px}.node strong{font-size:11pt}.node span{font-size:9pt}.relation{font-size:8pt}.diagram-note{font-size:8pt}figcaption{font-size:13pt;margin-bottom:14px}footer{font-size:8pt}}
-</style>
+
 </head>
 <body><div class="page">
 <header><div class="eyebrow">Управление данными предприятия · Тема 4</div><h1>Планирование ТОиР<br>в 1С:ERP</h1><div class="header-links"><a href="https://docs.google.com/presentation/d/109eD0A_a8kYas-_4LkptvQvo3ecQEMDt/edit">Практикум «Планирование ТОиР»</a><br>Семинар 1 по управлению активами<a href="index.html">Программа курса</a></div></header>
@@ -152,12 +144,12 @@
 <figure class="hierarchy" aria-label="Связи объекта эксплуатации, класса, ремонтного цикла, вида ремонта и номенклатуры">
 <figcaption>Оборудование и нормативы ремонта <span>Схема связей данных</span></figcaption>
 <ol>
-<li style="--level:0"><div class="node"><small>Конкретное оборудование</small><strong>Объект эксплуатации: Наименование: Технологическая установка xx.yy</strong><span>Класс: Тех. уст. xx.yy<br>Статус перед планированием: В эксплуатации</span></div></li>
-<li style="--level:1"><p class="relation">↳ реквизит-ссылка «Класс»</p><div class="node"><small>Общие правила оборудования</small><strong>Класс ОЭ: Наименование: Тех. уст. xx.yy</strong><span>Ремонтный цикл: строки ТР и КР<br>Интервал ТР: 1 год<br>Интервал КР: по шаблону/варианту</span></div></li>
-<li style="--level:2"><p class="relation">↳ таблица класса</p><div class="node"><strong>Ремонтный цикл: таблица класса</strong><span>Строка 1 · Вид ремонта: ТР xx.yy<br>Межремонтный интервал: 1 год<br>Строка 2 · Вид ремонта: КР xx.yy<br>Интервал: по шаблону/варианту</span></div></li>
-<li style="--level:3"><p class="relation">↳ ссылка «Вид ремонта» в каждой строке</p><div class="node"><strong>Вид ремонта: Наименование: ТР xx.yy / КР xx.yy</strong><span>Общий вид ремонта: Текущий / Капитальный<br>Длительность: ТР 3 дня; КР 15 дней<br>Формирование заказов ТР: ежемесячно; горизонт 999 рабочих дней</span></div></li>
-<li style="--level:4"><p class="relation">↳ таблица вида ремонта</p><div class="node"><strong>Материалы и работы: таблица</strong><span>Номенклатура: работа ТР/КР<br>Количество: 1 шт. для ТР<br>Материалы: если предусмотрены нормативом</span></div></li>
-<li style="--level:5"><p class="relation">↳ ссылка «Номенклатура» в строке</p><div class="node"><strong>Позиция номенклатуры: Наименование: работа ТР/КР тех. уст. xx.yy</strong><span>Тип номенклатуры: Работа<br>Единица измерения: шт.<br>В строке ремонта: Количество: 1</span></div></li>
+<li data-level="0"><div class="node"><small>Конкретное оборудование</small><strong>Объект эксплуатации: Наименование: Технологическая установка xx.yy</strong><span>Класс: Тех. уст. xx.yy<br>Статус перед планированием: В эксплуатации</span></div></li>
+<li data-level="1"><p class="relation">↳ реквизит-ссылка «Класс»</p><div class="node"><small>Общие правила оборудования</small><strong>Класс ОЭ: Наименование: Тех. уст. xx.yy</strong><span>Ремонтный цикл: строки ТР и КР<br>Интервал ТР: 1 год<br>Интервал КР: по шаблону/варианту</span></div></li>
+<li data-level="2"><p class="relation">↳ таблица класса</p><div class="node"><strong>Ремонтный цикл: таблица класса</strong><span>Строка 1 · Вид ремонта: ТР xx.yy<br>Межремонтный интервал: 1 год<br>Строка 2 · Вид ремонта: КР xx.yy<br>Интервал: по шаблону/варианту</span></div></li>
+<li data-level="3"><p class="relation">↳ ссылка «Вид ремонта» в каждой строке</p><div class="node"><strong>Вид ремонта: Наименование: ТР xx.yy / КР xx.yy</strong><span>Общий вид ремонта: Текущий / Капитальный<br>Длительность: ТР 3 дня; КР 15 дней<br>Формирование заказов ТР: ежемесячно; горизонт 999 рабочих дней</span></div></li>
+<li data-level="4"><p class="relation">↳ таблица вида ремонта</p><div class="node"><strong>Материалы и работы: таблица</strong><span>Номенклатура: работа ТР/КР<br>Количество: 1 шт. для ТР<br>Материалы: если предусмотрены нормативом</span></div></li>
+<li data-level="5"><p class="relation">↳ ссылка «Номенклатура» в строке</p><div class="node"><strong>Позиция номенклатуры: Наименование: работа ТР/КР тех. уст. xx.yy</strong><span>Тип номенклатуры: Работа<br>Единица измерения: шт.<br>В строке ремонта: Количество: 1</span></div></li>
 </ol>
 <p class="diagram-note">Отступы показывают переходы по данным. Принадлежность к классу, строки таблиц и физический состав оборудования — разные отношения.</p>
 </figure>
@@ -276,12 +268,12 @@
 <tr>
 <td>Подразделение-диспетчер</td>
 <td>Подразделение, ответственное за выполнение производственных заказов</td>
-<td>«Дисп. рем. xx.yy»</td>
+<td>«Дисп. рем. раб. xx.yy»</td>
 </tr>
 <tr>
 <td>Исполнительное подразделение</td>
 <td>Подразделение, в котором выполняется этап производственного процесса</td>
-<td>«Цех рем. обсл. xx.yy»</td>
+<td>«Цех ремонта и техобслуживания xx.yy»</td>
 </tr>
 <tr>
 <td>Вид рабочего центра</td>
@@ -311,18 +303,15 @@
 </tbody></table></div>
 <h3 id="section-2-2">2.2. Схема подразделений и рабочих центров</h3>
 <p><strong>Краткая схема</strong></p><pre tabindex="0"><code>СТРУКТУРА ПРЕДПРИЯТИЯ
-├─ подразделение (диспетчерское)
-│  └─ настройка роли диспетчера
-└─ подразделение (ремонтный цех)
-   ├─ настройки и график работы
-   └─ ВИД РАБОЧЕГО ЦЕНТРА
-      ├─ реквизит-ссылка «Подразделение» → ремонтный цех
-      └─ РАБОЧИЙ ЦЕНТР
-         └─ реквизит-ссылка «Вид» → ВРЦ</code></pre>
+└─ подразделение-диспетчер
+   └─ ремонтный цех (подразделение)
+      └─ ВИД РАБОЧЕГО ЦЕНТРА
+         └─ РАБОЧИЙ ЦЕНТР
+            └─ реквизит-ссылка «Вид» → ВРЦ</code></pre>
 <p><strong>Подробная схема</strong></p>
 
-<figure class="hierarchy" id="scheme-structure" aria-label="Подразделения и рабочие центры"><figcaption>Подразделения и рабочие центры<span>Раздел 2 · организационные связи и реквизиты</span></figcaption><ol><li style="--level:0"><p class="relation">Две отдельные записи справочника «Структура предприятия»</p><div class="node"><strong>Подразделение: Наименование: Дисп. рем. xx.yy</strong><span>Роль: подразделение-диспетчер<br>Ответственность: заказы на производство</span></div></li><li style="--level:0"><p class="relation">Вторая запись структуры предприятия</p><div class="node"><strong>Подразделение: Наименование: Цех рем. обсл. xx.yy</strong><span>Роль: исполнительное подразделение<br>Параметры учёта и график: по слайдам 21–22</span></div></li><li style="--level:1"><p class="relation">↳ ВРЦ относится к ремонтному цеху</p><div class="node"><strong>Вид рабочего центра: Наименование: ВРЦ xx.yy</strong><span>Подразделение: Цех рем. обсл. xx.yy<br>Количество / мощность: по заданию</span></div></li><li style="--level:2"><p class="relation">↳ РЦ относится к выбранному виду</p><div class="node"><strong>Рабочий центр: Наименование: РЦ xx.yy</strong><span>Вид: ВРЦ xx.yy<br>График и производительность: по заданию</span></div></li></ol><p class="diagram-note">Диспетчер указывается в спецификации и производственном заказе. Цех и ВРЦ — в этапе, РЦ — в операции. Организационное подчинение цеха диспетчеру здесь не задано.</p></figure>
-<p>Диспетчер и ремонтный цех здесь показаны как две отдельные записи справочника. Из назначения диспетчера не следует, что цех обязательно должен быть вложен в него в организационной иерархии. ВРЦ принадлежит производственному подразделению, а РЦ относится к виду РЦ; они создаются через структуру рабочих центров.</p>
+<figure class="hierarchy" id="scheme-structure" aria-label="Подразделения и рабочие центры"><figcaption>Подразделения и рабочие центры<span>Раздел 2 · организационные связи и реквизиты</span></figcaption><ol><li data-level="0"><p class="relation">Две отдельные записи справочника «Структура предприятия»</p><div class="node"><strong>Подразделение: Наименование: Дисп. рем. раб. xx.yy</strong><span>Роль: подразделение-диспетчер<br>Ответственность: заказы на производство</span></div></li><li data-level="1"><p class="relation">↳ «Вышестоящее подразделение» → подразделение-диспетчер</p><div class="node"><strong>Подразделение: Наименование: Цех ремонта и техобслуживания xx.yy</strong><span>Производственное подразделение: по заказам на производство<br>Рабочий график: дневная смена</span></div></li><li data-level="2"><p class="relation">↳ ВРЦ относится к ремонтному цеху</p><div class="node"><strong>Вид рабочего центра: Наименование: ВРЦ Ремонт xx.yy</strong><span>Подразделение: Цех ремонта и техобслуживания xx.yy<br>Количество / мощность: по заданию</span></div></li><li data-level="3"><p class="relation">↳ РЦ относится к выбранному виду</p><div class="node"><strong>Рабочий центр: Наименование: РЦ 1. Ремонт xx.yy</strong><span>Вид: ВРЦ Ремонт xx.yy<br>График и производительность: по заданию</span></div></li></ol><p class="diagram-note">Диспетчер указывается в спецификации и производственном заказе. Цех и ВРЦ — в этапе, РЦ — в операции. По слайду 21 ремонтный цех подчиняется диспетчерскому подразделению; при этом сам диспетчер и исполнители остаются отдельными записями и выполняют разные роли.</p></figure>
+<p>На слайде 21 у ремонтного цеха явно указано вышестоящее подразделение — диспетчерская. Поэтому дерево показывает связь подчинения цеха диспетчеру. ВРЦ относится к ремонтному цеху, а РЦ связан с видом рабочего центра; это отдельные записи структуры рабочих центров.</p>
 <p><strong>Как эти объекты используются:</strong> диспетчер указывается в спецификации и производственном заказе, исполнительное подразделение и ВРЦ — в этапе спецификации, конкретный РЦ — в операции. Зависимые рабочие центры ремонтируемого ОЭ из раздела 1 и рабочие центры ремонтного цеха имеют разные роли: первые могут простаивать из-за ремонта, вторые выполняют ремонтную работу.</p>
 <h4>Что такое вид РЦ и что такое сам РЦ</h4>
 <p><strong>Вид РЦ</strong> — тип или группа совместимых рабочих мест внутри производственного подразделения. Он сообщает планировщику, какого рода ресурс нужен операции и какие общие правила планирования для него действуют. <strong>Рабочий центр</strong> — конкретное место или оборудование, которое может выполнить эту операцию. Связь между ними «один вид — один или несколько рабочих центров» позволяет планировать потребность по группе, а затем учитывать доступность каждого конкретного места.</p>
@@ -371,31 +360,31 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><strong>Подразделение: Наименование: Дисп. рем. xx.yy</strong></td>
-<td><code>Признак подразделения-диспетчера: включён</code>; <code>Наименование: Дисп. рем. xx.yy</code>. Это подразделение указывается в спецификации и производственном заказе; не вкладывайте его в цех, если такая иерархия не задана.</td>
+<td><strong>Подразделение: Наименование: Дисп. рем. раб. xx.yy</strong></td>
+<td><code>Признак подразделения-диспетчера: включён</code>; <code>Наименование: Дисп. рем. раб. xx.yy</code>. Это подразделение указывается в спецификации и производственном заказе; не вкладывайте его в цех, если такая иерархия не задана.</td>
 </tr>
 <tr>
-<td><strong>Подразделение: Наименование: Цех рем. обсл. xx.yy</strong></td>
-<td><code>Наименование: Цех рем. обсл. xx.yy</code>; <code>Настройки производственного подразделения: как на слайдах 21–22</code>; <code>График работы: заданный для учебного цеха</code>. Числовые и переключаемые параметры перенести из формы задания.</td>
+<td><strong>Подразделение: Наименование: Цех ремонта и техобслуживания xx.yy</strong></td>
+<td><code>Наименование: Цех ремонта и техобслуживания xx.yy</code>; <code>Настройки производственного подразделения: как на слайдах 21–22</code>; <code>График работы: заданный для учебного цеха</code>. Числовые и переключаемые параметры перенести из формы задания.</td>
 </tr>
 <tr>
-<td><strong>Вид рабочего центра: Наименование: ВРЦ xx.yy</strong></td>
-<td><code>Подразделение: Цех рем. обсл. xx.yy</code>; <code>Правило планирования и доступная мощность: значения по форме задания</code>, если эти поля включены в упражнение.</td>
+<td><strong>Вид рабочего центра: Наименование: ВРЦ Ремонт xx.yy</strong></td>
+<td><code>Подразделение: Цех ремонта и техобслуживания xx.yy</code>; <code>Правило планирования и доступная мощность: значения по форме задания</code>, если эти поля включены в упражнение.</td>
 </tr>
 <tr>
-<td><strong>Рабочий центр: Наименование: РЦ xx.yy</strong></td>
-<td><code>Вид: ВРЦ xx.yy</code>; <code>График / участок / производительность / стоимость: значения из задания</code>, только для тех полей, которые реально заполняются в этом упражнении.</td>
+<td><strong>Рабочий центр: Наименование: РЦ 1. Ремонт xx.yy</strong></td>
+<td><code>Вид: ВРЦ Ремонт xx.yy</code>; <code>График / участок / производительность / стоимость: значения из задания</code>, только для тех полей, которые реально заполняются в этом упражнении.</td>
 </tr>
 <tr>
 <td><strong>Ресурсная спецификация: Наименование: ТР тех. уст. xx.yy</strong></td>
-<td><code>Результат: работа ТР</code>; <code>Подразделение-диспетчер: Дисп. рем. xx.yy</code>; <code>Статус: Действует</code>. Для КР создаётся отдельная карточка с соответствующей работой.</td>
+<td><code>Результат: работа ТР</code>; <code>Подразделение-диспетчер: Дисп. рем. раб. xx.yy</code>; <code>Статус: Действует</code>. Для КР создаётся отдельная карточка с соответствующей работой.</td>
 </tr>
 <tr>
-<td><strong>Строка «Этап» ресурсной спецификации: Подразделение: Цех рем. обсл. xx.yy</strong></td>
-<td><code>Подразделение: Цех рем. обсл. xx.yy</code>; <code>Вид рабочего центра: свой ВРЦ</code>.</td>
+<td><strong>Строка «Этап» ресурсной спецификации: Подразделение: Цех ремонта и техобслуживания xx.yy</strong></td>
+<td><code>Подразделение: Цех ремонта и техобслуживания xx.yy</code>; <code>Вид рабочего центра: свой ВРЦ</code>.</td>
 </tr>
 <tr>
-<td><strong>Строка «Операция» ресурсной спецификации: Рабочий центр: РЦ xx.yy</strong></td>
+<td><strong>Строка «Операция» ресурсной спецификации: Рабочий центр: РЦ 1. Ремонт xx.yy</strong></td>
 <td><code>Рабочий центр: свой РЦ</code> (либо ВРЦ, если по заданию разрешён выбор подходящего центра); остальные параметры — значения из шаблона спецификации.</td>
 </tr>
 </tbody></table></div>
@@ -420,7 +409,7 @@
 Для ТР и КР создаются отдельные спецификации</code></pre>
 <p><strong>Подробная схема</strong></p>
 <p>В семинаре в «Материалах и работах» вида ремонта указывается <strong>работа как позиция номенклатуры</strong>. Для выполнения этой работы создаётся ресурсная спецификация. Например, вид ремонта «ТР xx.yy» содержит работу «ТР тех. уст. xx.yy» в количестве 1 шт., а спецификация описывает, как эту работу выполнить.</p>
-<figure class="hierarchy" id="scheme-specification" aria-label="Состав ресурсной спецификации"><figcaption>Состав ресурсной спецификации<span>Раздел 2 · одинаковая структура для ТР и КР</span></figcaption><ol><li style="--level:0"><p class="relation">Связь с разделом 1</p><div class="node"><strong>Вид ремонта → номенклатура работы</strong><span>Например: ТР xx.yy → «ТР тех. уст. xx.yy», 1 шт.</span></div></li><li style="--level:0"><p class="relation">Для этой работы создаётся самостоятельный норматив</p><div class="node"><strong>Ресурсная спецификация: Наименование: ТР тех. уст. xx.yy</strong><span>Результат: работа ТР<br>Подразделение-диспетчер: Дисп. рем. xx.yy<br>Статус: Действует</span></div></li><li style="--level:1"><p class="relation">↳ вкладка «Производственный процесс»</p><div class="node"><strong>Этап: Наименование: этап ремонта ТР</strong><span>Подразделение: Цех рем. обсл. xx.yy<br>Вид рабочего центра: свой ВРЦ</span></div></li><li style="--level:2"><p class="relation">↳ детализация этапа</p><div class="node"><strong>Операция: Наименование: операция ремонта</strong><span>Рабочий центр: свой РЦ<br>Параметры выполнения: из шаблона спецификации</span></div></li><li style="--level:1"><p class="relation">↳ ресурсный состав спецификации</p><div class="node"><strong>Материалы, работы и трудозатраты</strong><span>Номенклатура ресурсов и количества; виды работ и нормы труда</span></div></li></ol><p class="diagram-note">Вид ремонта и спецификация связаны через номенклатуру работы. Этап и операция внутри спецификации описывают норматив, а не факт выполнения конкретного заказа.</p></figure>
+<figure class="hierarchy" id="scheme-specification" aria-label="Состав ресурсной спецификации"><figcaption>Состав ресурсной спецификации<span>Раздел 2 · одинаковая структура для ТР и КР</span></figcaption><ol><li data-level="0"><p class="relation">Связь с разделом 1</p><div class="node"><strong>Вид ремонта → номенклатура работы</strong><span>Например: ТР xx.yy → «ТР тех. уст. xx.yy», 1 шт.</span></div></li><li data-level="0"><p class="relation">Для этой работы создаётся самостоятельный норматив</p><div class="node"><strong>Ресурсная спецификация: Наименование: ТР тех. уст. xx.yy</strong><span>Результат: работа ТР<br>Подразделение-диспетчер: Дисп. рем. раб. xx.yy<br>Статус: Действует</span></div></li><li data-level="1"><p class="relation">↳ вкладка «Производственный процесс»</p><div class="node"><strong>Этап: Наименование: этап ремонта ТР</strong><span>Подразделение: Цех ремонта и техобслуживания xx.yy<br>Вид рабочего центра: свой ВРЦ</span></div></li><li data-level="2"><p class="relation">↳ детализация этапа</p><div class="node"><strong>Операция: Наименование: операция ремонта</strong><span>Рабочий центр: свой РЦ<br>Параметры выполнения: из шаблона спецификации</span></div></li><li data-level="1"><p class="relation">↳ ресурсный состав спецификации</p><div class="node"><strong>Материалы, работы и трудозатраты</strong><span>Номенклатура ресурсов и количества; виды работ и нормы труда</span></div></li></ol><p class="diagram-note">Вид ремонта и спецификация связаны через номенклатуру работы. Этап и операция внутри спецификации описывают норматив, а не факт выполнения конкретного заказа.</p></figure>
 <p>Связующее звено между видом ремонта и спецификацией — номенклатура ремонтной работы. Спецификация является самостоятельным нормативом производственного контура. В методичке виды ремонтов названы аналогами ресурсных спецификаций по назначению, но в семинаре это разные записи, которые нужно создать и связать.</p>
 <p><strong>Два уровня детализации ресурсов.</strong> В виде ремонта можно указать материалы и работы для организации ремонта. В спецификации работы раскрываются ресурсы и технология её выполнения ремонтным цехом. Если ремкомплект расходуется внутри этой работы, его потребность следует описывать на соответствующем уровне, чтобы один расход не был учтён дважды.</p>
 <p><strong>Три похожих названия.</strong> «Вид ремонта» определяет ремонтный норматив; номенклатура с типом «Работа» обозначает учитываемую ремонтную работу; «Вид работ» на вкладке «Трудозатраты» задаёт трудовой ресурс. Они выполняют разные роли.</p>
@@ -435,12 +424,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>Подразделение «Дисп. рем. xx.yy»</td>
+<td>Подразделение «Дисп. рем. раб. xx.yy»</td>
 <td>Признак подразделения-диспетчера</td>
 <td>Выбрано в своих спецификациях</td>
 </tr>
 <tr>
-<td>Подразделение «Цех рем. обсл. xx.yy»</td>
+<td>Подразделение «Цех ремонта и техобслуживания xx.yy»</td>
 <td>Параметры производства, управления операциями и график по слайдам 21–22</td>
 <td>Выбрано в этапе спецификации</td>
 </tr>
@@ -528,7 +517,7 @@
 ЭТАПЫ И ОПЕРАЦИИ ПО КОНКРЕТНОМУ ЗАКАЗУ</code></pre>
 <p><strong>Подробная схема</strong></p>
 
-<figure class="hierarchy" id="scheme-planning" aria-label="Планирование и создание документов"><figcaption>Планирование и создание документов<span>Раздел 3 · последовательность действий</span></figcaption><ol><li style="--level:0"><p class="relation">Данные из разделов 1–2</p><div class="node"><strong>ОЭ и ремонтные нормативы</strong><span>Класс, цикл, виды ремонта, номенклатура; данные эксплуатации и прошлых ремонтов, если применяются; ремонтирующее подразделение и график</span></div></li><li style="--level:0"><p class="relation">↓ расчёт в рабочем месте</p><div class="node"><strong>Планирование ремонтных работ</strong><span>Шаг 1 — отборы и параметры<br>Шаг 2 — распоряжения, детали и группировка<br>Шаг 3 — создание и проведение заказов</span></div></li><li style="--level:0"><p class="relation">↓ документы — результат упражнения</p><div class="node"><strong>Заказ на ремонт: Объект эксплуатации: Технологическая установка xx.yy</strong><span>Организация: ТОиР<br>Ремонты: ТР → КР → ТР<br>Ремонтирующее подразделение и плановые даты: по результату планирования</span></div></li><li style="--level:0"><p class="relation">↓ выбранный заказ: «К выполнению» → создать на основании</p><div class="node"><strong>Заказ на производство: Основание: заказ на ремонт</strong><span>Ремонтная работа: номенклатура ТР/КР<br>Спецификация: соответствующая ТР/КР<br>Подразделение-диспетчер: Дисп. рем. xx.yy</span></div></li><li style="--level:0"><p class="relation">↓ дальнейшее исполнение на следующем семинаре</p><div class="node"><strong>Этапы и операции по конкретному заказу</strong><span>Планирование выполнения и последующая регистрация факта работ</span></div></li></ol><p class="diagram-note">Рабочее место выполняет расчёт. Заказы — отдельные документы. Три заказа являются проверяемым результатом упражнения; количество зависит от настроек и группировки.</p></figure>
+<figure class="hierarchy" id="scheme-planning" aria-label="Планирование и создание документов"><figcaption>Планирование и создание документов<span>Раздел 3 · последовательность действий</span></figcaption><ol><li data-level="0"><p class="relation">Данные из разделов 1–2</p><div class="node"><strong>ОЭ и ремонтные нормативы</strong><span>Класс, цикл, виды ремонта, номенклатура; данные эксплуатации и прошлых ремонтов, если применяются; ремонтирующее подразделение и график</span></div></li><li data-level="0"><p class="relation">↓ расчёт в рабочем месте</p><div class="node"><strong>Планирование ремонтных работ</strong><span>Шаг 1 — отборы и параметры<br>Шаг 2 — распоряжения, детали и группировка<br>Шаг 3 — создание и проведение заказов</span></div></li><li data-level="0"><p class="relation">↓ документы — результат упражнения</p><div class="node"><strong>Заказ на ремонт: Объект эксплуатации: Технологическая установка xx.yy</strong><span>Организация: ТОиР<br>Ремонты: ТР → КР → ТР<br>Ремонтирующее подразделение и плановые даты: по результату планирования</span></div></li><li data-level="0"><p class="relation">↓ выбранный заказ: «К выполнению» → создать на основании</p><div class="node"><strong>Заказ на производство: Основание: заказ на ремонт</strong><span>Ремонтная работа: номенклатура ТР/КР<br>Спецификация: соответствующая ТР/КР<br>Подразделение-диспетчер: Дисп. рем. раб. xx.yy</span></div></li><li data-level="0"><p class="relation">↓ дальнейшее исполнение на следующем семинаре</p><div class="node"><strong>Этапы и операции по конкретному заказу</strong><span>Планирование выполнения и последующая регистрация факта работ</span></div></li></ol><p class="diagram-note">Рабочее место выполняет расчёт. Заказы — отдельные документы. Три заказа являются проверяемым результатом упражнения; количество зависит от настроек и группировки.</p></figure>
 <p>Заказ на ремонт фиксирует решение выполнить ремонт определённого ОЭ. Заказ на производство организует выполнение соответствующей работы ремонтным цехом. Нормативом для производственного исполнения служит спецификация из раздела 2. Это цепочка связанных документов; принадлежность ОЭ к классу остаётся прежней.</p>
 <h3 id="section-3-3">3.3. Схема состава заказа на ремонт</h3>
 <p><strong>Краткая схема</strong></p><pre tabindex="0"><code>ДОКУМЕНТ «ЗАКАЗ НА РЕМОНТ»
@@ -546,7 +535,7 @@
 На основании заказа → отдельный документ «Заказ на производство»</code></pre>
 <p><strong>Подробная схема</strong></p>
 
-<figure class="hierarchy" id="scheme-repair-order" aria-label="Что хранится в заказе на ремонт"><figcaption>Что хранится в заказе на ремонт<span>Раздел 3 · состав отдельного документа</span></figcaption><ol><li style="--level:0"><div class="node"><strong>Заказ на ремонт: Объект эксплуатации: Технологическая установка xx.yy</strong><span>Документ на конкретный ремонт: проверяемые атрибуты и таблицы</span></div></li><li style="--level:1"><p class="relation">↳ реквизиты</p><div class="node"><strong>Объект и организация</strong><span>Объект эксплуатации: Технологическая установка xx.yy<br>Организация: ТОиР</span></div></li><li style="--level:1"><p class="relation">↳ таблица «Ремонты»</p><div class="node"><strong>Строки ремонтов</strong><span>Вид ремонта: ТР/КР<br>Статья расходов: по заданию</span></div></li><li style="--level:1"><p class="relation">↳ таблица «Материалы и работы»</p><div class="node"><strong>Потребность в номенклатуре</strong><span>Номенклатура: позиция работы/материала<br>Количество: по заданию или расчёту</span></div></li><li style="--level:1"><p class="relation">↳ дополнительные данные и состояние</p><div class="node"><strong>Исполнитель, сроки и статус</strong><span>Ремонтирующее подразделение: выбранное подразделение<br>Плановые даты: начало и окончание по планированию<br>Статус: по шагу упражнения</span></div></li><li style="--level:0"><p class="relation">↓ создаётся на основании заказа</p><div class="node"><strong>Заказ на производство</strong><span>Самостоятельный связанный документ для выполнения ремонтной работы</span></div></li></ol><p class="diagram-note">Организация и подразделения выполняют разные роли. Данные заказа фиксируют конкретный ремонт; нормативы для него берутся из созданных ранее справочников.</p></figure>
+<figure class="hierarchy" id="scheme-repair-order" aria-label="Что хранится в заказе на ремонт"><figcaption>Что хранится в заказе на ремонт<span>Раздел 3 · состав отдельного документа</span></figcaption><ol><li data-level="0"><div class="node"><strong>Заказ на ремонт: Объект эксплуатации: Технологическая установка xx.yy</strong><span>Документ на конкретный ремонт: проверяемые атрибуты и таблицы</span></div></li><li data-level="1"><p class="relation">↳ реквизиты</p><div class="node"><strong>Объект и организация</strong><span>Объект эксплуатации: Технологическая установка xx.yy<br>Организация: ТОиР</span></div></li><li data-level="1"><p class="relation">↳ таблица «Ремонты»</p><div class="node"><strong>Строки ремонтов</strong><span>Вид ремонта: ТР/КР<br>Статья расходов: по заданию</span></div></li><li data-level="1"><p class="relation">↳ таблица «Материалы и работы»</p><div class="node"><strong>Потребность в номенклатуре</strong><span>Номенклатура: позиция работы/материала<br>Количество: по заданию или расчёту</span></div></li><li data-level="1"><p class="relation">↳ дополнительные данные и состояние</p><div class="node"><strong>Исполнитель, сроки и статус</strong><span>Ремонтирующее подразделение: выбранное подразделение<br>Плановые даты: начало и окончание по планированию<br>Статус: по шагу упражнения</span></div></li><li data-level="0"><p class="relation">↓ создаётся на основании заказа</p><div class="node"><strong>Заказ на производство</strong><span>Самостоятельный связанный документ для выполнения ремонтной работы</span></div></li></ol><p class="diagram-note">Организация и подразделения выполняют разные роли. Данные заказа фиксируют конкретный ремонт; нормативы для него берутся из созданных ранее справочников.</p></figure>
 <p>Состав «Материалов и работ» можно заполнить по выбранным видам ремонта. В деталях распоряжения до создания заказа доступны потребности в номенклатуре и трудозатратах. Если ремонт планируется по узлам, в «Ремонтах» указываются виды ремонтов по узлам; в данном упражнении ремонтный цикл узла не используется.</p>
 <p><strong>Карточки документов раздела 3 — ключевые поля и значения</strong></p>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Таблица с горизонтальной прокруткой"><table>
@@ -562,7 +551,7 @@
 </tr>
 <tr>
 <td><strong>Заказ на производство: Основание: заказ на ремонт</strong></td>
-<td><code>Ремонтная работа: номенклатура из выбранного вида ремонта</code>; <code>Ресурсная спецификация: соответствующая ТР или КР</code>; <code>Подразделение-диспетчер: Дисп. рем. xx.yy</code>. Создаётся из заказа на ремонт командой «Создать на основании».</td>
+<td><code>Ремонтная работа: номенклатура из выбранного вида ремонта</code>; <code>Ресурсная спецификация: соответствующая ТР или КР</code>; <code>Подразделение-диспетчер: Дисп. рем. раб. xx.yy</code>. Создаётся из заказа на ремонт командой «Создать на основании».</td>
 </tr>
 </tbody></table></div>
 <p>Для документов главный ключ карточки — не искусственное «Наименование», а ссылка на объект/основание и номер документа, если он доступен после записи.</p>
@@ -591,7 +580,7 @@
 <h2 id="section-4">Источники и навигация</h2>
 <ol>
 <li><a href="https://docs.google.com/presentation/d/109eD0A_a8kYas-_4LkptvQvo3ecQEMDt/edit">Практикум «Планирование ТОиР»</a>. Схема процессов службы эксплуатации и ремонтов — слайд 6; параметры интерфейса приведены по учебному примеру. Изучены 41 слайд. Дата обращения: 26 октября 2026 года.</li>
-<li><a href="mes.html">Методические материалы 1С:ERP — HTML-версия</a>: § 1.2.1–1.2.2, 1.2.5 и раздел 2 «Управление ремонтами». <a href="mes.html">Версия с иллюстрациями</a>.</li>
+<li><a href="assets/mes.html">Методические материалы 1С:ERP — HTML-версия</a>: § 1.2.1–1.2.2, 1.2.5 и раздел 2 «Управление ремонтами». <a href="assets/mes.html">Версия с иллюстрациями</a>.</li>
 <li><a href="index.html">Рабочая программа дисциплины — программа курса</a>: § 5.1, темы 2 «Производство» и 4 «Управление активами».</li>
 <li>Рукописная схема, приложенная к запросу: исходная логика переходов ОЭ → класс → ремонтный цикл → вид ремонта → материалы и работы → номенклатура.</li>
 </ol>
