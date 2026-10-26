@@ -30,7 +30,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site
-          cp -- *.html *.md _site/
+          cp -- *.html *.md *.pdf *.pptx _site/
           cp -R -- images _site/images
           touch _site/.nojekyll
           if grep -RIl '^version https://git-lfs.github.com/spec/v1' _site; then
@@ -39,6 +39,8 @@ jobs:
           fi
           test -s _site/index.html
           test -s _site/seminar1_toir_notes.html
+          test -s _site/erp_concept_v8.pdf
+          test -s "_site/Семинар 1_Драфт 14-10-23.pptx"
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v5.0.0
