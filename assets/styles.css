@@ -23,3 +23,8 @@
 .diagram-key{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin:16px 0;padding:10px 14px;background:var(--wash);border-left:3px solid var(--accent);font:13px/1.45 system-ui,sans-serif}.diagram-key strong{margin-right:4px}.diagram-key span{display:inline-flex;align-items:center;gap:6px}.diagram-mark{display:inline-grid;place-items:center;min-width:1.2em;color:var(--accent);font-weight:800;font-style:normal}.diagram-symbol{color:var(--accent);font-weight:800}
 
 .asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}.asset-grid figure{margin:0;border:1px solid var(--line);padding:10px;background:var(--paper)}.asset-grid img{width:100%;height:140px;object-fit:contain}.asset-grid figcaption{font-size:12px;overflow-wrap:anywhere;color:var(--muted)}
+
+/* Вложенные схемы ТОиР: один отступ на каждый реальный уровень списка. */
+.toir-notes .hierarchy ol ol > li{margin-left:36px}
+@media(max-width:700px){.toir-notes .hierarchy ol ol > li{margin-left:9px}}
+@media print{.toir-notes .hierarchy ol ol > li{margin-left:21px}}
