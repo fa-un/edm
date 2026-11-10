@@ -112,3 +112,29 @@
 - Отделяй установленные источником данные от интерпретаций. Зафиксируй в тексте, когда существенное значение или шаг отсутствует в источнике; не закрывай пробел правдоподобной догадкой.
 - Используй вопросы и отзывы преподавателя/студентов как сигналы для повторной проверки материала. Если отзыв выявил общий повторяющийся принцип, сначала проверь его на других релевантных страницах, затем закрепи в этих правилах; единичную редакторскую правку не превращай в универсальное требование.
 - В конце содержательной сессии кратко оцени: что стало понятнее студенту, какие допущения или пробелы остались, какую системную ошибку нужно предотвратить в следующей работе. Вноси в `AGENTS.md` только повторно применимое правило, сохраняя документ компактным и удаляя устаревшие или дублирующие указания.
+
+## Landing the Plane (Session Completion)
+
+**When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.
+
+**MANDATORY WORKFLOW:**
+
+1. **File issues for remaining work** - Create issues for anything that needs follow-up
+2. **Run quality gates** (if code changed) - Tests, linters, builds
+3. **Update issue status** - Close finished work, update in-progress items
+4. **PUSH TO REMOTE** - This is MANDATORY:
+   ```bash
+   git pull --rebase
+   bd sync
+   git push
+   git status  # MUST show "up to date with origin"
+   ```
+5. **Clean up** - Clear stashes, prune remote branches
+6. **Verify** - All changes committed AND pushed
+7. **Hand off** - Provide context for next session
+
+**CRITICAL RULES:**
+- Work is NOT complete until `git push` succeeds
+- NEVER stop before pushing - that leaves work stranded locally
+- NEVER say "ready to push when you are" - YOU must push
+- If push fails, resolve and retry until it succeeds
