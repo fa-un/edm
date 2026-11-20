@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="description" content="Карта дисциплины с темами, учебными действиями, источниками и обзором функциональности 1С:ERP.">
+  <title>Карта дисциплины — темы и учебные действия</title>
+  <style>
+    .model-note{padding:16px 19px;background:var(--wash);border-left:4px solid #79a493;margin:24px 0}
+    .coverage-legend{display:flex;flex-wrap:wrap;gap:9px 18px;margin:18px 0;padding:12px 15px;background:var(--wash);font-size:14px}
+    .coverage-legend span{display:inline-flex;align-items:center;gap:7px}
+    .coverage-dot{width:12px;height:12px;display:inline-block;border-radius:50%;background:#4c8b62}
+    .coverage-dot.lecture{background:#c18322}.coverage-dot.none{background:#a6afaa}
+    .mindmap-root{max-width:500px;margin:26px auto 34px;padding:15px 20px;text-align:center;background:var(--wash);border:2px solid #719982;border-radius:12px;font-weight:750}
+    .mindmap-branches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;position:relative}
+    .mindmap-branch{position:relative;padding:15px 17px 13px;background:#fff;border:1px solid var(--line);border-top:5px solid #4c8b62;border-radius:3px}
+    .mindmap-branch::before{content:"";position:absolute;left:50%;top:-20px;height:15px;border-left:1px solid var(--line)}
+    .mindmap-branch.lecture-only{border-top-color:#c18322}.mindmap-branch.outside{border-top-color:#a6afaa}
+    .mindmap-branch h3{margin:0 0 5px;font-size:17px}.mindmap-branch p{margin:5px 0;font-size:14px}
+    .mindmap-branch ul{margin:8px 0 0;padding-left:19px;font-size:14px}.mindmap-branch li{margin:4px 0}
+    .coverage-tag{display:inline-block;margin:3px 0;padding:2px 8px;border-radius:10px;background:#e5f1e7;color:#315f3f;font:600 12px/1.6 system-ui,sans-serif}
+    .lecture-only .coverage-tag{background:#fff0d8;color:#80530e}.outside .coverage-tag{background:#edf0ee;color:#58645e}
+    .preparation-note{font-size:12px!important;color:var(--muted)}
+    .erp-overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:20px 0}
+    .erp-domain{padding:14px 16px;background:#fff;border-top:3px solid var(--line)}
+    .erp-domain h3{margin:0 0 8px;font-size:16px}.erp-domain ul{list-style:none;padding:0;margin:0}
+    .erp-domain li{margin:7px 0;font-size:14px;line-height:1.45}
+    .erp-domain li.coverage-both{border-left:3px solid #4c8b62;padding-left:8px}
+    .erp-domain li.lecture-only{border-left:3px solid #c18322;padding-left:8px}
+    .erp-domain li.outside{border-left:3px solid #a6afaa;padding-left:8px}
+    .erp-domain a{font-weight:600}.erp-domain small{display:block;color:var(--muted);font-size:12px}
+    .coverage-intro{max-width:90ch}
+    .model-map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:22px 0}
+    .model-node{padding:14px 16px;background:#fff;border-top:3px solid var(--accent)}
+    .model-node h3{margin:0 0 5px;font-size:17px}
+    .model-node p{margin:0;font-size:14px;color:var(--muted)}
+    .model-arrow{text-align:center;color:var(--accent);font-weight:700;align-self:center}
+    .cluster-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+    .cluster-button{display:block;width:100%;min-height:115px;padding:16px;text-align:left;font:inherit;color:var(--ink);background:#fffefa;border:1px solid var(--line);border-top:4px solid var(--accent);cursor:pointer}
+    .cluster-button:hover,.cluster-button[aria-pressed="true"]{background:var(--wash);border-color:#9ab8a8}
+    .cluster-button strong{display:block;margin-bottom:5px}
+    .cluster-button span{display:block;color:var(--muted);font-size:14px;line-height:1.45}
+    .controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:18px 0}
+    .controls label{font-weight:700}
+    .controls input,.controls select{font:inherit;padding:8px 10px;border:1px solid var(--line);background:#fffefa;color:var(--ink);border-radius:4px}
+    .controls input{flex:1 1 260px;min-width:180px}
+    .term-cluster{margin:28px 0}
+    .term-cluster>summary{cursor:pointer;font-size:20px;font-weight:700;padding:12px 0;border-bottom:1px solid var(--line)}
+    .term-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+    .term-card{padding:14px 16px;background:#fff;border-left:3px solid #a7beb1}
+    .term-card h4{margin:0 0 7px;font:700 16px/1.35 system-ui,-apple-system,"Segoe UI",sans-serif}
+    .term-card p{margin:6px 0;font-size:15px}
+    .term-card .source{font-size:13px;color:var(--muted)}
+    .term-card .context{font-size:14px;color:var(--muted)}
+    .term-card .variants{margin-top:8px;font-size:13px}
+    .kind-label{display:inline-block;margin-left:7px;padding:1px 7px;background:var(--wash);color:var(--muted);font:600 11px/1.7 system-ui,sans-serif;vertical-align:2px}
+    .relation-list,.action-list,.function-list{list-style:none;padding:0;display:grid;gap:10px}
+    .relation-list li,.action-list li,.function-list li{max-width:none;margin:0;padding:14px 16px;background:#fff;border-left:3px solid #a7beb1}
+    .relation-list li.hypothesis{border-left-style:dashed;border-left-color:#bd8b3d}
+    .relation-line{font-size:16px;font-weight:650}
+    .relation-meta,.action-meta,.function-meta{display:block;color:var(--muted);font-size:14px;margin-top:5px}
+    .action-list h3,.function-list h3{font-size:17px;margin:0 0 6px}
+    .action-status{display:inline-block;margin-top:6px;padding:2px 7px;border-radius:3px;background:var(--wash);font:600 12px/1.6 system-ui,sans-serif;color:#38594d}
+    .action-status.caution{background:#fbf0da;color:#795410}
+    .count{color:var(--muted);font-size:14px}
+    .gap-note{padding:14px 18px;background:#f8f4e9;border-left:4px solid #bd8b3d}
+    [hidden]{display:none!important}
+    @media(max-width:820px){.model-map{grid-template-columns:repeat(2,minmax(0,1fr))}.cluster-map{grid-template-columns:repeat(2,minmax(0,1fr))}.mindmap-branches,.erp-overview{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:620px){.model-map,.cluster-map,.term-grid,.mindmap-branches,.erp-overview{grid-template-columns:1fr}.cluster-button{min-height:0}.mindmap-branch::before{left:18px}}
+    @media print{.controls,.cluster-map{display:none}.term-cluster{break-inside:auto}.term-card,.action-list li,.function-list li{break-inside:avoid}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <header>
+    <div class="crumb"><a href="index.html">← Программа курса</a></div>
+    <div class="eyebrow">Карта дисциплины · темы, действия и источники</div>
+    <h1>Управление данными предприятия</h1>
+    <p class="lead">Темы показаны как связанные области знаний, а действия — как то, что студент разбирает или выполняет в материалах. Это не оценка освоенной компетенции.</p>
+  </header>
+
+  <section aria-labelledby="course-map-heading">
+    <h2 id="course-map-heading">Карта тем и учебных действий</h2>
+    <p class="coverage-intro">Действия внутри ветвей описывают работу с понятиями и учебными задачами. Цвет показывает наличие материала по указанной подтеме: он не означает, что занятие прошло или студент освоил действие.</p>
+    <div class="coverage-legend" aria-label="Легенда покрытия учебными материалами">
+      <span><i class="coverage-dot" aria-hidden="true"></i>Лекция и практические/семинарские материалы по подтеме</span>
+      <span><i class="coverage-dot lecture" aria-hidden="true"></i>Лекция или аналитический разбор без отдельной ERP-практики</span>
+      <span><i class="coverage-dot none" aria-hidden="true"></i>В учебных материалах курса не раскрыто</span>
+    </div>
+    <div class="mindmap-root">Управление данными предприятия<br><small>процессы · объекты и данные · методы работы</small></div>
+    <div class="mindmap-branches" role="list" aria-label="Ветви дисциплины и навыки">
+      <article class="mindmap-branch" role="listitem">
+        <h3>Аналитика и бизнес-процессы</h3><span class="coverage-tag">Лекция + семинар</span>
+        <ul><li>Выяснять потребность и границы процесса</li><li>Описывать AS-IS и TO-BE</li><li>Проверять гипотезы свидетельствами</li><li>Формулировать требования и критерии приёмки</li></ul>
+        <p><a href="lecture1_student_guide.html">Лекция 1</a> · <a href="seminar1_analyst_case.html">Разбор кейса</a></p>
+      </article>
+      <article class="mindmap-branch" role="listitem">
+        <h3>Производство</h3><span class="coverage-tag">Лекция + практикумы 1–8</span>
+        <ul><li>Настраивать производственные данные</li><li>Связывать подразделения, рабочие центры и доступность</li><li>Собирать ресурсные спецификации</li><li>Различать норму, план, исполнение и факт</li></ul>
+        <p><a href="lecture2_student_guide.html">Лекция 2</a> · <a href="Практикумы №1–2 — разбор.html">1–2</a> · <a href="Практикум №3–6 — разбор.html">3–6</a> · <a href="Практикумы №7–8 — разбор.html">7–8</a></p>
+      </article>
+      <article class="mindmap-branch" role="listitem">
+        <h3>Активы и ТОиР</h3><span class="coverage-tag">Лекция + материалы семинаров</span>
+        <ul><li>Описывать объекты эксплуатации и ремонтные нормы</li><li>Планировать ремонт</li><li>Создавать документы исполнения</li><li>Регистрировать операцию и результат</li></ul>
+        <p><a href="lecture2_student_guide.html">Лекция 2</a> · <a href="seminar1_toir_notes.html">Планирование</a> · <a href="seminar2_toir_execution.html">Исполнение</a></p>
+        <p class="preparation-note">В репозитории доступны редакции презентаций 2023 года с заменёнными учётными данными. PDF-драфты семинаров 1 и 2 за 2024 год проверены отдельно, но не выложены: в них есть логин и пароль. Google Slides с планированием ТОиР открывается; соответствие версий и содержательные отличия собраны в <a href="toir_source_crosswalk.html">карте источников ТОиР</a>.</p>
+      </article>
+      <article class="mindmap-branch" role="listitem">
+        <h3>Продажи и закупки</h3><span class="coverage-tag">Лекция + практикумы</span>
+        <ul><li>Описывать потребность клиента и условия продажи</li><li>Создавать учебный заказ клиента</li><li>Сопоставлять потребность с закупкой</li><li>Создавать учебный заказ поставщику</li></ul>
+        <p><a href="topic4_sales_purchasing_lecture.html">Лекция</a> · <a href="topic4_sales_purchasing_practicum.html">Заказ клиента</a> · <a href="topic4_purchasing_practicum.html">Заказ поставщику</a></p>
+        <p class="preparation-note">Материалы подготовлены; индекс курса не подтверждает проведение занятий.</p>
+      </article>
+      <article class="mindmap-branch" role="listitem">
+        <h3>Склад, запасы и обеспечение</h3><span class="coverage-tag">Лекция + практикум</span>
+        <ul><li>Различать остаток, резерв и потребность</li><li>Выбирать источник обеспечения</li><li>Читать состояние обеспечения заказа</li><li>Отличать просмотр от регистрации складского факта</li></ul>
+        <p><a href="topic4_logistics_lecture.html">Лекция</a> · <a href="topic4_logistics_practicum.html">Практикум</a></p>
+        <p class="preparation-note">Практикум — чтение подготовленного рабочего места, не проведение складской операции.</p>
+      </article>
+      <article class="mindmap-branch" role="listitem">
+        <h3>Деньги и платёжный календарь</h3><span class="coverage-tag">Лекция + практикум · материалы готовы</span>
+        <ul><li>Отличать плановый платёж от фактического</li><li>Считать остаток по дням</li><li>Находить первый день дефицита</li></ul>
+        <p><a href="topic5_finance_lecture.html">Лекция</a> · <a href="topic5_finance_practicum.html">Практикум</a></p>
+        <p class="preparation-note">Занятия по теме ещё не подтверждены; полный финансовый контур 1С:ERP курс не охватывает.</p>
+      </article>
+      <article class="mindmap-branch" role="listitem">
+        <h3>Данные и записи предприятия</h3><span class="coverage-tag">Лекция + практикум · материалы готовы</span>
+        <ul><li>Различать основные, справочные и операционные данные</li><li>Читать запись номенклатуры и строку документа</li><li>Понимать поле-ссылку и назначение справочника</li></ul>
+        <p><a href="topic6_data_lecture.html">Лекция</a> · <a href="topic6_data_practicum.html">Практикум</a></p>
+        <p class="preparation-note">Занятия по теме ещё не подтверждены; отдельная MDM-система не предполагается.</p>
+      </article>
+      <article class="mindmap-branch lecture-only" role="listitem">
+        <h3>CRM как класс корпоративных систем</h3><span class="coverage-tag">Упоминание и определение в лекции</span>
+        <ul><li>Понимать назначение CRM на уровне класса систем</li><li>Отдельный процесс CRM в курсе не моделируется</li></ul>
+        <p><a href="lecture1_student_guide.html">CRM в лекции 1</a></p>
+      </article>
+      <article class="mindmap-branch lecture-only" role="listitem">
+        <h3>Себестоимость производства</h3><span class="coverage-tag">Лекция + разбор кейса</span>
+        <ul><li>Различать плановую и фактическую себестоимость</li><li>Разбирать отклонения в учебном кейсе</li><li>Отдельная практика по подсистеме расчёта затрат отсутствует</li></ul>
+        <p><a href="lecture2_student_guide.html#cost-deviations">Понятия в лекции 2</a> · <a href="seminar2_production_case.html#deviation">Разбор отклонения в семинаре 2</a></p>
+      </article>
+      <article class="mindmap-branch outside" role="listitem">
+        <h3>Проекты и прочие модули</h3><span class="coverage-tag">Не раскрыто в материалах курса</span>
+        <ul><li>Планирование и контроль проектов</li><li>Регламентированный и международный учёт</li><li>Управление персоналом и зарплатой</li><li>Интеграции с маркетплейсами и маркировкой</li></ul>
+        <p>Эти области показаны ниже как обзор функциональности продукта, а не как пройденные темы.</p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="erp-landscape-heading">
+    <h2 id="erp-landscape-heading">Где эти темы находятся в функциональности 1С:ERP</h2>
+    <p>Это карта областей самого продукта, а цвет отмечает только пересечение конкретной подтемы с материалами курса. Он не означает охват модуля целиком, проведение занятия или освоение темы. Например, для казначейства и бюджетирования показан только платёжный календарь; для производства и ТОиР — выбранные процессы и учебные объекты. Группировка редакционная; названия и ссылки ведут на страницы 1С.</p>
+    <div class="erp-overview">
+      <div class="erp-domain"><h3>Производство и активы</h3><ul>
+        <li class="coverage-both"><a href="https://v8.1c.ru/erp/production/">Управление производством</a><small>Лекция и практикумы: нормы, ресурсы, спецификации, планирование.</small></li>
+        <li class="coverage-both"><a href="https://v8.1c.ru/erp/repairs/">Организация ремонтов</a><small>Лекция и семинарские материалы: объекты, циклы, планирование, заказы и исполнение.</small></li>
+        <li class="lecture-only"><a href="https://v8.1c.ru/erp/cost_management/">Затраты и себестоимость</a><small>Плановая и фактическая себестоимость разобраны в лекции и кейсе; отдельная практика по модулю затрат отсутствует.</small></li>
+      </ul></div>
+      <div class="erp-domain"><h3>Клиенты, продажи и снабжение</h3><ul>
+        <li class="coverage-both"><a href="https://v8.1c.ru/erp/sales/">Управление продажами</a><small>Лекция и учебный заказ клиента; процесс продаж целиком не моделируется.</small></li>
+        <li class="coverage-both"><a href="https://v8.1c.ru/erp/purchasing/">Управление закупками</a><small>Лекция и учебный заказ поставщику; часть закупочного цикла остаётся обзором.</small></li>
+        <li class="coverage-both"><a href="https://v8.1c.ru/erp/warehouse/">Склад и запасы</a><small>Лекция и просмотр обеспечения; складской факт практикумом не проводится.</small></li>
+        <li><a href="https://v8.1c.ru/erp/tovarnoe-planirovanie/">Планирование запасов</a><small>Связано с обеспечением, но самостоятельный блок в курсе не раскрыт.</small></li>
+        <li class="lecture-only"><a href="https://v8.1c.ru/erp/clients/">CRM и отношения с клиентами</a><small>CRM определена в лекции; отдельный процесс CRM в практикуме отсутствует.</small></li>
+      </ul></div>
+      <div class="erp-domain"><h3>Финансы, учёт и показатели</h3><ul>
+        <li class="coverage-both"><a href="https://v8.1c.ru/erp/treasury/">Казначейство</a><small>В материалах — платёжный календарь и учебный расчёт; занятие не подтверждено.</small></li>
+        <li class="coverage-both"><a href="https://v8.1c.ru/erp/budget/">Финансы и бюджетирование</a><small>Покрыт только контур планирования денежных средств, а не полное бюджетирование.</small></li>
+        <li class="lecture-only"><a href="https://v8.1c.ru/erp/monitoring/">Мониторинг показателей</a><small>Метрики затронуты в учебных материалах; подсистема 1С отдельно не изучается.</small></li>
+        <li class="outside"><a href="https://v8.1c.ru/erp/reglamentirovannyy-uchet/">Регламентированный учёт</a></li>
+        <li class="outside"><a href="https://v8.1c.ru/erp/finances/">Международный финансовый учёт</a></li>
+      </ul></div>
+      <div class="erp-domain"><h3>Люди и данные</h3><ul>
+        <li class="outside"><a href="https://v8.1c.ru/erp/hrm_payroll/">Персонал и заработная плата</a></li>
+        <li class="coverage-both">Данные и записи предприятия — сквозное понятие курса<small>Есть лекция и практикум; это не отдельный модуль из каталога 1С:ERP.</small></li>
+      </ul></div>
+      <div class="erp-domain"><h3>Внешние интеграции</h3><ul>
+        <li class="outside"><a href="https://v8.1c.ru/erp/integratsiya-s-sistemoy-chestnyy-znak/">Интеграция с «Честным знаком»</a></li>
+        <li class="outside"><a href="https://v8.1c.ru/erp/integratsiya-s-marketpleysami-erp/">Интеграция с маркетплейсами</a></li>
+        <li class="outside"><a href="https://v8.1c.ru/erp/doc8corp/">Совместная работа с 1С:Документооборот</a></li>
+      </ul></div>
+      <div class="erp-domain"><h3>Полная карта продукта</h3><ul>
+        <li><a href="https://v8.1c.ru/erp/funktsionalnost-1s-erp/">Официальный перечень функциональности 1С:ERP</a><small>Список и порядок разделов продукта могут отличаться от тематической карты курса.</small></li>
+        <li><a href="https://v8.1c.ru/erp/funktsionalnaya-model-1s-erp-upravlenie-predpriyatiem/">Функциональная модель 1С:ERP</a><small>Страница производителя с материалами о функциональной модели.</small></li>
+      </ul></div>
+    </div>
+  </section>
+
+  <p class="model-note"><strong>Палантир-подобная рамка.</strong> В Foundry тип объекта задаёт схему сущности или события, а объект — один экземпляр этой схемы; свойства описывают характеристики, link types задают отношения между типами объектов, action types меняют объекты и ссылки, а функции вычисляют результат. Эта карта — основанная на источниках карта понятий и действий с частичной типизацией: не все понятия уже размечены как тип объекта, свойство, документ, состояние или действие. Кластеры редакционные; это не полная схема Foundry и не схема фактической конфигурации 1С. <a href="https://www.palantir.com/docs/foundry/ontology/core-concepts">Определения Palantir Foundry</a>.</p>
+
+  <section aria-labelledby="model-heading">
+    <h2 id="model-heading">Как устроена модель</h2>
+    <div class="model-map" aria-label="Типы элементов онтологии и их роли">
+      <div class="model-node"><h3>Типы объектов</h3><p>Классы вещей и событий: заказ клиента, номенклатура, рабочий центр, объект эксплуатации.</p></div>
+      <div class="model-node"><h3>Свойства</h3><p>Характеристики объектов: количество, дата, статус, цена, значение характеристики.</p></div>
+      <div class="model-node"><h3>Типы связей</h3><p>Что соединяет объекты: строка ссылается на номенклатуру; заказ на ремонт относится к объекту эксплуатации.</p></div>
+      <div class="model-node"><h3>Типы действий</h3><p>Операции, которые создают или меняют объекты, их свойства и связи.</p></div>
+      <div class="model-node"><h3>Функции</h3><p>Правила вычисления результата по входным данным, например остатка или показателя.</p></div>
+    </div>
+    <p>Узлы ниже — понятия и типы, а не записи учебной базы. Типизация пока частичная; отсутствие типа не означает отдельный объектный тип. Стрелка показывает предметную связь или переход, но сама по себе не доказывает, что в базе есть соответствующее поле-ссылка или таблица связей. Это не объектно-ориентированный список «методов класса»: действие меняет состояние данных, функция вычисляет результат. Наличие описанного действия не доказывает физическое выполнение события, а статус документа не доказывает состояние объекта предприятия.</p>
+  </section>
+
+  <section aria-labelledby="clusters-heading">
+    <h2 id="clusters-heading">Кластеры знаний</h2>
+    <p>Кластеры объединяют понятия по смыслу, без нумерации тем курса. Нажмите на кластер, чтобы открыть его определения.</p>
+    <div id="cluster-map" class="cluster-map" aria-label="Смысловые кластеры"></div>
+  </section>
+
+  <section aria-labelledby="relations-heading">
+    <h2 id="relations-heading">Связи между объектами</h2>
+    <p>Здесь показаны только связи, которые явно описаны в источниках. Условные переходы помечены; гипотеза вынесена отдельно.</p>
+    <ul id="relation-list" class="relation-list"></ul>
+  </section>
+
+  <section aria-labelledby="actions-heading">
+    <h2 id="actions-heading">Действия и методы</h2>
+    <p>В этой карте действие связано с тем, какие данные или объекты оно использует и какой результат создаёт. Пометка показывает, что именно подтверждает источник.</p>
+    <ul id="action-list" class="action-list"></ul>
+  </section>
+
+  <section aria-labelledby="functions-heading">
+    <h2 id="functions-heading">Вычисления и показатели</h2>
+    <ul id="function-list" class="function-list"></ul>
+  </section>
+
+  <section aria-labelledby="definitions-heading">
+    <h2 id="definitions-heading">Словарь определений</h2>
+    <p id="corpus-count" class="count">Загрузка состава словаря…</p>
+    <div class="controls">
+      <label for="term-search">Найти понятие</label>
+      <input id="term-search" type="search" placeholder="Например, «норматив» или «заказ»">
+      <label for="cluster-filter">Кластер</label>
+      <select id="cluster-filter"><option value="all">Все кластеры</option></select>
+      <span id="term-count" class="count" aria-live="polite"></span>
+    </div>
+    <div id="definition-groups"></div>
+  </section>
+
+  <details class="gap-note" aria-labelledby="limits-heading">
+    <summary id="limits-heading">Границы проверки</summary>
+    <p>Извлечены определения из глоссарных таблиц и явно сформулированные определения в прозе. Последовательности материалов ТОиР сопоставлены: семинар 1 — Google Slides/PPTX 2023, слайды 1–41; PDF 2024, страницы 1–5 ↔ слайды 1–5, страница 6 ↔ слайд 7, страницы 7–40 ↔ слайды 8–41; семинар 2 — PDF 2024 и PPTX 2023, страницы/слайды 1–35. В PDF семинара 1 2024 года отсутствует слайд 6 с картой процессов. Различия заданий и критериев, а также пределы проверки изображений приведены в <a href="toir_source_crosswalk.html">карте источников ТОиР</a>.</p>
+    <p>PDF-драфты 2024 года содержат учётные данные и в репозиторий не включены; опубликованные PPTX 2023 года содержат маски `******` вместо логина и пароля. Проверка постраничного соответствия и ключевого текста не означает проверки каждого поля и изображения во всех версиях. В практикумах по логистике и данным часть работы — только просмотр или учебная симуляция; её нельзя считать выполненным действием в ERP.</p>
+  </details>
+
+  <footer><a href="index.html">Программа курса</a> · <a href="assets/knowledge_ontology.json">Структурированные данные карты</a></footer>
+</main>
+<script src="assets/knowledge_ontology_data.js"></script>
+<script>
+const clusterMap=document.getElementById('cluster-map');
+const relationList=document.getElementById('relation-list');
+const actionList=document.getElementById('action-list');
+const functionList=document.getElementById('function-list');
+const definitionGroups=document.getElementById('definition-groups');
+const clusterFilter=document.getElementById('cluster-filter');
+const termSearch=document.getElementById('term-search');
+const termCount=document.getElementById('term-count');
+
+function element(tag,cls,text){const item=document.createElement(tag);if(cls)item.className=cls;if(text!==undefined)item.textContent=text;return item;}
+function addSource(parent,path,label){if(!path){parent.append(document.createTextNode(label));return;}const a=element('a','',label);a.href=path;parent.append(a);}
+function statusLabel(status){
+ const values={
+  'student-method':['Учебный метод',''],
+  'student-write-task':['Практическое действие по заданию',''],
+  'student-read-only':['Только просмотр','caution'],
+  'student-simulation':['Учебная симуляция','caution'],
+  'described-method':['Метод описан в материале',''],
+  'described-process':['Процесс описан; выполнение не выводится из описания','caution'],
+  'described-capability':['Возможность описана; доступность в учебной базе не подтверждена','caution'],
+  'described-metric':['Показатель описан в материале',''],
+  'described-tool-method':['Метод или инструмент описан в материале',''],
+  'hypothesis':['Редакторская гипотеза','caution']
+ };
+ return values[status]||[status,'caution'];
+}
+function render(data){
+ document.getElementById('corpus-count').textContent=`${data.meta.distinctConceptNodes} понятий · ${data.meta.explicitDefinitions} формулировок определений из ${data.meta.pagesReviewed} материалов · ${data.meta.glossaryTableRows} строк глоссариев · ${data.meta.toolDescriptions} описаний классов AI-инструментов`;
+ const clusterById=new Map(data.clusters.map(c=>[c.id,c]));
+ const termsByCluster=new Map(data.clusters.map(c=>[c.id,[]]));
+ for(const term of data.terms)termsByCluster.get(term.cluster)?.push(term);
+
+ for(const cluster of data.clusters){
+  const button=element('button','cluster-button');button.type='button';button.dataset.cluster=cluster.id;button.setAttribute('aria-pressed','false');
+  const title=element('strong','',cluster.label);const summary=element('span','',cluster.description);const amount=element('span','count',`${termsByCluster.get(cluster.id).length} понятий`);
+  button.append(title,summary,amount);button.addEventListener('click',()=>{
+   document.querySelectorAll('.cluster-button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+   clusterFilter.value=cluster.id;filterDefinitions();
+   const group=document.getElementById(`cluster-${cluster.id}`);if(group){group.open=true;group.scrollIntoView({block:'start',behavior:'smooth'});}
+  });clusterMap.append(button);
+  const option=element('option','',cluster.label);option.value=cluster.id;clusterFilter.append(option);
+ }
+
+ for(const link of data.links){
+  const li=element('li',link.status==='hypothesis'?'hypothesis':'');
+  const line=element('div','relation-line',`${link.fromLabel||link.from} — ${link.label} → ${link.toLabel||link.to}`);li.append(line);
+  const meta=element('span','relation-meta');
+  if(link.status==='source-stated-conditional')meta.append('Условная связь. ');
+  if(link.status==='hypothesis')meta.append('Гипотеза, не требование программы. ');
+  meta.append('Основание: ');addSource(meta,link.source,link.sourceLabel);li.append(meta);relationList.append(li);
+ }
+
+ for(const action of data.actions){
+  const li=element('li');li.dataset.cluster=action.cluster;
+  li.append(element('h3','',action.label));
+  const body=element('p','',`Вход: ${action.input}. Результат: ${action.result}.`);li.append(body);
+  if(action.scopeNote)li.append(element('p','caution',action.scopeNote));
+  const [label,kind]=statusLabel(action.status);li.append(element('span',`action-status ${kind}`,label));
+  const meta=element('span','action-meta');meta.append('Источник: ');addSource(meta,action.source,action.sourceLabel);li.append(meta);actionList.append(li);
+ }
+
+ for(const fn of data.functions){
+  const li=element('li');li.dataset.cluster=fn.cluster;
+  li.append(element('h3','',fn.label));li.append(element('p','',`Правило: ${fn.formula}.`));
+  li.append(element('p','',`Вход: ${fn.inputs}. Результат: ${fn.output}.`));
+  if(fn.inputMode)li.append(element('p','function-meta',`Тип входных данных: ${fn.inputMode}.`));
+  if(fn.outputMode)li.append(element('p','function-meta',`Смысл результата: ${fn.outputMode}.`));
+  const meta=element('span','function-meta');meta.append('Источник: ');addSource(meta,fn.source,fn.sourceLabel);li.append(meta);functionList.append(li);
+ }
+
+ for(const cluster of data.clusters){
+  const details=element('details','term-cluster');details.id=`cluster-${cluster.id}`;details.dataset.cluster=cluster.id;
+  const summary=element('summary','',`${cluster.label} · ${termsByCluster.get(cluster.id).length} понятий`);details.append(summary);
+  const grid=element('div','term-grid');
+  for(const term of termsByCluster.get(cluster.id).sort((a,b)=>a.label.localeCompare(b.label,'ru'))){
+   const card=element('article','term-card');card.dataset.search=term.label.toLocaleLowerCase('ru');card.dataset.term=term.label;
+   const entries=term.definitions||[];
+   const heading=element('h4','',term.label);
+   if(entries.length&&entries[0].explicit===false)heading.append(element('span','kind-label','Описание класса инструмента'));
+   else heading.append(element('span','kind-label','Определение'));
+   card.append(heading);
+   if(entries.length){
+    card.append(element('p','',entries[0].text));
+    if(entries[0].context)card.append(element('p','context',entries[0].context));
+    const firstSource=element('p','source');addSource(firstSource,entries[0].source,entries[0].sourceLabel);card.append(firstSource);
+    const extra=entries.slice(1);
+    if(extra.length){
+     const more=element('details','variants');const title=element('summary','',`${extra.length} других формулировок или источников`);more.append(title);
+     for(const entry of extra){const p=element('p','');p.append(element('strong','',`${entry.text} `));if(entry.context)p.append(document.createTextNode(`${entry.context} `));addSource(p,entry.source,entry.sourceLabel);more.append(p);}card.append(more);
+    }
+   }
+   grid.append(card);
+  }
+  details.append(grid);definitionGroups.append(details);
+ }
+ filterDefinitions();
+}
+
+function filterDefinitions(){
+ const cluster=clusterFilter.value,query=termSearch.value.trim().toLocaleLowerCase('ru');let visible=0;
+ document.querySelectorAll('.term-cluster').forEach(group=>{
+  const clusterMatch=cluster==='all'||group.dataset.cluster===cluster;
+  let groupCount=0;
+  group.querySelectorAll('.term-card').forEach(card=>{
+   const show=clusterMatch&&(!query||card.dataset.search.includes(query));card.hidden=!show;if(show){visible++;groupCount++;}
+  });
+  group.hidden=!clusterMatch||groupCount===0;
+ });
+ document.querySelectorAll('.action-list li,.function-list li').forEach(item=>{item.hidden=cluster!=='all'&&item.dataset.cluster!==cluster;});
+ document.querySelectorAll('.cluster-button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.cluster===cluster)));
+ termCount.textContent=`${visible} понятий`;
+}
+clusterFilter.addEventListener('change',filterDefinitions);termSearch.addEventListener('input',filterDefinitions);
+
+if(window.KNOWLEDGE_ONTOLOGY_DATA){render(window.KNOWLEDGE_ONTOLOGY_DATA);}
+else{definitionGroups.append(element('p','gap-note','Не удалось загрузить данные карты. Проверьте файл assets/knowledge_ontology_data.js.'));}
+</script>
+</body>
+</html>
