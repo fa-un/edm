@@ -3,6 +3,8 @@ name: Publish course materials to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -24,6 +26,11 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v6.0.0
+
+      - name: Validate and rebuild ontology data bundle
+        run: |
+          python3 scripts/build_knowledge_ontology_bundle.py
+          git diff --exit-code -- assets/knowledge_ontology_data.js
 
       - name: Prepare static site
         shell: bash
@@ -59,6 +66,7 @@ jobs:
 
   deploy:
     needs: build
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       pages: write
