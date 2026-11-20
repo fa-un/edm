@@ -36,9 +36,9 @@
       }
     ],
     "pagesReviewed": 19,
-    "distinctConceptNodes": 238,
-    "sourceDefinitionEntries": 339,
-    "explicitDefinitions": 327,
+    "distinctConceptNodes": 239,
+    "sourceDefinitionEntries": 340,
+    "explicitDefinitions": 328,
     "toolDescriptions": 12,
     "termTyping": {
       "status": "partial",
@@ -3031,6 +3031,20 @@
       ]
     },
     {
+      "id": "stroka-dokumenta",
+      "label": "Строка документа",
+      "cluster": "data",
+      "definitions": [
+        {
+          "text": "Часть документа, в которой записывают данные одной позиции операции, например выбранную номенклатуру, количество и цену.",
+          "context": "Пример: строка заказа поставщику содержит выбранную номенклатуру и относящиеся к ней количество и цену.",
+          "source": "topic6_data_lecture.html#topic-6-lecture",
+          "sourceLabel": "Лекция о справочнике и строке документа",
+          "explicit": true
+        }
+      ]
+    },
+    {
       "id": "struktura-predpriyatiya",
       "label": "Структура предприятия",
       "cluster": "production",
@@ -4491,81 +4505,69 @@
   ],
   "links": [
     {
-      "from": "need-customer",
-      "to": "need-procurement",
+      "from": "zakaz-klienta",
+      "to": "potrebnost-v-zakupke",
       "label": "может породить потребность в обеспечении/закупке",
       "cluster": "supply",
       "source": "topic4_sales_purchasing_lecture.html",
       "sourceLabel": "Лекция о продажах и закупках",
-      "status": "source-stated-conditional",
-      "fromLabel": "Заказ клиента",
-      "toLabel": "Потребность в закупке"
+      "status": "source-stated-conditional"
     },
     {
-      "from": "reference-record",
-      "to": "transaction-row",
+      "from": "stroka-dokumenta",
+      "to": "zapis-spravochnika",
       "label": "реквизит строки ссылается на справочную запись",
       "cluster": "data",
       "source": "topic6_data_lecture.html#topic-6-lecture",
       "sourceLabel": "Лекция об основных и операционных данных",
-      "status": "source-stated",
-      "fromLabel": "Запись справочника",
-      "toLabel": "Строка документа"
+      "status": "source-stated"
     },
     {
-      "from": "resource-specification",
-      "to": "production-order",
+      "from": "resursnaya-spetsifikatsiya",
+      "to": "zakaz-na-proizvodstvo",
       "label": "задаёт норму для конкретного заказа",
       "cluster": "production",
       "source": "Практикумы №7–8 — разбор.html",
       "sourceLabel": "Практикумы 7–8",
-      "status": "source-stated",
-      "fromLabel": "Ресурсная спецификация",
-      "toLabel": "Заказ на производство"
+      "status": "source-stated"
     },
     {
-      "from": "operating-asset",
-      "to": "repair-order",
+      "from": "zakaz-na-remont",
+      "to": "obekt-ekspluatatsii",
       "label": "заказ фиксирует ремонт этого объекта",
       "cluster": "maintenance",
       "source": "seminar1_toir_notes.html#scheme-repair-order",
       "sourceLabel": "Пояснительная записка по ТОиР",
       "status": "source-stated",
-      "fromLabel": "Объект эксплуатации",
-      "toLabel": "Заказ на ремонт"
+      "sourceVersion": "PPTX 2023: слайды 4, 33–40; PDF 2024: страницы 4, 32–39"
     },
     {
-      "from": "repair-order",
-      "to": "production-order",
+      "from": "zakaz-na-remont",
+      "to": "zakaz-na-proizvodstvo",
       "label": "заказ на производство создаётся на основании заказа на ремонт",
       "cluster": "maintenance",
       "source": "seminar1_toir_notes.html#scheme-repair-order",
       "sourceLabel": "Пояснительная записка по ТОиР",
       "status": "source-stated",
-      "fromLabel": "Заказ на ремонт",
-      "toLabel": "Заказ на производство"
+      "sourceVersion": "Google Slides/PPTX 2023: слайд 39; PDF 2024: страница 38"
     },
     {
-      "from": "payment-plan",
-      "to": "payment-fact",
+      "from": "planiruemyi-platezh",
+      "to": "fakticheskii-platezh",
       "label": "сопоставляются; план не является фактом",
       "cluster": "finance",
       "source": "topic5_finance_lecture.html#topic-5-lecture",
       "sourceLabel": "Лекция по финансам",
-      "status": "source-stated",
-      "fromLabel": "Планируемый платёж",
-      "toLabel": "Фактический платёж"
+      "status": "source-stated"
     },
     {
-      "from": "analyst",
-      "to": "reference-record",
+      "from": "analitik",
+      "to": "zapis-spravochnika",
       "label": "может быть полезной предварительной опорой",
       "cluster": "analysis",
       "source": "",
       "sourceLabel": "Редакторская гипотеза; не требование программы",
-      "status": "hypothesis",
-      "fromLabel": "Аналитик",
-      "toLabel": "Запись справочника"
+      "status": "hypothesis"
     }
   ]
 }

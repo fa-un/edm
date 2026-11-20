@@ -275,6 +275,7 @@ function statusLabel(status){
 }
 function render(data){
  document.getElementById('corpus-count').textContent=`${data.meta.distinctConceptNodes} понятий · ${data.meta.explicitDefinitions} формулировок определений из ${data.meta.pagesReviewed} материалов · ${data.meta.glossaryTableRows} строк глоссариев · ${data.meta.toolDescriptions} описаний классов AI-инструментов`;
+ const termsById=new Map(data.terms.map(term=>[term.id,term]));
  const clusterById=new Map(data.clusters.map(c=>[c.id,c]));
  const termsByCluster=new Map(data.clusters.map(c=>[c.id,[]]));
  for(const term of data.terms)termsByCluster.get(term.cluster)?.push(term);
@@ -292,11 +293,15 @@ function render(data){
 
  for(const link of data.links){
   const li=element('li',link.status==='hypothesis'?'hypothesis':'');
-  const line=element('div','relation-line',`${link.fromLabel||link.from} — ${link.label} → ${link.toLabel||link.to}`);li.append(line);
+  const fromTerm=termsById.get(link.from);const toTerm=termsById.get(link.to);
+  if(!fromTerm||!toTerm){li.classList.add('invalid-relation');li.setAttribute('role','alert');li.append(element('div','relation-line','Связь скрыта: в данных не найдены её объекты.'));relationList.append(li);continue;}
+  const line=element('div','relation-line',`${fromTerm.label} — ${link.label} → ${toTerm.label}`);li.append(line);
   const meta=element('span','relation-meta');
   if(link.status==='source-stated-conditional')meta.append('Условная связь. ');
   if(link.status==='hypothesis')meta.append('Гипотеза, не требование программы. ');
-  meta.append('Основание: ');addSource(meta,link.source,link.sourceLabel);li.append(meta);relationList.append(li);
+  meta.append('Основание: ');addSource(meta,link.source,link.sourceLabel);
+  if(link.sourceVersion)meta.append(` · Версия и место: ${link.sourceVersion}`);
+  li.append(meta);relationList.append(li);
  }
 
  for(const action of data.actions){
