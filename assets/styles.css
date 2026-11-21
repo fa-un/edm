@@ -37,3 +37,6 @@ pre{overflow:auto;padding:20px;background:var(--wash);border-left:4px solid #78a
 .nasa-visual figcaption{margin:12px 0 0;font:14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:400;text-align:left}
 .nasa-visual figcaption span{display:inline;font-size:inherit;font-weight:inherit;letter-spacing:normal;text-transform:none;color:inherit;margin:0}
 @media print{.nasa-visual{break-inside:avoid;padding:6pt}.nasa-visual img{max-height:170mm}.nasa-visual figcaption{font-size:9pt}}
+
+.agent-link{overflow-wrap:anywhere}
+.agent-link code{white-space:normal}
