@@ -29,8 +29,8 @@ jobs:
 
       - name: Validate and rebuild ontology data bundle
         run: |
-          python3 scripts/build_knowledge_ontology_bundle.py
-          git diff --exit-code -- assets/knowledge_ontology_data.js
+          python3 ontology/build_knowledge_ontology_bundle.py
+          git diff --exit-code -- ontology/knowledge_ontology_data.js
 
       - name: Prepare static site
         shell: bash
@@ -42,6 +42,8 @@ jobs:
             [[ "$source" == "AGENTS.md" ]] || cp -- "$source" _site/
           done
           cp -R -- assets _site/assets
+          mkdir -p _site/ontology
+          cp -- ontology/index.html ontology/knowledge_ontology.json ontology/knowledge_ontology_data.js _site/ontology/
           touch _site/.nojekyll
           if grep -RIl '^version https://git-lfs.github.com/spec/v1' _site; then
             echo 'Unresolved Git LFS pointers in the site artifact.' >&2
@@ -58,6 +60,9 @@ jobs:
             test -s "_site/$page"
           done
           test -s _site/assets/images/index.html
+          test -s _site/ontology/index.html
+          test -s _site/ontology/knowledge_ontology.json
+          test -s _site/ontology/knowledge_ontology_data.js
 
       - name: Upload static site
         uses: actions/upload-pages-artifact@v5.0.0
