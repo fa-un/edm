@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "draft-2",
+    "version": "draft-3",
     "courseSources": [
       "lecture1_student_guide.html",
       "seminar1_analyst_case.html",
@@ -50,7 +50,59 @@
       "delivery": "Не выводится из наличия материала; явно отмечается только когда источник это подтверждает.",
       "mastery": "Не оценивалось этой картой."
     },
-    "eventSemantics": "Зарегистрированный документ, статус или отчёт показывает состояние данных системы; сам по себе он не удостоверяет физическое событие."
+    "eventSemantics": "Зарегистрированный документ, статус или отчёт показывает состояние данных системы; сам по себе он не удостоверяет физическое событие.",
+    "courseModel": "Сквозная онтология предметной области, а не отдельная тема курса.",
+    "rpdSource": {
+      "title": "Рабочая программа дисциплины «Управление данными предприятия»",
+      "approved": "23.01.2025",
+      "sections": "5.1–5.3",
+      "pages": "5–8",
+      "localCopyOnly": true
+    },
+    "rpdCrosswalk": [
+      {
+        "number": 1,
+        "title": "Кто такой аналитик, его роль в проектах трансформации",
+        "indexSection": "topic-1",
+        "materialStatus": "materials-present"
+      },
+      {
+        "number": 2,
+        "title": "Управление цепочками поставок. Производство",
+        "indexSection": "topic-2",
+        "materialStatus": "lecture-and-practicum-materials-present"
+      },
+      {
+        "number": 3,
+        "title": "Управление цепочками поставок. Логистика",
+        "indexSection": "topic-4",
+        "materialStatus": "prepared-materials; delivery-not-confirmed"
+      },
+      {
+        "number": 4,
+        "title": "Управление активами",
+        "indexSection": "topic-3",
+        "materialStatus": "toir-materials-present"
+      },
+      {
+        "number": 5,
+        "title": "Управление финансами",
+        "indexSection": "topic-5",
+        "materialStatus": "partial; payment-calendar-only-in-current-index"
+      },
+      {
+        "number": 6,
+        "title": "Управление данными",
+        "indexSection": "topic-6",
+        "materialStatus": "partial; prepared-materials; delivery-not-confirmed"
+      },
+      {
+        "number": 7,
+        "title": "Управление проектами и модули системы",
+        "indexSection": "topic-7",
+        "materialStatus": "separate-materials-not-listed-in-current-index"
+      }
+    ]
   },
   "clusters": [
     {
