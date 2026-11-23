@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../assets/styles.css">
-  <meta name="description" content="Карта дисциплины с темами, учебными действиями, источниками и обзором функциональности 1С:ERP.">
-  <title>Карта дисциплины — темы и учебные действия</title>
+  <meta name="description" content="Сквозная онтология предметной области курса: определения, понятия, объекты, действия, связи и привязка к семи темам РПД.">
+  <title>Сквозная онтология — Управление данными предприятия</title>
   <style>
     .model-note{padding:16px 19px;background:var(--wash);border-left:4px solid #79a493;margin:24px 0}
     .coverage-legend{display:flex;flex-wrap:wrap;gap:9px 18px;margin:18px 0;padding:12px 15px;background:var(--wash);font-size:14px}
@@ -75,13 +75,28 @@
 <main class="page">
   <header>
     <div class="crumb"><a href="../index.html">← Программа курса</a></div>
-    <div class="eyebrow">Карта дисциплины · темы, действия и источники</div>
+    <div class="eyebrow">Сквозная модель понятий курса · определения, объекты и действия</div>
     <h1>Управление данными предприятия</h1>
-    <p class="lead">Темы показаны как связанные области знаний, а действия — как то, что студент разбирает или выполняет в материалах. Это не оценка освоенной компетенции.</p>
+    <p class="lead">Онтология обобщает определения и понятия из лекций, семинаров и практикумов, связывает их с действиями и источниками и помогает ориентироваться в программе курса. Это справочный слой над существующими темами, а не отдельная тема дисциплины.</p>
   </header>
 
+  <section aria-labelledby="rpd-alignment-heading">
+    <h2 id="rpd-alignment-heading">Семь тем рабочей программы</h2>
+    <p class="coverage-intro">В утверждённой 23.01.2025 РПД семь тем (раздел 5.1, стр. 5–6; учебно-тематический план, стр. 7). Среди результатов обучения на страницах 3–4 названы анализ предметной области, работа с базами данных и данными, применение моделей жизненного цикла ИС и подготовка документации. Поэтому онтология служит опорой и навигацией между разделами, а не отдельной темой. Таблица показывает, где нынешний индекс и материалы пока не покрывают весь объём РПД; наличие материала не подтверждает, что занятие проведено или результат освоен.</p>
+    <div class="erp-overview">
+      <div class="erp-domain"><h3>1. Аналитик и трансформация</h3><p><a href="../index.html#topic-1">Материалы курса</a></p><small>Есть лекция и семинарские материалы о роли аналитика и проекте трансформации.</small></div>
+      <div class="erp-domain"><h3>2. Производство</h3><p><a href="../index.html#topic-2">Материалы курса</a></p><small>Лекция и разборы практикумов № 1–8 по производственным данным и планированию.</small></div>
+      <div class="erp-domain"><h3>3. Логистика</h3><p><a href="../index.html#topic-4">Материалы курса</a></p><small>Подготовлены продажи, закупки, склад и обеспечение; проведение занятий не подтверждено.</small></div>
+      <div class="erp-domain"><h3>4. Управление активами</h3><p><a href="../index.html#topic-3">Материалы курса</a></p><small>Есть материалы по ТОиР; версии и пределы проверки собраны в <a href="../toir_source_crosswalk.html">карте сверки</a>.</small></div>
+      <div class="erp-domain"><h3>5. Управление финансами</h3><p><a href="../index.html#topic-5">Материалы курса</a></p><small>В текущем индексе представлен платёжный календарь. Бухгалтерский, налоговый и остальные учётные контуры РПД целиком не покрыты.</small></div>
+      <div class="erp-domain"><h3>6. Управление данными</h3><p><a href="../index.html#topic-6">Материалы курса</a></p><small>Материалы затрагивают только часть вопросов руководства данными, основных и справочных данных, интеграции и распределения.</small></div>
+      <div class="erp-domain"><h3>7. Проекты и модули системы</h3><p><a href="../index.html#topic-7">Материалы курса</a></p><small>Состав темы приведён в индексе; отдельных материалов по перечисленным в РПД модулям пока нет.</small></div>
+    </div>
+    <p>В РПД логистика указана как тема 3, управление активами — тема 4; в главном индексе эти разделы расположены в обратном порядке. Таблица сохраняет ссылки на разделы индекса и делает это различие явным. Предметная карта ниже группирует понятия по смыслу и не подменяет нумерацию РПД.</p>
+  </section>
+
   <section aria-labelledby="course-map-heading">
-    <h2 id="course-map-heading">Карта тем и учебных действий</h2>
+    <h2 id="course-map-heading">Предметная карта материалов курса</h2>
     <p class="coverage-intro">Действия внутри ветвей описывают работу с понятиями и учебными задачами. Цвет показывает наличие материала по указанной подтеме: он не означает, что занятие прошло или студент освоил действие.</p>
     <div class="coverage-legend" aria-label="Легенда покрытия учебными материалами">
       <span><i class="coverage-dot" aria-hidden="true"></i>Лекция и практические/семинарские материалы по подтеме</span>
@@ -226,6 +241,7 @@
 
   <section aria-labelledby="definitions-heading">
     <h2 id="definitions-heading">Словарь определений</h2>
+    <p>Узел понятия объединяет его определения из разных материалов; каждая формулировка сохраняет ссылку на свой источник. Действия и вычисления выделены отдельно от понятий. Связь между понятиями добавляется, когда её подтверждает учебный источник; группировка по кластерам служит навигации и сама по себе не означает отношение «род—вид».</p>
     <p id="corpus-count" class="count">Загрузка состава словаря…</p>
     <div class="controls">
       <label for="term-search">Найти понятие</label>
@@ -258,6 +274,7 @@ const termCount=document.getElementById('term-count');
 
 function element(tag,cls,text){const item=document.createElement(tag);if(cls)item.className=cls;if(text!==undefined)item.textContent=text;return item;}
 function addSource(parent,path,label){if(!path){parent.append(document.createTextNode(label));return;}const a=element('a','',label);a.href=/^(?:[a-z][a-z\d+.-]*:|\/\/|\/|#)/i.test(path)?path:`../${path}`;parent.append(a);}
+function ontologyKind(kind){return ({team:'Группа исполнителей', 'derived-quantity':'Вычисляемая величина',document:'Документ','state-property':'Свойство состояния'})[kind]||kind;}
 function statusLabel(status){
  const values={
   'student-method':['Учебный метод',''],
@@ -274,7 +291,7 @@ function statusLabel(status){
  return values[status]||[status,'caution'];
 }
 function render(data){
- document.getElementById('corpus-count').textContent=`${data.meta.distinctConceptNodes} понятий · ${data.meta.explicitDefinitions} формулировок определений из ${data.meta.pagesReviewed} материалов · ${data.meta.glossaryTableRows} строк глоссариев · ${data.meta.toolDescriptions} описаний классов AI-инструментов`;
+ document.getElementById('corpus-count').textContent=`${data.meta.distinctConceptNodes} понятий · ${data.meta.explicitDefinitions} формулировок определений из ${data.meta.pagesReviewed} материалов · явно указанный вид: ${data.meta.termTyping.typedCount} понятий · ${data.meta.glossaryTableRows} строк глоссариев · ${data.meta.toolDescriptions} описаний классов AI-инструментов`;
  const termsById=new Map(data.terms.map(term=>[term.id,term]));
  const clusterById=new Map(data.clusters.map(c=>[c.id,c]));
  const termsByCluster=new Map(data.clusters.map(c=>[c.id,[]]));
@@ -330,8 +347,8 @@ function render(data){
    const card=element('article','term-card');card.dataset.search=term.label.toLocaleLowerCase('ru');card.dataset.term=term.label;
    const entries=term.definitions||[];
    const heading=element('h4','',term.label);
-   if(entries.length&&entries[0].explicit===false)heading.append(element('span','kind-label','Описание класса инструмента'));
-   else heading.append(element('span','kind-label','Определение'));
+   heading.append(element('span','kind-label',entries.length&&entries[0].explicit===false?'Описание класса инструмента':'Понятие'));
+   if(term.kind)heading.append(element('span','kind-label',`Вид: ${ontologyKind(term.kind)}`));
    card.append(heading);
    if(entries.length){
     card.append(element('p','',entries[0].text));
