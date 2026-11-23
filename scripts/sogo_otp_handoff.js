@@ -1,7 +1,96 @@
 // Paste this helper into the Codex cua_repl JavaScript context. It reads a
 // fresh MyMeet authorization email from SOGo, fills the code into the matching
 // MyMeet verification screen, and presses Confirm. It never prints or returns
-// the code. It does not enter or change passwords.
+// the code. The separate initializer below sets a random password only during
+// first-time account creation; it does not handle password changes or resets.
+
+function randomPassword(length = 28) {
+  if (!globalThis.crypto?.getRandomValues) {
+    throw new Error("secure random generator is unavailable in this runtime");
+  }
+  if (!Number.isInteger(length) || length < 20 || length > 128) {
+    throw new Error("initial password length must be between 20 and 128");
+  }
+
+  const groups = [
+    "abcdefghijkmnopqrstuvwxyz",
+    "ABCDEFGHJKLMNPQRSTUVWXYZ",
+    "23456789",
+    "!@#$%^&*()-_=+",
+  ];
+  const alphabet = groups.join("");
+  const randomBelow = (bound) => {
+    const limit = Math.floor(256 / bound) * bound;
+    let value;
+    do {
+      const byte = new Uint8Array(1);
+      globalThis.crypto.getRandomValues(byte);
+      value = byte[0];
+    } while (value >= limit);
+    return value % bound;
+  };
+  const pick = (chars) => chars[randomBelow(chars.length)];
+
+  const chars = groups.map(pick);
+  while (chars.length < length) chars.push(pick(alphabet));
+  for (let index = chars.length - 1; index > 0; index -= 1) {
+    const swapIndex = randomBelow(index + 1);
+    [chars[index], chars[swapIndex]] = [chars[swapIndex], chars[index]];
+  }
+  return chars.join("");
+}
+
+async function initializeMyMeetPassword(myMeetTab) {
+  const pageUrl = new URL(await myMeetTab.playwright.evaluate("() => location.href"));
+  if (pageUrl.origin !== "https://app.mymeet.ai" || !/^\/sign-up(?:\/|$)/i.test(pageUrl.pathname)) {
+    throw new Error("initial password setup is allowed only in the MyMeet sign-up flow");
+  }
+
+  let state = await myMeetTab.getAXState({ emit: false, disableDiffing: true });
+  if (/We sent verification code on your email/i.test(state)) {
+    throw new Error("confirm the email code before initializing the account password");
+  }
+  const passwordFieldIndexes = state.split(/\r?\n/)
+    .filter((line) => /\b(?:secure )?text field\b|\bpassword field\b/i.test(line) && /password/i.test(line) && /settable/i.test(line))
+    .map((line) => Number(line.match(/^\s*(\d+)/)?.[1]))
+    .filter(Number.isFinite);
+  if (passwordFieldIndexes.length !== 2) {
+    throw new Error("expected exactly two accessible password fields on the initial setup form");
+  }
+
+  const submitIndexes = [...state.matchAll(/^\s*(\d+) button (?:Create account|Create my account|Set password|Continue)$/gim)]
+    .map((match) => Number(match[1]));
+  if (submitIndexes.length !== 1) {
+    throw new Error("expected exactly one account-creation or initial-password submit button");
+  }
+
+  let password = randomPassword();
+  try {
+    await myMeetTab.setValue(passwordFieldIndexes[0], password);
+    await myMeetTab.setValue(passwordFieldIndexes[1], password);
+    state = await myMeetTab.getAXState({ emit: false, disableDiffing: true });
+    const currentSubmitIndexes = [...state.matchAll(/^\s*(\d+) button (?:Create account|Create my account|Set password|Continue)$/gim)]
+      .map((match) => Number(match[1]));
+    if (currentSubmitIndexes.length !== 1) {
+      throw new Error("initial password form changed before submission");
+    }
+    const currentUrl = new URL(await myMeetTab.playwright.evaluate("() => location.href"));
+    if (currentUrl.origin !== "https://app.mymeet.ai" || !/^\/sign-up(?:\/|$)/i.test(currentUrl.pathname)) {
+      throw new Error("MyMeet left the account-creation flow before password submission");
+    }
+    await myMeetTab.click(currentSubmitIndexes[0]);
+    state = await myMeetTab.getAXState({ emit: false, disableDiffing: true });
+    const finalUrl = await myMeetTab.playwright.evaluate("() => location.href");
+    return {
+      submitted: true,
+      accountSetupAdvanced: !/^\/sign-up(?:\/|$)/i.test(new URL(finalUrl).pathname),
+      finalUrl,
+      passwordPersistedLocally: false,
+    };
+  } finally {
+    password = "";
+  }
+}
 
 function parseSelectedMyMeetCode(snapshot, expectedRecipient, now = new Date()) {
   const emailPattern = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi;
@@ -130,4 +219,7 @@ async function confirmNewestMyMeetCode(mailTab, myMeetTab, expectedRecipient) {
 // const mailTab = await cua.getTab(mailInfo.id, { browser: "iab" });
 // const myMeetTab = await cua.getTab(myMeetInfo.id, { browser: "iab" });
 // const result = await confirmNewestMyMeetCode(mailTab, myMeetTab, "alias@iqdoctor.pro");
+// nodeRepl.write(JSON.stringify(result));
+// After email verification, when MyMeet displays the first-time setup form:
+// const result = await initializeMyMeetPassword(myMeetTab);
 // nodeRepl.write(JSON.stringify(result));

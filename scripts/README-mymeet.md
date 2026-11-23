@@ -63,7 +63,17 @@ page title before acting. Create aliases only in mailcow and retrieve mail only
 in SOGo. After checking MyMeet messages, move all MyMeet mail from Inbox to the
 `Inbox/mymeet` subfolder. Leave other mail untouched and verify both folders.
 
-Generate a temporary password for manual entry with:
+After email verification, the helper can initialize the password only on
+MyMeet's first-time sign-up form. `initializeMyMeetPassword(myMeetTab)` requires
+exactly two accessible password fields and one account-creation/initialization
+button. It generates a random 28-character password in memory, fills both
+fields, and submits that initial setup form. It returns no password and does
+not save or print it. Use this only for the new temporary account; do not plan
+another login after transcription. It does not handle a password change or
+reset.
+
+If the helper cannot recognize the form, generate a temporary password for
+manual entry with:
 
 ```sh
 python3 scripts/password_handoff.py
@@ -82,5 +92,6 @@ freshest code for that alias from the visible SOGo messages, requires a MyMeet
 sender and a message no older than ten minutes, fills the MyMeet verification
 field, and clicks **Confirm**. It never prints or returns the code. Its result
 contains only the recipient, email time, final URL, and whether verification
-advanced. It does not enter, change, or submit a password; the user completes
-all password steps manually. Do not store verification codes.
+advanced. After verification, call `initializeMyMeetPassword(myMeetTab)` to set
+the random password during first-time account creation. Do not use that helper
+for password changes/resets, and do not store verification codes or passwords.
