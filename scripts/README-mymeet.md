@@ -75,15 +75,12 @@ on the clipboard, or fill/submit the browser form. The user enters and confirms
 the password and submits the form. Close the window when done. Do not put the
 value in shell arguments, files, or logs.
 
-Email-code retrieval from SOGo is in `scripts/sogo_otp_handoff.js`. Paste the
-helper into the Codex `cua_repl` context, confirm SOGo's message list is sorted
-newest-first by date, then call the example at its end with the exact alias
-being registered. It searches authorization-code messages in that displayed
-order and requires the MyMeet sender, expected alias and a message no older
-than ten minutes. It places the code on that browser tab's
-clipboard for 60 seconds and restores the previous clipboard value only if it
-has not changed. The helper returns recipient/time metadata, never the code;
-the user pastes and submits the code. Parser and mocked clipboard tests pass.
-The live SOGo locator, AX parsing, fresh-email-to-clipboard path, and clipboard
-read/write/restore have been verified. The helper never prints the code; the
-user pastes it into MyMeet and submits it. Do not store verification codes.
+Email-code entry is in `scripts/sogo_otp_handoff.js`. Paste the helper into the
+Codex `cua_repl` context and call the example at its end with the exact alias
+being registered. It checks that the tabs are SOGo and MyMeet, finds the
+freshest code for that alias from the visible SOGo messages, requires a MyMeet
+sender and a message no older than ten minutes, fills the MyMeet verification
+field, and clicks **Confirm**. It never prints or returns the code. Its result
+contains only the recipient, email time, final URL, and whether verification
+advanced. It does not enter, change, or submit a password; the user completes
+all password steps manually. Do not store verification codes.
