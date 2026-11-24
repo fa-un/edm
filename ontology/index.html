@@ -41,6 +41,28 @@
     .cluster-button:hover,.cluster-button[aria-pressed="true"]{background:var(--wash);border-color:#9ab8a8}
     .cluster-button strong{display:block;margin-bottom:5px}
     .cluster-button span{display:block;color:var(--muted);font-size:14px;line-height:1.45}
+    .topic-map{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
+    .topic-button{display:flex;gap:12px;align-items:flex-start;min-height:74px;padding:13px 15px;text-align:left;font:inherit;color:var(--ink);background:#fff;border:1px solid var(--line);border-left:4px solid #597f91;cursor:pointer}
+    .topic-button:hover,.topic-button[aria-pressed="true"]{background:var(--wash);border-color:#7193a2}
+    .topic-number{flex:0 0 2em;font-weight:800;color:#385d6c}
+    .topic-button strong{display:block}.topic-button small{display:block;color:var(--muted);margin-top:4px}
+    .status-table{width:100%;border-collapse:collapse;margin:16px 0;background:#fff}
+    .status-table-wrap{width:100%;max-width:100%;overflow-x:auto}
+    .status-table{min-width:680px}
+    .status-table th,.status-table td{padding:10px 12px;text-align:left;vertical-align:top;border:1px solid var(--line)}
+    .status-table th{background:var(--wash)}
+    .status-value{font-weight:700}.status-unknown{color:#4d5853}
+    .definition-variant{padding:10px 12px;margin:8px 0;background:#fffefa;border:1px solid var(--line)}
+    .definition-variant>summary{cursor:pointer;font-weight:650}
+    .provenance{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+    .evidence-tag{display:inline-block;margin:2px 5px 2px 0;padding:2px 7px;border:1px solid var(--line);border-radius:3px;font-size:12px}
+    .term-links{margin:10px 0;padding:9px 11px;background:var(--wash)}
+    .term-links h5{margin:0 0 5px;font-size:14px}
+    .method-card{padding:13px 15px;background:#fff;border-left:3px solid #9473a0}
+    .method-card h3{margin:0 0 5px;font-size:16px}.method-card p{margin:5px 0}
+    .method-controls{max-width:28rem}
+    .controls select{max-width:100%}
+    :focus-visible{outline:3px solid #235c9b;outline-offset:2px}
     .controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:18px 0}
     .controls label{font-weight:700}
     .controls input,.controls select{font:inherit;padding:8px 10px;border:1px solid var(--line);background:#fffefa;color:var(--ink);border-radius:4px}
@@ -67,8 +89,8 @@
     .gap-note{padding:14px 18px;background:#f8f4e9;border-left:4px solid #bd8b3d}
     [hidden]{display:none!important}
     @media(max-width:820px){.model-map{grid-template-columns:repeat(2,minmax(0,1fr))}.cluster-map{grid-template-columns:repeat(2,minmax(0,1fr))}.mindmap-branches,.erp-overview{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:620px){.model-map,.cluster-map,.term-grid,.mindmap-branches,.erp-overview{grid-template-columns:1fr}.cluster-button{min-height:0}.mindmap-branch::before{left:18px}}
-    @media print{.controls,.cluster-map{display:none}.term-cluster{break-inside:auto}.term-card,.action-list li,.function-list li{break-inside:avoid}}
+    @media(max-width:620px){.model-map,.cluster-map,.topic-map,.term-grid,.mindmap-branches,.erp-overview{grid-template-columns:1fr}.cluster-button{min-height:0}.mindmap-branch::before{left:18px}.status-table{font-size:13px}.status-table th,.status-table td{padding:7px}}
+    @media print{.controls,.cluster-map,.topic-map{display:none}.term-cluster{break-inside:auto}.term-card,.action-list li,.function-list li,.method-card,.status-table tr{break-inside:avoid}.term-cluster[hidden]{display:block!important}.term-card[hidden]{display:block!important}.status-table-wrap{overflow:visible}.status-table{min-width:0}details:not([open])>:not(summary){display:block!important}a{color:inherit;text-decoration:underline}}
   </style>
 </head>
 <body>
@@ -79,10 +101,13 @@
     <h1>Управление данными предприятия</h1>
     <p class="lead">Онтология обобщает определения и понятия из лекций, семинаров и практикумов, связывает их с действиями и источниками и помогает ориентироваться в программе курса. Это справочный слой над существующими темами, а не отдельная тема дисциплины.</p>
   </header>
+  <noscript><p class="gap-note">Интерактивный словарь требует JavaScript. Навигация по темам и ссылки на учебные источники остаются доступны в статической карте страницы.</p></noscript>
 
   <section aria-labelledby="rpd-alignment-heading">
     <h2 id="rpd-alignment-heading">Семь тем рабочей программы</h2>
     <p class="coverage-intro">В утверждённой 23.01.2025 РПД семь тем (раздел 5.1, стр. 5–6; учебно-тематический план, стр. 7). Среди результатов обучения на страницах 3–4 названы анализ предметной области, работа с базами данных и данными, применение моделей жизненного цикла ИС и подготовка документации. Поэтому онтология служит опорой и навигацией между разделами, а не отдельной темой. Таблица показывает, где нынешний индекс и материалы пока не покрывают весь объём РПД; наличие материала не подтверждает, что занятие проведено или результат освоен.</p>
+    <p>Выберите тему РПД, чтобы отфильтровать словарь. Темы РПД и редакционные кластеры ниже — разные навигационные уровни.</p>
+    <div id="rpd-topic-map" class="topic-map" role="group" aria-label="Семь тем РПД — фильтр понятий"></div>
     <div class="erp-overview">
       <div class="erp-domain"><h3>1. Аналитик и трансформация</h3><p><a href="../index.html#topic-1">Материалы курса</a></p><small>Есть лекция и семинарские материалы о роли аналитика и проекте трансформации.</small></div>
       <div class="erp-domain"><h3>2. Производство</h3><p><a href="../index.html#topic-2">Материалы курса</a></p><small>Лекция и разборы практикумов № 1–8 по производственным данным и планированию.</small></div>
@@ -93,6 +118,12 @@
       <div class="erp-domain"><h3>7. Проекты и модули системы</h3><p><a href="../index.html#topic-7">Материалы курса</a></p><small>Состав темы приведён в индексе; отдельных материалов по перечисленным в РПД модулям пока нет.</small></div>
     </div>
     <p>В РПД логистика указана как тема 3, управление активами — тема 4; в главном индексе эти разделы расположены в обратном порядке. Таблица сохраняет ссылки на разделы индекса и делает это различие явным. Предметная карта ниже группирует понятия по смыслу и не подменяет нумерацию РПД.</p>
+  </section>
+
+  <section aria-labelledby="coverage-status-heading">
+    <h2 id="coverage-status-heading">Структурированные статусы покрытия</h2>
+    <p>Наличие материалов, подтверждение проведения занятия и наличие записи об оценивании — независимые оси. «Не установлено» означает, что в этой модели нет прямого свидетельства по оси; это не означает отсутствие материала, непроведение занятия или неосвоение темы. Ссылки выше ведут к имеющимся учебным материалам.</p>
+    <div id="coverage-status"></div>
   </section>
 
   <section aria-labelledby="course-map-heading">
@@ -128,10 +159,10 @@
         <p class="preparation-note">Материалы подготовлены; индекс курса не подтверждает проведение занятий.</p>
       </article>
       <article class="mindmap-branch" role="listitem">
-        <h3>Склад, запасы и обеспечение</h3><span class="coverage-tag">Лекция + практикум</span>
+        <h3>Склад, запасы и обеспечение</h3><span class="coverage-tag">Лекция + два практикума</span>
         <ul><li>Различать остаток, резерв и потребность</li><li>Выбирать источник обеспечения</li><li>Читать состояние обеспечения заказа</li><li>Отличать просмотр от регистрации складского факта</li></ul>
-        <p><a href="../topic4_logistics_lecture.html">Лекция</a> · <a href="../topic4_logistics_practicum.html">Практикум</a></p>
-        <p class="preparation-note">Практикум — чтение подготовленного рабочего места, не проведение складской операции.</p>
+        <p><a href="../topic4_logistics_lecture.html">Лекция</a> · <a href="../topic4_logistics_practicum.html">Практикум: обеспечение производства материалами</a> · <a href="../topic4_warehouse_practicum.html">Практикум: запасы и отгрузка</a></p>
+        <p class="preparation-note">Практикум по обеспечению — чтение подготовленного рабочего места, без проведения складской операции. Отдельный складской кейс разбирает условные выписки по пересчёту и отгрузке; студент не создаёт и не проводит складские документы.</p>
       </article>
       <article class="mindmap-branch" role="listitem">
         <h3>Деньги и платёжный календарь</h3><span class="coverage-tag">Лекция + практикум · материалы готовы</span>
@@ -219,18 +250,18 @@
   <section aria-labelledby="clusters-heading">
     <h2 id="clusters-heading">Кластеры знаний</h2>
     <p>Кластеры объединяют понятия по смыслу, без нумерации тем курса. Нажмите на кластер, чтобы открыть его определения.</p>
-    <div id="cluster-map" class="cluster-map" aria-label="Смысловые кластеры"></div>
+    <div id="cluster-map" class="cluster-map" role="group" aria-label="Кластеры знаний — фильтр понятий"></div>
   </section>
 
   <section aria-labelledby="relations-heading">
     <h2 id="relations-heading">Связи между объектами</h2>
-    <p>Здесь показаны только связи, которые явно описаны в источниках. Условные переходы помечены; гипотеза вынесена отдельно.</p>
+    <p>Здесь показываются только публикуемые связи, подтверждённые источниками. Условные переходы помечены; непубликуемые редакторские гипотезы остаются в JSON для аудита и не отображаются.</p>
     <ul id="relation-list" class="relation-list"></ul>
   </section>
 
   <section aria-labelledby="actions-heading">
-    <h2 id="actions-heading">Действия и методы</h2>
-    <p>В этой карте действие связано с тем, какие данные или объекты оно использует и какой результат создаёт. Пометка показывает, что именно подтверждает источник.</p>
+    <h2 id="actions-heading">Действия, описанные в источниках</h2>
+    <p>Это самостоятельный реестр действий по источникам, не перечень действий, подтверждённо связанных с каждым понятием. Связи «понятие → действие» показаны только в карточке понятия, если они есть в типизированном реестре связей.</p>
     <ul id="action-list" class="action-list"></ul>
   </section>
 
@@ -239,18 +270,37 @@
     <ul id="function-list" class="function-list"></ul>
   </section>
 
+  <section aria-labelledby="methods-heading">
+    <h2 id="methods-heading">Реестр упоминаний методов и практик</h2>
+    <p>Реестр отражает кандидатов и статус проверки их первоисточника. Упоминание в учебном материале не доказывает применение метода, настройку 1С или выполнение действия; связи с понятиями не выводятся из одного упоминания.</p>
+    <div class="controls method-controls">
+      <label for="method-status-filter">Статус первоисточника</label>
+      <select id="method-status-filter"><option value="all">Все статусы</option></select>
+    </div>
+    <p id="method-count" class="count" aria-live="polite"></p>
+    <p id="no-methods" class="gap-note" hidden>Нет кандидатов с выбранным статусом.</p>
+    <div id="method-register" class="term-grid"></div>
+  </section>
+
   <section aria-labelledby="definitions-heading">
     <h2 id="definitions-heading">Словарь определений</h2>
-    <p>Узел понятия объединяет его определения из разных материалов; каждая формулировка сохраняет ссылку на свой источник. Действия и вычисления выделены отдельно от понятий. Связь между понятиями добавляется, когда её подтверждает учебный источник; группировка по кластерам служит навигации и сама по себе не означает отношение «род—вид».</p>
+    <p>Узел понятия объединяет его определения из разных материалов; каждая формулировка сохраняет ссылку на свой источник и ID утверждения. Фильтры темы РПД, кластера, вида сущности и уровня можно сочетать. Действия и вычисления выделены отдельно от понятий; связи с ними показаны только по отдельному типизированному свидетельству. Группировка по кластерам служит навигации и сама по себе не означает отношение «род—вид».</p>
     <p id="corpus-count" class="count">Загрузка состава словаря…</p>
     <div class="controls">
       <label for="term-search">Найти понятие</label>
       <input id="term-search" type="search" placeholder="Например, «норматив» или «заказ»">
+      <label for="topic-filter">Тема РПД</label>
+      <select id="topic-filter"><option value="all">Все темы РПД</option></select>
       <label for="cluster-filter">Кластер</label>
       <select id="cluster-filter"><option value="all">Все кластеры</option></select>
+      <label for="kind-filter">Вид сущности</label>
+      <select id="kind-filter"><option value="all">Все виды</option></select>
+      <label for="entity-level-filter">Уровень сущности</label>
+      <select id="entity-level-filter"><option value="all">Все уровни</option></select>
       <span id="term-count" class="count" aria-live="polite"></span>
     </div>
     <div id="definition-groups"></div>
+    <p id="no-terms" class="gap-note" hidden>Понятия по заданным фильтрам не найдены.</p>
   </section>
 
   <details class="gap-note" aria-labelledby="limits-heading">
@@ -259,132 +309,298 @@
     <p>PDF-драфты 2024 года содержат учётные данные и в репозиторий не включены; опубликованные PPTX 2023 года содержат маски `******` вместо логина и пароля. Проверка постраничного соответствия и ключевого текста не означает проверки каждого поля и изображения во всех версиях. В практикумах по логистике и данным часть работы — только просмотр или учебная симуляция; её нельзя считать выполненным действием в ERP.</p>
   </details>
 
-  <footer><a href="../index.html">Программа курса</a> · <a href="knowledge_ontology.json">Структурированные данные карты</a></footer>
+  <footer><a href="../index.html">Тематический индекс курса</a> · <a href="knowledge_ontology.json">Структурированные данные карты</a> · <a href="erp_product_crosswalk.json">Отдельная сверка функциональности 1С:ERP</a></footer>
 </main>
 <script src="knowledge_ontology_data.js"></script>
 <script>
 const clusterMap=document.getElementById('cluster-map');
+const topicMap=document.getElementById('rpd-topic-map');
 const relationList=document.getElementById('relation-list');
 const actionList=document.getElementById('action-list');
 const functionList=document.getElementById('function-list');
+const methodRegister=document.getElementById('method-register');
 const definitionGroups=document.getElementById('definition-groups');
+const coverageStatus=document.getElementById('coverage-status');
 const clusterFilter=document.getElementById('cluster-filter');
+const topicFilter=document.getElementById('topic-filter');
+const kindFilter=document.getElementById('kind-filter');
+const entityLevelFilter=document.getElementById('entity-level-filter');
+const methodStatusFilter=document.getElementById('method-status-filter');
 const termSearch=document.getElementById('term-search');
 const termCount=document.getElementById('term-count');
+const methodCount=document.getElementById('method-count');
+const noTerms=document.getElementById('no-terms');
+const noMethods=document.getElementById('no-methods');
 
 function element(tag,cls,text){const item=document.createElement(tag);if(cls)item.className=cls;if(text!==undefined)item.textContent=text;return item;}
-function addSource(parent,path,label){if(!path){parent.append(document.createTextNode(label));return;}const a=element('a','',label);a.href=/^(?:[a-z][a-z\d+.-]*:|\/\/|\/|#)/i.test(path)?path:`../${path}`;parent.append(a);}
-function ontologyKind(kind){return ({team:'Группа исполнителей', 'derived-quantity':'Вычисляемая величина',document:'Документ','state-property':'Свойство состояния'})[kind]||kind;}
-function statusLabel(status){
- const values={
-  'student-method':['Учебный метод',''],
-  'student-write-task':['Практическое действие по заданию',''],
-  'student-read-only':['Только просмотр','caution'],
-  'student-simulation':['Учебная симуляция','caution'],
-  'described-method':['Метод описан в материале',''],
-  'described-process':['Процесс описан; выполнение не выводится из описания','caution'],
-  'described-capability':['Возможность описана; доступность в учебной базе не подтверждена','caution'],
-  'described-metric':['Показатель описан в материале',''],
-  'described-tool-method':['Метод или инструмент описан в материале',''],
-  'hypothesis':['Редакторская гипотеза','caution']
- };
- return values[status]||[status,'caution'];
+function appendText(parent,text){parent.append(document.createTextNode(String(text)));}
+function addSource(parent,path,label){
+ if(!path){appendText(parent,label||'Источник не указан.');return;}
+ const hasScheme=/^[a-z][a-z\d+.-]*:/i.test(path);
+ const external=/^(?:https?:\/\/|\/\/|\/|#)/i.test(path);
+ const localDocument=!hasScheme&&/\.(?:html?|pdf|pptx)(?:[?#].*)?$/i.test(path);
+ if(!external&&!localDocument){appendText(parent,label||'URL источника не указан.');return;}
+ const a=element('a','',label||path);
+ a.href=external?path:`../${path}`;
+ a.rel=/^https?:\/\//i.test(path)?'noopener noreferrer':'';
+ parent.append(a);
+}
+function addTag(parent,text,cls=''){parent.append(element('span',`evidence-tag ${cls}`.trim(),text));}
+function sourceFor(assertion,sourceById){return assertion?sourceById.get(assertion.sourceId):null;}
+function evidenceLabel(status){return ({direct:'Прямое утверждение источника',indirect:'Косвенное свидетельство','not-established':'Не установлено',contradicted:'Противоречие отмечено источником','secondary-only':'Только вторичный источник'})[status]||status||'Статус не указан';}
+function modalityLabel(value){return ({definition:'определение','source-mention':'упоминание источника',relation:'связь',coverage:'покрытие',action:'действие',function:'функция'})[value]||value||'модальность не указана';}
+function relationLabel(value){return ({conditional:'условная связь',references:'ссылается на','normative-basis':'нормативное основание для',comparison:'сравнивается с','related-to':'связано с',hypothesis:'гипотеза','used-in':'используется в действии','computed-by':'вычисляется функцией'})[value]||value||'тип связи не указан';}
+function kindLabel(value){return ({unclassified:'не классифицировано','collective-agent':'коллективный субъект','derived-quantity':'производная величина',document:'документ','state-property':'свойство состояния','business-process':'бизнес-процесс','business-function':'бизнес-функция',resource:'ресурс','data-concept':'понятие данных',system:'система',method:'метод',event:'событие',record:'запись','physical-location':'физическое место',quantity:'величина',status:'статус','normative-description':'нормативное описание','work-record':'запись о работе'})[value]||value||'не установлено';}
+function entityLevelLabel(value){return ({class:'класс',instance:'экземпляр','not-applicable':'неприменимо',unknown:'не установлено'})[value]||value||'не установлено';}
+function verificationLabel(value){return ({verified_against_primary_source:'Проверено по первоисточнику',secondary_source_only:'Есть только вторичный источник',primary_source_unavailable:'Первоисточник недоступен',mention_does_not_define_verifiable_method:'Упоминание не определяет проверяемую методику'})[value]||value||'Статус не указан';}
+function candidateTypeLabel(value){return ({practice:'практика',model:'модель',metric:'метрика',standard:'стандарт',method:'метод','product-workflow':'сценарий продукта'})[value]||value||'кандидат';}
+function actionStatusLabel(status){return ({'student-method':'Учебный метод','student-write-task':'Практическое действие по заданию','student-read-only':'Только просмотр; факт изменения не выводится','student-simulation':'Учебная симуляция; факт операции не выводится','described-method':'Метод описан в материале','described-process':'Процесс описан; выполнение не выводится','described-capability':'Возможность описана; конфигурация базы не подтверждена','described-metric':'Показатель описан в материале','described-tool-method':'Метод/инструмент описан в материале',hypothesis:'Редакторская гипотеза'})[status]||status||'Статус не указан';}
+function appendProvenance(parent,assertionId,sourceById,assertionById,pathOverride,labelOverride){
+ const assertion=assertionById.get(assertionId);
+ if(!assertion){
+  const p=element('p','provenance');p.append('Источник/утверждение: ');addSource(p,pathOverride,labelOverride||'Открыть материал');
+  if(assertionId)addTag(p,`ID утверждения: ${assertionId}`);
+  parent.append(p);return;
+ }
+ const source=sourceFor(assertion,sourceById);
+ const p=element('p','provenance');
+ p.append('Источник: ');addSource(p,pathOverride||source?.uri,labelOverride||source?.label||source?.uri||'Открыть источник');
+ p.append(' · ');addTag(p,`ID утверждения: ${assertion.id}`);
+ addTag(p,evidenceLabel(assertion.evidenceStatus));
+ addTag(p,modalityLabel(assertion.modality));
+ if(assertion.publishable===false)addTag(p,'не публикуется как подтверждённый факт','caution');
+ if(assertion.locator){const locator=element('span','provenance',`Место: ${assertion.locator}`);p.append(document.createElement('br'),locator);}
+ parent.append(p);
+}
+function sourceAssertionId(item){return item.sourceAssertionId||item.assertionId||null;}
+function appendDefinition(parent,definition,index,term,sourceById,assertionById){
+ const block=element('section','definition-entry');
+ block.append(element('p','',definition.text||'Формулировка не указана.'));
+ if(definition.context)block.append(element('p','context',`Контекст: ${definition.context}`));
+ const assertionId=sourceAssertionId(definition);
+ appendProvenance(block,assertionId,sourceById,assertionById,definition.source,definition.sourceLabel);
+ if(definition.publishable===false)block.append(element('p','gap-note','Этот вариант сохранён для аудита и не публикуется как подтверждённое определение.'));
+ return block;
 }
 function render(data){
- document.getElementById('corpus-count').textContent=`${data.meta.distinctConceptNodes} понятий · ${data.meta.explicitDefinitions} формулировок определений из ${data.meta.pagesReviewed} материалов · явно указанный вид: ${data.meta.termTyping.typedCount} понятий · ${data.meta.glossaryTableRows} строк глоссариев · ${data.meta.toolDescriptions} описаний классов AI-инструментов`;
+ const assertions=data.sourceAssertions||[];
+ const assertionById=new Map(assertions.map(row=>[row.id,row]));
+ const sources=data.sources||[];
+ const sourceById=new Map(sources.map(row=>[row.id,row]));
  const termsById=new Map(data.terms.map(term=>[term.id,term]));
- const clusterById=new Map(data.clusters.map(c=>[c.id,c]));
- const termsByCluster=new Map(data.clusters.map(c=>[c.id,[]]));
- for(const term of data.terms)termsByCluster.get(term.cluster)?.push(term);
+ const clusterById=new Map(data.clusters.map(cluster=>[cluster.id,cluster]));
+ const termsByCluster=new Map(data.clusters.map(cluster=>[cluster.id,[]]));
+ const topics=(data.meta.rpdCrosswalk||[]).slice().sort((a,b)=>a.number-b.number);
+ const actionsById=new Map((data.actions||[]).map(row=>[row.id,row]));
+ const functionsById=new Map((data.functions||[]).map(row=>[row.id,row]));
+ const definitionsCount=(data.terms||[]).reduce((count,term)=>count+(term.definitions||[]).length,0);
+ document.getElementById('corpus-count').textContent=`${data.meta.distinctConceptNodes} понятий · ${definitionsCount} активных формулировок · ${data.meta.pagesReviewed} просмотренных HTML-страниц · ${data.meta.termTyping.typedCount} понятий имеют исходную типизацию`;
+ for(const term of data.terms){if(termsByCluster.has(term.cluster))termsByCluster.get(term.cluster).push(term);}
 
+ const materialStatusLabels={
+  'materials-present':'Материалы представлены',
+  'lecture-and-practicum-materials-present':'Есть материалы лекции и практикума',
+  'prepared-materials; delivery-not-confirmed':'Материалы подготовлены; проведение занятия не подтверждено',
+  'toir-materials-present':'Есть материалы по ТОиР',
+  'partial; payment-calendar-only-in-current-index':'Частично: в индексе указан только календарь платежей',
+  'partial; prepared-materials; delivery-not-confirmed':'Частично: материалы подготовлены; проведение занятия не подтверждено',
+  'separate-materials-not-listed-in-current-index':'Отдельные материалы в текущем индексе не указаны'
+ };
+ const materialStatusLabel=status=>materialStatusLabels[status]||'Статус материалов не классифицирован';
+ for(const topic of topics){
+  const label=`${topic.number}. ${topic.title}`;
+  const button=element('button','topic-button');button.type='button';button.dataset.topic=String(topic.number);button.setAttribute('aria-pressed','false');
+  button.append(element('span','topic-number',String(topic.number)));
+  const body=element('span','');body.append(element('strong','',topic.title));
+  body.append(element('small','',`Фильтр понятий · ссылка на тематический раздел: #${topic.indexSection} · ${materialStatusLabel(topic.materialStatus)}`));
+  button.append(body);button.addEventListener('click',()=>{topicFilter.value=String(topic.number);filterDefinitions();document.getElementById('definitions-heading').scrollIntoView({block:'start'});});
+  topicMap.append(button);
+  const option=element('option','',label);option.value=String(topic.number);topicFilter.append(option);
+ }
  for(const cluster of data.clusters){
   const button=element('button','cluster-button');button.type='button';button.dataset.cluster=cluster.id;button.setAttribute('aria-pressed','false');
-  const title=element('strong','',cluster.label);const summary=element('span','',cluster.description);const amount=element('span','count',`${termsByCluster.get(cluster.id).length} понятий`);
-  button.append(title,summary,amount);button.addEventListener('click',()=>{
-   document.querySelectorAll('.cluster-button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
-   clusterFilter.value=cluster.id;filterDefinitions();
-   const group=document.getElementById(`cluster-${cluster.id}`);if(group){group.open=true;group.scrollIntoView({block:'start',behavior:'smooth'});}
-  });clusterMap.append(button);
+  button.append(element('strong','',cluster.label),element('span','',cluster.description),element('span','count',`${termsByCluster.get(cluster.id).length} понятий`));
+  button.addEventListener('click',()=>{clusterFilter.value=cluster.id;filterDefinitions();const group=document.getElementById(`cluster-${cluster.id}`);if(group){group.open=true;group.scrollIntoView({block:'start'});}});
+  clusterMap.append(button);
   const option=element('option','',cluster.label);option.value=cluster.id;clusterFilter.append(option);
  }
+ const kindValues=data.meta.kindVocabulary||[];
+ for(const kind of kindValues){const option=element('option','',kindLabel(kind));option.value=kind;kindFilter.append(option);}
+ const levels=data.meta.entityLevelVocabulary||['class','instance','not-applicable','unknown'];
+ for(const level of levels){const option=element('option','',entityLevelLabel(level));option.value=level;entityLevelFilter.append(option);}
+ const methodStatusValues=data.meta.methodPracticeVerificationStatuses||[];
+ for(const status of methodStatusValues){const option=element('option','',verificationLabel(status));option.value=status;methodStatusFilter.append(option);}
 
- for(const link of data.links){
-  const li=element('li',link.status==='hypothesis'?'hypothesis':'');
-  const fromTerm=termsById.get(link.from);const toTerm=termsById.get(link.to);
-  if(!fromTerm||!toTerm){li.classList.add('invalid-relation');li.setAttribute('role','alert');li.append(element('div','relation-line','Связь скрыта: в данных не найдены её объекты.'));relationList.append(li);continue;}
-  const line=element('div','relation-line',`${fromTerm.label} — ${link.label} → ${toTerm.label}`);li.append(line);
-  const meta=element('span','relation-meta');
-  if(link.status==='source-stated-conditional')meta.append('Условная связь. ');
-  if(link.status==='hypothesis')meta.append('Гипотеза, не требование программы. ');
-  meta.append('Основание: ');addSource(meta,link.source,link.sourceLabel);
-  if(link.sourceVersion)meta.append(` · Версия и место: ${link.sourceVersion}`);
-  li.append(meta);relationList.append(li);
+ const relationListByTerm=new Map(data.terms.map(term=>[term.id,[]]));
+ const validRelations=[];
+ for(const link of data.links||[]){
+  if(link.publishable!==true)continue;
+  const from=termsById.get(link.from),to=termsById.get(link.to);
+  if(!from||!to)continue;
+  const record={link,from,to};validRelations.push(record);
+  relationListByTerm.get(link.from)?.push({...record,direction:'out'});
+  relationListByTerm.get(link.to)?.push({...record,direction:'in'});
  }
-
- for(const action of data.actions){
-  const li=element('li');li.dataset.cluster=action.cluster;
-  li.append(element('h3','',action.label));
-  const body=element('p','',`Вход: ${action.input}. Результат: ${action.result}.`);li.append(body);
-  if(action.scopeNote)li.append(element('p','caution',action.scopeNote));
-  const [label,kind]=statusLabel(action.status);li.append(element('span',`action-status ${kind}`,label));
-  const meta=element('span','action-meta');meta.append('Источник: ');addSource(meta,action.source,action.sourceLabel);li.append(meta);actionList.append(li);
+ function relationNode(record){
+  const {link,from,to}=record;const li=element('li',link.evidenceStatus==='not-established'?'hypothesis':'');
+  const statement=element('div','relation-line',`${from.label} — ${link.label||relationLabel(link.relationType)} → ${to.label}`);li.append(statement);
+  const meta=element('p','relation-meta');addTag(meta,relationLabel(link.relationType));addTag(meta,`Статус свидетельства: ${evidenceLabel(link.evidenceStatus)}`);
+  if(link.status==='hypothesis')addTag(meta,'гипотеза; не подтверждённая связь','caution');
+  if(link.direction)appendText(meta,` Направление: ${link.direction==='source_to_target'?'от источника к цели':link.direction}.`);
+  li.append(meta);appendProvenance(li,link.sourceAssertionId,sourceById,assertionById,link.source,link.sourceLabel);return li;
  }
+ for(const relation of validRelations)relationList.append(relationNode(relation));
+ if(!validRelations.length)relationList.append(element('li','gap-note','В структурированном наборе нет типизированных связей между понятиями.'));
 
- for(const fn of data.functions){
-  const li=element('li');li.dataset.cluster=fn.cluster;
-  li.append(element('h3','',fn.label));li.append(element('p','',`Правило: ${fn.formula}.`));
-  li.append(element('p','',`Вход: ${fn.inputs}. Результат: ${fn.output}.`));
-  if(fn.inputMode)li.append(element('p','function-meta',`Тип входных данных: ${fn.inputMode}.`));
-  if(fn.outputMode)li.append(element('p','function-meta',`Смысл результата: ${fn.outputMode}.`));
-  const meta=element('span','function-meta');meta.append('Источник: ');addSource(meta,fn.source,fn.sourceLabel);li.append(meta);functionList.append(li);
+ const elementLinksByTerm=new Map(data.terms.map(term=>[term.id,[]]));
+ for(const edge of data.elementLinks||[]){
+  if(edge.from?.type==='term'&&elementLinksByTerm.has(edge.from.id))elementLinksByTerm.get(edge.from.id).push(edge);
  }
-
+ function appendTermRelations(card,term){
+  const rows=relationListByTerm.get(term.id)||[];
+  if(!rows.length)return;
+  const box=element('section','term-links');box.append(element('h5','',`Типизированные связи понятий (${rows.length})`));
+  for(const record of rows){
+   const p=element('p','');const other=record.direction==='out'?record.to:record.from;
+   appendText(p,record.direction==='out'?`${relationLabel(record.link.relationType)} → `:`Связано с (${relationLabel(record.link.relationType)}): `);
+   const a=element('a','',other.label);a.href=`#term-${other.id}`;p.append(a);
+   if(record.link.evidenceStatus)p.append(document.createTextNode(` · ${evidenceLabel(record.link.evidenceStatus)}`));
+   box.append(p);appendProvenance(box,record.link.sourceAssertionId,sourceById,assertionById,record.link.source,record.link.sourceLabel);
+  }
+  card.append(box);
+ }
+ function appendElementLinks(card,term){
+  const edges=elementLinksByTerm.get(term.id)||[];if(!edges.length)return;
+  const box=element('section','term-links');box.append(element('h5','',`Подтверждённые связи с действиями и функциями (${edges.length})`));
+  for(const edge of edges){
+   const target=edge.to||{};const item=target.type==='action'?actionsById.get(target.id):target.type==='function'?functionsById.get(target.id):null;
+   if(!item)continue;
+   box.append(element('p','',`${target.type==='action'?'Действие':'Функция'}: ${item.label} · ${relationLabel(edge.relationType)} · ${evidenceLabel(edge.evidenceStatus)}`));
+   appendProvenance(box,edge.sourceAssertionId,sourceById,assertionById);
+  }
+  card.append(box);
+ }
  for(const cluster of data.clusters){
+  const terms=termsByCluster.get(cluster.id)||[];
   const details=element('details','term-cluster');details.id=`cluster-${cluster.id}`;details.dataset.cluster=cluster.id;
-  const summary=element('summary','',`${cluster.label} · ${termsByCluster.get(cluster.id).length} понятий`);details.append(summary);
+  details.append(element('summary','',`${cluster.label} · ${terms.length} понятий`));
   const grid=element('div','term-grid');
-  for(const term of termsByCluster.get(cluster.id).sort((a,b)=>a.label.localeCompare(b.label,'ru'))){
-   const card=element('article','term-card');card.dataset.search=term.label.toLocaleLowerCase('ru');card.dataset.term=term.label;
-   const entries=term.definitions||[];
+  for(const term of terms.slice().sort((a,b)=>a.label.localeCompare(b.label,'ru'))){
+   const card=element('article','term-card');card.id=`term-${term.id}`;card.dataset.cluster=term.cluster;card.dataset.term=term.id;
+   const defs=term.definitions||[];
+   const searchable=[term.label,term.kind,term.entityLevel,term.kindReason,term.entityLevelReason,...defs.flatMap(def=>[def.text,def.context,def.sourceLabel])].join(' ').toLocaleLowerCase('ru');card.dataset.search=searchable;
    const heading=element('h4','',term.label);
-   heading.append(element('span','kind-label',entries.length&&entries[0].explicit===false?'Описание класса инструмента':'Понятие'));
-   if(term.kind)heading.append(element('span','kind-label',`Вид: ${ontologyKind(term.kind)}`));
-   card.append(heading);
-   if(entries.length){
-    card.append(element('p','',entries[0].text));
-    if(entries[0].context)card.append(element('p','context',entries[0].context));
-    const firstSource=element('p','source');addSource(firstSource,entries[0].source,entries[0].sourceLabel);card.append(firstSource);
-    const extra=entries.slice(1);
-    if(extra.length){
-     const more=element('details','variants');const title=element('summary','',`${extra.length} других формулировок или источников`);more.append(title);
-     for(const entry of extra){const p=element('p','');p.append(element('strong','',`${entry.text} `));if(entry.context)p.append(document.createTextNode(`${entry.context} `));addSource(p,entry.source,entry.sourceLabel);more.append(p);}card.append(more);
+   heading.append(element('span','kind-label',`Вид: ${kindLabel(term.kind)}`));
+   heading.append(element('span','kind-label',`Уровень: ${entityLevelLabel(term.entityLevel)}`));card.append(heading);
+   if(term.kindReason)card.append(element('p','context',`Основание классификации: ${term.kindReason}`));
+   if(term.entityLevelReason)card.append(element('p','context',`Основание уровня: ${term.entityLevelReason}`));
+   if(term.rpdTopics?.length){
+    const p=element('p','provenance');p.append('Темы РПД: ');
+    for(const [i,topicNumber] of term.rpdTopics.entries()){
+     const topic=topics.find(row=>row.number===topicNumber);if(!topic)continue;
+     if(i)appendText(p,' · ');const a=element('a','',`${topic.number}. ${topic.title}`);a.href=`../index.html#${topic.indexSection}`;p.append(a);
     }
+    card.append(p);
    }
-   grid.append(card);
+   if(defs.length){
+    card.append(appendDefinition(document.createDocumentFragment(),defs[0],1,term,sourceById,assertionById));
+    if(defs.length>1){
+     const more=element('details','variants');more.append(element('summary','',`${defs.length-1} других формулировок и источников`));
+     for(const [i,def] of defs.slice(1).entries())more.append(appendDefinition(document.createDocumentFragment(),def,i+2,term,sourceById,assertionById));
+     card.append(more);
+    }
+   }else card.append(element('p','gap-note','Для этого понятия нет опубликованной формулировки.'));
+   appendTermRelations(card,term);appendElementLinks(card,term);grid.append(card);
   }
   details.append(grid);definitionGroups.append(details);
  }
- filterDefinitions();
-}
 
+ for(const action of data.actions||[]){
+  const li=element('li');li.dataset.cluster=action.cluster;li.append(element('h3','',action.label));
+  li.append(element('p','',`Вход: ${action.input||'не указан'}. Результат: ${action.result||'не указан'}.`));
+  if(action.scopeNote)li.append(element('p','context',action.scopeNote));
+  li.append(element('span','action-status caution',actionStatusLabel(action.status)));
+  appendProvenance(li,action.sourceAssertionId,sourceById,assertionById,action.source,action.sourceLabel);actionList.append(li);
+ }
+ for(const fn of data.functions||[]){
+  const li=element('li');li.dataset.cluster=fn.cluster;li.append(element('h3','',fn.label));
+  li.append(element('p','',`Правило: ${fn.formula||'не указано'}.`));
+  li.append(element('p','',`Вход: ${fn.inputs||'не указан'}. Результат: ${fn.output||'не указан'}.`));
+  if(fn.inputMode)li.append(element('p','function-meta',`Тип входных данных: ${fn.inputMode}.`));
+  if(fn.outputMode)li.append(element('p','function-meta',`Смысл результата: ${fn.outputMode}.`));
+  appendProvenance(li,fn.sourceAssertionId,sourceById,assertionById,fn.source,fn.sourceLabel);functionList.append(li);
+ }
+ const coverageRows=new Map((data.coverage||[]).map(row=>[row.rpdTopicId,row]));
+ const statusLabels={
+  materialAvailability:{available:'Материалы доступны',partial:'Материалы доступны частично',unavailable:'Материалы недоступны',unknown:'Не установлено'},
+  deliveryStatus:{confirmed:'Проведение подтверждено',not_confirmed:'Проведение не подтверждено',unknown:'Не установлено'},
+  assessmentStatus:{record_present:'Есть запись об оценивании',record_absent:'Запись об оценивании отсутствует',unknown:'Не установлено'}
+ };
+ const table=element('table','status-table');const caption=element('caption','',`Структурированные статусы; источник: ${data.meta.coverageSemantics?.materialAvailability||'модель онтологии'}`);table.append(caption);
+ const thead=element('thead','');const header=element('tr','');for(const label of ['Тема РПД','Наличие материалов','Проведение занятия','Запись об оценивании'])header.append(element('th','',label));thead.append(header);table.append(thead);
+ const tbody=element('tbody','');
+ for(const topic of topics){
+  const row=element('tr','');const titleCell=element('th','');titleCell.scope='row';const link=element('a','',`${topic.number}. ${topic.title}`);link.href=`../index.html#${topic.indexSection}`;titleCell.append(link);row.append(titleCell);
+  const coverage=coverageRows.get(topic.number)||{};
+  for(const axis of ['materialAvailability','deliveryStatus','assessmentStatus']){
+   const cell=element('td','');const state=coverage[axis]||{status:'unknown',evidenceIds:[]};const label=axis==='materialAvailability'&&topic.number===7&&state.status==='unavailable'?'Отдельные материалы в текущем индексе не представлены':(statusLabels[axis]||{})[state.status]||'Не установлено';
+   cell.append(element('span',state.status==='unknown'?'status-value status-unknown':'status-value',label));
+   const refs=state.evidenceIds||[];for(const ref of refs)appendProvenance(cell,ref,sourceById,assertionById);
+   if(state.sourceAssertionId)appendProvenance(cell,state.sourceAssertionId,sourceById,assertionById);
+   row.append(cell);
+  }
+  tbody.append(row);
+ }
+ table.append(tbody);
+ const coverageWrap=element('div','status-table-wrap');
+ coverageWrap.tabIndex=0;
+ coverageWrap.setAttribute('role','region');
+ coverageWrap.setAttribute('aria-label','Таблица статусов покрытия; при узком экране доступна горизонтальная прокрутка');
+ coverageWrap.append(table);
+ coverageStatus.append(coverageWrap);
+ for(const method of data.methodPractices||[]){
+  const card=element('article','method-card');card.dataset.status=method.verificationStatus;
+  const type=method.candidateType?` · ${candidateTypeLabel(method.candidateType)}`:'';
+  card.append(element('h3','',`${method.name}${type}`));
+  card.append(element('p','',verificationLabel(method.verificationStatus)));
+  const assertion=assertionById.get(method.sourceAssertionId);const source=sourceFor(assertion,sourceById);
+  const locator=method.locator||assertion?.locator;
+  if(locator)card.append(element('p','provenance',`Место в курсе: ${locator}`));
+  appendProvenance(card,method.sourceAssertionId,sourceById,assertionById,source?.uri,source?.label);
+  addTag(card,`ID утверждения: ${method.sourceAssertionId}`);
+  methodRegister.append(card);
+ }
+ filterDefinitions();filterMethods();
+}
 function filterDefinitions(){
- const cluster=clusterFilter.value,query=termSearch.value.trim().toLocaleLowerCase('ru');let visible=0;
+ const cluster=clusterFilter.value,topic=topicFilter.value,kind=kindFilter.value,level=entityLevelFilter.value;
+ const query=termSearch.value.trim().toLocaleLowerCase('ru');let visible=0;
  document.querySelectorAll('.term-cluster').forEach(group=>{
-  const clusterMatch=cluster==='all'||group.dataset.cluster===cluster;
   let groupCount=0;
   group.querySelectorAll('.term-card').forEach(card=>{
-   const show=clusterMatch&&(!query||card.dataset.search.includes(query));card.hidden=!show;if(show){visible++;groupCount++;}
+   const term=(window.KNOWLEDGE_ONTOLOGY_DATA?.terms||[]).find(row=>row.id===card.dataset.term);
+   const show=(cluster==='all'||card.dataset.cluster===cluster)
+    &&(topic==='all'||term?.rpdTopics?.includes(Number(topic)))
+    &&(kind==='all'||term?.kind===kind)
+    &&(level==='all'||term?.entityLevel===level)
+    &&(!query||card.dataset.search.includes(query));
+   card.hidden=!show;if(show){visible++;groupCount++;}
   });
-  group.hidden=!clusterMatch||groupCount===0;
+  group.hidden=groupCount===0;
+  if(groupCount>0&&(cluster!=='all'||topic!=='all'||kind!=='all'||level!=='all'||query))group.open=true;
  });
- document.querySelectorAll('.action-list li,.function-list li').forEach(item=>{item.hidden=cluster!=='all'&&item.dataset.cluster!==cluster;});
  document.querySelectorAll('.cluster-button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.cluster===cluster)));
- termCount.textContent=`${visible} понятий`;
+ document.querySelectorAll('.topic-button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.topic===topic)));
+ termCount.textContent=`Найдено понятий: ${visible}`;if(noTerms)noTerms.hidden=visible!==0;
 }
-clusterFilter.addEventListener('change',filterDefinitions);termSearch.addEventListener('input',filterDefinitions);
-
+function filterMethods(){
+ const status=methodStatusFilter.value;let visible=0;
+ for(const card of methodRegister.querySelectorAll('.method-card')){const show=status==='all'||card.dataset.status===status;card.hidden=!show;if(show)visible++;}
+ methodCount.textContent=`Кандидатов в реестре: ${visible}`;if(noMethods)noMethods.hidden=visible!==0;
+}
+clusterFilter.addEventListener('change',filterDefinitions);topicFilter.addEventListener('change',filterDefinitions);kindFilter.addEventListener('change',filterDefinitions);entityLevelFilter.addEventListener('change',filterDefinitions);termSearch.addEventListener('input',filterDefinitions);methodStatusFilter.addEventListener('change',filterMethods);
 if(window.KNOWLEDGE_ONTOLOGY_DATA){render(window.KNOWLEDGE_ONTOLOGY_DATA);}
-else{definitionGroups.append(element('p','gap-note','Не удалось загрузить данные карты. Проверьте файл ontology/knowledge_ontology_data.js.'));}
+else{document.getElementById('corpus-count').textContent='Не удалось загрузить данные карты. Проверьте файл ontology/knowledge_ontology_data.js.';}
 </script>
 </body>
 </html>

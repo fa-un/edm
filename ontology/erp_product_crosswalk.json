@@ -1,0 +1,1001 @@
+{
+  "title": "1С:ERP vendor functionality and course-topic crosswalk",
+  "checkedDate": "2026-11-23",
+  "scope": "Crosswalk of the 18 entries in the official 1С:ERP functionality navigation to the seven RPD/index topics and current local student-facing course material. It describes the public vendor navigation and observable local material only; it does not establish the classroom configuration, lesson delivery, student mastery, or exhaustive implementation of product functions.",
+  "statusVocabulary": {
+    "direct": "A local student-facing material directly treats this subject; this does not mean complete product-area coverage or confirmed lesson delivery.",
+    "narrow/partial": "Local material directly treats only a bounded part of the broader product area.",
+    "adjacent-only": "No direct treatment of this product area's functions or workflows in 1C:ERP was identified; a local material may still define the concept or mention the area contextually.",
+    "no-evidence": "No qualifying local course material for this product area was identified in the reviewed index and corpus."
+  },
+  "sourceUrls": {
+    "erpFunctionalityNavigation": {
+      "url": "https://v8.1c.ru/erp/funktsionalnost-1s-erp/",
+      "checkedDate": "2026-11-23",
+      "access": "read",
+      "evidence": "All 18 functionality-navigation links were opened. They are vendor product overviews and do not prove the configuration or use of the classroom database."
+    },
+    "catalogue": {
+      "url": "https://solutions.1c.ru/catalog/",
+      "checkedDate": "2026-11-23",
+      "access": "read",
+      "evidence": "The live cross-product catalogue displayed 14 top-level functional-task categories and five nested subcategories in the checked view."
+    },
+    "erpProductCard": {
+      "url": "https://solutions.1c.ru/catalog/1cerp/features",
+      "checkedDate": "2026-11-23",
+      "access": "read",
+      "evidence": "The product card displayed release 2.6.2.76 dated 2026-11-16. This observation does not identify the release or configuration used in class."
+    },
+    "itsDocumentationIndex": {
+      "url": "https://its.1c.ru/docs/program_documentation/",
+      "checkedDate": "2026-11-23",
+      "access": "read",
+      "evidence": "The general documentation list distinguishes ERP 2.6 from ERP 2.5 LTS. No 2.5 source is substituted for 2.6 evidence."
+    },
+    "itsErp26Contents": {
+      "url": "https://its.1c.ru/db/erp26doc",
+      "checkedDate": "2026-11-23",
+      "edition": "2.6",
+      "access": "intermittent",
+      "evidence": "The 2.6 contents and several chapter indexes were available. Bookmark pages may expose only a chapter index/iframe; iframe body access varied between HTTP 200 and 401. A 200 chapter index is not a full procedural-text review. One browser request to the purchasing-agreements page returned 403, while its shell returned 200 and iframe body returned 401."
+    }
+  },
+  "displayedProductRelease": {
+    "version": "2.6.2.76",
+    "displayedDate": "2026-11-16",
+    "sourceUrl": "https://solutions.1c.ru/catalog/1cerp/features",
+    "interpretationLimit": "Product-card display only; not evidence that this release or configuration was used in the course."
+  },
+  "its26AccessStatuses": {
+    "200_chapter_index_only": "HTTP 200 exposed the chapter index or list of questions; child procedures/full chapter text were not thereby verified.",
+    "401_title_only": "HTTP 401 at the inspected document body; only the chapter/page title was available from the general contents.",
+    "no_defensible_page": "No defensible matching 2.6 page was identified in the checked contents. This does not prove that no relevant feature or documentation exists."
+  },
+  "rpdTopicToIndexTopic": [
+    {
+      "rpdNumber": 1,
+      "rpdTitle": "Кто такой аналитик, его роль в проектах трансформации",
+      "indexTopic": "topic-1",
+      "indexTitle": "Роль Аналитика ERP/MES/CRM системы",
+      "materialStatus": "materials-present"
+    },
+    {
+      "rpdNumber": 2,
+      "rpdTitle": "Управление цепочками поставок. Производство",
+      "indexTopic": "topic-2",
+      "indexTitle": "Производство в ERP",
+      "materialStatus": "lecture-and-practicum-materials-present"
+    },
+    {
+      "rpdNumber": 3,
+      "rpdTitle": "Управление цепочками поставок. Логистика",
+      "indexTopic": "topic-4",
+      "indexTitle": "Логистика",
+      "materialStatus": "prepared-materials; delivery-not-confirmed"
+    },
+    {
+      "rpdNumber": 4,
+      "rpdTitle": "Управление активами",
+      "indexTopic": "topic-3",
+      "indexTitle": "Управление активами (ТОиР)",
+      "materialStatus": "toir-materials-present"
+    },
+    {
+      "rpdNumber": 5,
+      "rpdTitle": "Управление финансами",
+      "indexTopic": "topic-5",
+      "indexTitle": "Управление финансами",
+      "materialStatus": "partial; payment-calendar-only-in-current-index"
+    },
+    {
+      "rpdNumber": 6,
+      "rpdTitle": "Управление данными",
+      "indexTopic": "topic-6",
+      "indexTitle": "Управление данными",
+      "materialStatus": "partial; prepared-materials; delivery-not-confirmed"
+    },
+    {
+      "rpdNumber": 7,
+      "rpdTitle": "Управление проектами и модули системы",
+      "indexTopic": "topic-7",
+      "indexTitle": "Управление проектами и модули системы",
+      "materialStatus": "separate-materials-not-listed-in-current-index"
+    }
+  ],
+  "mappingLimit": "RPD/index mapping is navigation context, not proof that a product function was taught, configured, used, or mastered. The root index separately states when material is prepared versus when delivery is unconfirmed.",
+  "erpFunctionality": [
+    {
+      "id": "monitoring-analysis",
+      "position": 1,
+      "officialTitle": "Мониторинг и анализ показателей деятельности",
+      "vendorUrl": "https://v8.1c.ru/erp/monitoring/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "12. Отчеты и мониторинг",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/ReportsAndMonitoring/ReportsAndMonitoring",
+            "accessStatus": "200_chapter_index_only"
+          }
+        ],
+        "status": "200_chapter_index_only",
+        "note": "Chapter index read; child instructions were not reviewed."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          1,
+          3
+        ],
+        "indexTopics": [
+          "topic-1",
+          "topic-4"
+        ],
+        "status": "adjacent-only",
+        "mappingNote": "These are nearest thematic contexts only; they do not place performance-indicator monitoring as a taught course unit.",
+        "evidence": [
+          {
+            "path": "index.html",
+            "heading": "1. Роль Аналитика ERP/MES/CRM системы",
+            "note": "Topic context for enterprise-system analysis, not direct evidence on KPI monitoring."
+          },
+          {
+            "path": "topic4_sales_purchasing_lecture.html",
+            "heading": "Предприятие, цепочка ценности и управленческий обзор",
+            "note": "A management overview and value-chain framing; no direct treatment of performance-indicator monitoring."
+          }
+        ],
+        "gap": "No direct course material on monitoring and analysis of enterprise performance indicators was identified."
+      }
+    },
+    {
+      "id": "finance-budgeting",
+      "position": 2,
+      "officialTitle": "Управление финансами и бюджетирование",
+      "vendorUrl": "https://v8.1c.ru/erp/budget/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "13. Бюджетирование",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/Budgeting/Budgeting",
+            "accessStatus": "401_title_only"
+          }
+        ],
+        "status": "401_title_only",
+        "note": "The 2.6 contents expose the title; the inspected chapter body was not read."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          5
+        ],
+        "indexTopics": [
+          "topic-5"
+        ],
+        "status": "narrow/partial",
+        "evidence": [
+          {
+            "path": "topic5_finance_lecture.html",
+            "heading": "5. Управление финансами: читать платёжный календарь",
+            "note": "Prepared material is limited to a cash-flow plan and payment fact."
+          },
+          {
+            "path": "topic5_finance_practicum.html",
+            "heading": "Практикум: найти первый день дефицита и сопоставить поля экрана",
+            "note": "An exercise on a payment calendar, not a complete finance/budgeting contour."
+          }
+        ],
+        "gap": "The current index says that only one finance lesson pair is prepared; other finance contours are not covered there."
+      }
+    },
+    {
+      "id": "treasury",
+      "position": 3,
+      "officialTitle": "Казначейство",
+      "vendorUrl": "https://v8.1c.ru/erp/treasury/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "8. Казначейство",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/Treasury/Treasury",
+            "accessStatus": "401_title_only"
+          }
+        ],
+        "status": "401_title_only",
+        "note": "Title available in the contents; detailed chapter text not verified."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          5
+        ],
+        "indexTopics": [
+          "topic-5"
+        ],
+        "status": "narrow/partial",
+        "evidence": [
+          {
+            "path": "topic5_finance_lecture.html",
+            "heading": "Лекция: временной план денег и факт платежа",
+            "note": "The payment calendar is a limited treasury-related topic; the page links to the public vendor treasury overview."
+          },
+          {
+            "path": "topic5_finance_practicum.html",
+            "heading": "Практикум: найти первый день дефицита и сопоставить поля экрана"
+          }
+        ],
+        "gap": "No broader treasury-process coverage is claimed."
+      }
+    },
+    {
+      "id": "international-financial-accounting",
+      "position": 4,
+      "officialTitle": "Международный финансовый учёт",
+      "vendorUrl": "https://v8.1c.ru/erp/finances/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "14. Международный финансовый учет",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/IFRSAccounting/IFRSAccounting",
+            "accessStatus": "401_title_only"
+          }
+        ],
+        "status": "401_title_only",
+        "note": "Title available in the contents; detailed chapter text not verified."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          5
+        ],
+        "indexTopics": [
+          "topic-5"
+        ],
+        "status": "no-evidence",
+        "evidence": [],
+        "gap": "No course material on international financial accounting was identified. Topic 5 is a scope boundary only: its current student materials cover the payment calendar; other financial contours are not covered."
+      }
+    },
+    {
+      "id": "sales",
+      "position": 5,
+      "officialTitle": "Управление продажами",
+      "vendorUrl": "https://v8.1c.ru/erp/sales/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "4. Продажи",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/Sale/Sale",
+            "accessStatus": "200_chapter_index_only"
+          }
+        ],
+        "status": "200_chapter_index_only",
+        "note": "Chapter index/questions read; not every child procedure."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          3
+        ],
+        "indexTopics": [
+          "topic-4"
+        ],
+        "status": "direct",
+        "evidence": [
+          {
+            "path": "topic4_sales_purchasing_lecture.html",
+            "heading": "Что предприятие может делать в контуре продаж",
+            "note": "Direct student-facing overview of the sales contour."
+          },
+          {
+            "path": "topic4_sales_purchasing_lecture.html",
+            "heading": "Продажи: от подтверждения заказа до оплаты"
+          },
+          {
+            "path": "topic4_sales_purchasing_practicum.html",
+            "heading": "Практикум. Создание заказа клиента",
+            "note": "One bounded customer-order exercise; not a claim of full sales-function coverage."
+          }
+        ],
+        "gap": "Coverage is limited to the linked lecture topics and customer-order exercise; product-area completeness is not claimed."
+      }
+    },
+    {
+      "id": "customer-relationship-management",
+      "position": 6,
+      "officialTitle": "Управление взаимоотношениями с клиентами",
+      "vendorUrl": "https://v8.1c.ru/erp/clients/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "3. CRM и маркетинг",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/Marketing/Marketing",
+            "accessStatus": "401_title_only"
+          }
+        ],
+        "status": "401_title_only",
+        "note": "Title available in the contents; detailed chapter text not verified."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          1
+        ],
+        "indexTopics": [
+          "topic-1"
+        ],
+        "status": "adjacent-only",
+        "evidence": [
+          {
+            "path": "index.html",
+            "heading": "1. Роль Аналитика ERP/MES/CRM системы",
+            "note": "The index title mentions CRM as system context; this is not evidence of CRM functions or a CRM workflow in student material."
+          },
+          {
+            "path": "lecture1_student_guide.html#common-definitions",
+            "heading": "Общие понятия",
+            "note": "Direct student-facing definition and CRM example establish the concept; they do not evidence dedicated CRM workflow or 1C configuration/function practice."
+          }
+        ],
+        "gap": "No dedicated CRM workflow, function practice, or CRM configuration material was identified; the lecture provides a direct conceptual definition and example."
+      }
+    },
+    {
+      "id": "purchasing",
+      "position": 7,
+      "officialTitle": "Управление закупками",
+      "vendorUrl": "https://v8.1c.ru/erp/purchasing/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "7. Закупки",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/Purchase/Purchase",
+            "accessStatus": "200_chapter_index_only"
+          },
+          {
+            "title": "Соглашения об условиях закупок",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/PurchaseConditions/AgreementOnTermsOfProcurement",
+            "accessStatus": "401_title_only",
+            "note": "A browser request also returned 403; HTTP status varied by request/client."
+          }
+        ],
+        "status": "200_chapter_index_only",
+        "note": "The chapter index is readable; the purchasing-agreements child text was not."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          3
+        ],
+        "indexTopics": [
+          "topic-4"
+        ],
+        "status": "direct",
+        "evidence": [
+          {
+            "path": "topic4_sales_purchasing_lecture.html",
+            "heading": "Что предприятие может делать в контуре закупок"
+          },
+          {
+            "path": "topic4_sales_purchasing_lecture.html",
+            "heading": "Закупки: контроль исполнения заказа поставщику"
+          },
+          {
+            "path": "topic4_purchasing_practicum.html",
+            "heading": "Что создаёт студент",
+            "note": "A bounded order-to-supplier exercise."
+          }
+        ],
+        "gap": "The course evidence covers selected procurement concepts and one supplier-order practicum, not all procurement functions."
+      }
+    },
+    {
+      "id": "warehouse-inventory",
+      "position": 8,
+      "officialTitle": "Управление складом и запасами",
+      "vendorUrl": "https://v8.1c.ru/erp/warehouse/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "6. Склад и доставка",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/Warehouse/Warehouse",
+            "accessStatus": "200_chapter_index_only"
+          }
+        ],
+        "status": "200_chapter_index_only",
+        "note": "Chapter index/questions read; not every child procedure."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          3
+        ],
+        "indexTopics": [
+          "topic-4"
+        ],
+        "status": "direct",
+        "evidence": [
+          {
+            "path": "topic4_logistics_lecture.html",
+            "heading": "Понятия, которые связывают складские данные"
+          },
+          {
+            "path": "topic4_logistics_lecture.html",
+            "heading": "Возможности склада и вопросы к данным"
+          },
+          {
+            "path": "topic4_warehouse_practicum.html",
+            "heading": "Часть А. Учётный остаток и пересчёт"
+          },
+          {
+            "path": "topic4_warehouse_practicum.html",
+            "heading": "Часть Б. Обеспечение заказа клиента и фактическая отгрузка"
+          }
+        ],
+        "gap": "These pages are prepared student materials; the index says a separate warehouse session has not been conducted. Coverage is not a statement about classroom delivery."
+      }
+    },
+    {
+      "id": "regulated-accounting",
+      "position": 9,
+      "officialTitle": "Регламентированный учёт",
+      "vendorUrl": "https://v8.1c.ru/erp/reglamentirovannyy-uchet/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "16. Регламентированный учет",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/RegulatoryAccounting/RegulatoryAccounting",
+            "accessStatus": "401_title_only"
+          }
+        ],
+        "status": "401_title_only",
+        "note": "Title available in the contents; detailed chapter text not verified."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          2,
+          5
+        ],
+        "indexTopics": [
+          "topic-2",
+          "topic-5"
+        ],
+        "status": "adjacent-only",
+        "mappingNote": "Topic 2 contains one contextual definition; topic 5 is the nearest finance theme, not evidence of regulated-accounting instruction.",
+        "evidence": [
+          {
+            "path": "lecture2_student_guide.html",
+            "heading": "Общие понятия",
+            "anchor": "common-definitions",
+            "row": "Организация",
+            "note": "Defines an organization as the legal entity on whose behalf documents and regulated accounting are maintained; this is contextual terminology, not coverage of the regulated-accounting product area."
+          }
+        ],
+        "gap": "No dedicated regulated-accounting process material was identified; Topic 5 currently covers the payment calendar only."
+      }
+    },
+    {
+      "id": "cost-management-costing",
+      "position": 10,
+      "officialTitle": "Управление затратами и расчёт себестоимости",
+      "vendorUrl": "https://v8.1c.ru/erp/cost_management/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "11. Управленческий учет затрат и финансовый результат",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/MAFinRes/MAFinRes",
+            "accessStatus": "200_chapter_index_only"
+          }
+        ],
+        "status": "200_chapter_index_only",
+        "note": "Chapter index read; cost-calculation procedures not verified."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          2,
+          4
+        ],
+        "indexTopics": [
+          "topic-2",
+          "topic-3"
+        ],
+        "status": "narrow/partial",
+        "evidence": [
+          {
+            "path": "lecture2_student_guide.html",
+            "heading": "Почему фактическая себестоимость отличается от плановой",
+            "note": "Production planned-versus-actual cost concepts and contrast cases."
+          },
+          {
+            "path": "seminar2_toir_execution.html",
+            "heading": "1. Плановая себестоимость продукции",
+            "note": "A bounded planned-cost report in the TOiR execution context."
+          }
+        ],
+        "gap": "Local evidence is bounded to production/repair examples; it is not a full cost-management or accounting-course treatment."
+      }
+    },
+    {
+      "id": "hr-payroll",
+      "position": 11,
+      "officialTitle": "Управление персоналом и расчёт заработной платы",
+      "vendorUrl": "https://v8.1c.ru/erp/hrm_payroll/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "20. Кадровый учет и расчет заработной платы",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/HRM/HRM",
+            "accessStatus": "401_title_only"
+          },
+          {
+            "title": "21. Подсистема «Зарплата и управление персоналом»",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/HRMSubsystem/HRMSubsystem",
+            "accessStatus": "401_title_only"
+          }
+        ],
+        "status": "401_title_only",
+        "note": "Both headings were visible in the contents; chapter bodies were not verified."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          7
+        ],
+        "indexTopics": [
+          "topic-7"
+        ],
+        "status": "no-evidence",
+        "evidence": [],
+        "gap": "No local HR, personnel-administration, or payroll course material was identified. Topic 7 is only a nearest scope label for system modules and contains no new student material in the current index."
+      }
+    },
+    {
+      "id": "production",
+      "position": 12,
+      "officialTitle": "Управление производством",
+      "vendorUrl": "https://v8.1c.ru/erp/production/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "9. Производство",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/Production/Production",
+            "accessStatus": "401_title_only"
+          }
+        ],
+        "status": "401_title_only",
+        "note": "Title available in the contents; detailed chapter text not verified."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          2
+        ],
+        "indexTopics": [
+          "topic-2"
+        ],
+        "status": "direct",
+        "evidence": [
+          {
+            "path": "lecture2_student_guide.html",
+            "heading": "Краткая схема производственной модели"
+          },
+          {
+            "path": "lecture2_student_guide.html",
+            "heading": "Три уровня планирования"
+          },
+          {
+            "path": "seminar2_production_case.html",
+            "heading": "2. Путь заказа — 30 минут"
+          },
+          {
+            "path": "Практикумы №1–2 — разбор.html",
+            "heading": "Карта создаваемых объектов",
+            "note": "Local practice materials are present; no claim that every exercise has an author solution."
+          }
+        ],
+        "gap": "Direct material coverage is evidenced; this does not prove a particular classroom database configuration."
+      }
+    },
+    {
+      "id": "repairs",
+      "position": 13,
+      "officialTitle": "Организация ремонтов",
+      "vendorUrl": "https://v8.1c.ru/erp/repairs/",
+      "classification": "functional_area",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "15.11. Обслуживание и ремонт объектов эксплуатации",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/EquipmentRepairAndService/EquipmentRepairAndService",
+            "accessStatus": "401_title_only"
+          },
+          {
+            "title": "9.13. Ремонты",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/Repairs/Repairs",
+            "accessStatus": "401_title_only"
+          }
+        ],
+        "status": "401_title_only",
+        "note": "Two distinct 2.6 contents headings: 15.11 concerns equipment maintenance, while 9.13 is the repair section in the production chapter; neither title-only match establishes procedure details."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          4
+        ],
+        "indexTopics": [
+          "topic-3"
+        ],
+        "status": "direct",
+        "evidence": [
+          {
+            "path": "seminar1_toir_notes.html",
+            "heading": "3. Планирование работ ТОиР"
+          },
+          {
+            "path": "seminar2_toir_execution.html",
+            "heading": "2. Производственные заказы и этапы"
+          },
+          {
+            "path": "lecture2_student_guide.html",
+            "heading": "Как та же модель применяется к ремонтам"
+          }
+        ],
+        "gap": "TOiR materials provide direct course evidence; they do not establish the settings of a live classroom ERP installation."
+      }
+    },
+    {
+      "id": "inventory-planning",
+      "position": 14,
+      "officialTitle": "Планирование запасов",
+      "vendorUrl": "https://v8.1c.ru/erp/tovarnoe-planirovanie/",
+      "classification": "inventory_planning_page",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "2.7. Планирование остатков",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/BalansePlan/BalansePlan",
+            "accessStatus": "401_title_only"
+          },
+          {
+            "title": "5. Обеспечение потребностей",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/Provision/Provision",
+            "accessStatus": "401_title_only",
+            "note": "A related contents heading, not a full equivalent of the vendor planning page."
+          }
+        ],
+        "status": "401_title_only",
+        "note": "The specific planning chapter was title-only; chapter 5 is a related but distinct contents heading."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          3
+        ],
+        "indexTopics": [
+          "topic-4"
+        ],
+        "status": "narrow/partial",
+        "evidence": [
+          {
+            "path": "topic4_logistics_lecture.html",
+            "heading": "Поддержание запаса и обеспечение конкретного заказа",
+            "note": "Covers Min–max, demand/stock examples, and order fulfillment distinctions."
+          },
+          {
+            "path": "topic4_warehouse_practicum.html",
+            "heading": "Отдельная независимая проверка пополнения",
+            "note": "A bounded example; not a full inventory-planning implementation review."
+          }
+        ],
+        "gap": "The local materials address selected stocking and fulfillment methods, not every planning feature."
+      }
+    },
+    {
+      "id": "honest-mark-integration",
+      "position": 15,
+      "officialTitle": "Интеграция с системой «Честный знак»",
+      "vendorUrl": "https://v8.1c.ru/erp/integratsiya-s-sistemoy-chestnyy-znak/",
+      "classification": "integration",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "18.9.1. Маркировка («Честный знак»)",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/ismotp/ismotp",
+            "accessStatus": "401_title_only"
+          }
+        ],
+        "status": "401_title_only",
+        "note": "Contents heading only; integration procedures not verified."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          3
+        ],
+        "indexTopics": [
+          "topic-4"
+        ],
+        "status": "no-evidence",
+        "evidence": [],
+        "gap": "No local course page or section on the Honest Sign integration was identified. The logistics RPD/index topic is only a nearest thematic context, not evidence of coverage."
+      }
+    },
+    {
+      "id": "marketplace-integration",
+      "position": 16,
+      "officialTitle": "Интеграция с маркетплейсами",
+      "vendorUrl": "https://v8.1c.ru/erp/integratsiya-s-marketpleysami-erp/",
+      "classification": "integration",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "Настройка подключения к маркетплейсу Ozon",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/MarketPlaces/OzonSettigs1",
+            "accessStatus": "401_title_only"
+          },
+          {
+            "title": "Электронный документооборот с торговыми площадками",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/MarketPlaces/MarketplacesEDoc",
+            "accessStatus": "401_title_only"
+          }
+        ],
+        "status": "401_title_only",
+        "note": "Two limited contents headings; no single matching comprehensive 2.6 page was verified."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          3
+        ],
+        "indexTopics": [
+          "topic-4"
+        ],
+        "status": "no-evidence",
+        "evidence": [],
+        "gap": "No local course page or section on marketplace integrations was identified; logistics is only the nearest topic context."
+      }
+    },
+    {
+      "id": "functional-model",
+      "position": 17,
+      "officialTitle": "Функциональная модель «1С:ERP Управление предприятием»",
+      "vendorUrl": "https://v8.1c.ru/erp/funktsionalnaya-model-1s-erp-upravlenie-predpriyatiem/",
+      "classification": "functional_model",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [],
+        "status": "no_defensible_page",
+        "note": "No defensible corresponding 2.6 documentation page was found in the checked contents; this does not prove absence of a product model."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          1,
+          7
+        ],
+        "indexTopics": [
+          "topic-1",
+          "topic-7"
+        ],
+        "status": "adjacent-only",
+        "mappingNote": "Nearest contexts only, not confirmed placement: Topic 1 references a general functionality overview for orientation; Topic 7 is titled system modules but has no student material in the current index.",
+        "evidence": [
+          {
+            "path": "1c_materials_index.html",
+            "heading": "Тема 1. Роль аналитика ERP/MES/CRM",
+            "linkText": "Функциональность «1С:ERP Управление предприятием»",
+            "linkUrl": "https://v8.1c.ru/erp/funktsionalnost-1s-erp/",
+            "note": "An orientation link to the general functionality list, not the separately titled functional-model page and not proof that the model is taught."
+          }
+        ],
+        "gap": "No dedicated course material on the 1C functional model was identified; the reference link is for orientation only."
+      }
+    },
+    {
+      "id": "document-management-interoperability",
+      "position": 18,
+      "officialTitle": "Совместное использование с «1С:Документооборот 8»",
+      "vendorUrl": "https://v8.1c.ru/erp/doc8corp/",
+      "classification": "inter_product_use",
+      "vendorAccess": "read",
+      "its26": {
+        "nearestBookmarks": [
+          {
+            "title": "18.2.10. Интеграция с «1С:Документооборотом»",
+            "url": "https://its.1c.ru/db/erp26doc/bookmark/DocumentFlowIntegration/DocumentFlowIntegration",
+            "accessStatus": "401_title_only"
+          }
+        ],
+        "status": "401_title_only",
+        "note": "Contents title only; integration details were not verified."
+      },
+      "courseMapping": {
+        "rpdTopics": [
+          7
+        ],
+        "indexTopics": [
+          "topic-7"
+        ],
+        "status": "no-evidence",
+        "evidence": [],
+        "gap": "No local course page or section on 1C:Document Management interoperability was identified; topic 7 is only a nearest structural context."
+      }
+    }
+  ],
+  "catalogueCategories": [
+    {
+      "id": "erp",
+      "title": "Комплексное управление ресурсами предприятия (ERP)",
+      "url": "https://solutions.1c.ru/erp",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "mdm",
+      "title": "Управление мастер-данными и НСИ (MDM)",
+      "url": "https://solutions.1c.ru/mdm",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "crm",
+      "title": "Взаимоотношение с клиентами (CRM) и маркетинг",
+      "url": "https://solutions.1c.ru/crm",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "hrm",
+      "title": "Зарплата, управление персоналом и кадровый учёт (HRM)",
+      "url": "https://solutions.1c.ru/hrm",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "frp",
+      "title": "Управленческий и финансовый учёт (FRP)",
+      "url": "https://solutions.1c.ru/frp",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "sfm-wms",
+      "title": "Управление продажами, логистикой и транспортом (SFM, WMS, TMS)",
+      "url": "https://solutions.1c.ru/sfm-wms",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "pdm",
+      "title": "Управление инженерными данными и жизненным циклом изделия (PDM, PLM)",
+      "url": "https://solutions.1c.ru/pdm",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "itsm",
+      "title": "Управление информационными технологиями (ITIL)",
+      "url": "https://solutions.1c.ru/itsm",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "eam",
+      "title": "Управление ремонтами (CMM, EAM)",
+      "url": "https://solutions.1c.ru/eam",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "pmo",
+      "title": "Управление проектами и портфелями проектов (PMO, EPM)",
+      "url": "https://solutions.1c.ru/pmo",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "e-learning",
+      "title": "Электронное обучение (e-Learning)",
+      "url": "https://solutions.1c.ru/e-learning",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "accounting-tax",
+      "title": "Бухгалтерский и налоговый учёт",
+      "url": "https://solutions.1c.ru/acc-tax",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "document",
+      "title": "Документооборот",
+      "url": "https://solutions.1c.ru/document",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "ehs",
+      "title": "Охрана труда и окружающей среды, безопасность (EHS)",
+      "url": "https://solutions.1c.ru/ehs",
+      "level": "top-level",
+      "parentId": null,
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "management-accounting",
+      "title": "Управленческий учёт",
+      "url": "https://solutions.1c.ru/management-acc",
+      "level": "subcategory",
+      "parentId": "frp",
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "financial-accounting",
+      "title": "Финансовый учёт",
+      "url": "https://solutions.1c.ru/financial-acc",
+      "level": "subcategory",
+      "parentId": "frp",
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "sales-subcategory",
+      "title": "Управление продажами",
+      "url": "https://solutions.1c.ru/sfm",
+      "level": "subcategory",
+      "parentId": "sfm-wms",
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "warehouse-logistics",
+      "title": "Управление складом и логистикой",
+      "url": "https://solutions.1c.ru/wms",
+      "level": "subcategory",
+      "parentId": "sfm-wms",
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    },
+    {
+      "id": "transport",
+      "title": "Управление транспортом",
+      "url": "https://solutions.1c.ru/tms",
+      "level": "subcategory",
+      "parentId": "sfm-wms",
+      "scope": "cross-product taxonomy; not a 1С:ERP module or course topic"
+    }
+  ],
+  "catalogueTaxonomyLimit": "The 14 top-level and five nested categories are cross-product catalogue taxonomy, not ERP modules, RPD topics, or evidence of course coverage.",
+  "exclusions": [
+    "Do not infer the classroom 1С:ERP version, configuration, enabled modules, or settings from the public product card or vendor functionality pages.",
+    "Do not infer course delivery, completion, student attendance, assessment, or mastery from a listed or prepared page.",
+    "Do not treat the cross-product catalogue categories as one installation's modules or as the course structure.",
+    "Do not infer detailed procedure from a 2.6 chapter title or contents index alone.",
+    "Do not use ERP 2.5 LTS to fill a missing ERP 2.6 source."
+  ]
+}

@@ -1,0 +1,487 @@
+{
+  "title": "Course knowledge ontology source corpus inventory",
+  "scope": "Audited inventory of the declared student-facing canonical HTML source set: ontology meta.courseSources union the additional student-facing canonical HTML practicum linked from the root index, plus the three relevant local attachments linked from assets/index.html. Review state records source-audit coverage; it does not mean every claim is independently verified.",
+  "corpus": [
+    {
+      "path": "lecture1_student_guide.html",
+      "format": "html",
+      "topic": "topic-1",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 3,
+        "relationStatements": 23,
+        "eligibleRelationStatements": 23,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-01-10.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "seminar1_analyst_case.html",
+      "format": "html",
+      "topic": "topic-1",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 2,
+        "relationStatements": 0,
+        "eligibleRelationStatements": 0,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-01-10.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "ai_analyst_tools.html",
+      "format": "html",
+      "topic": "topic-1",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 13,
+        "relationStatements": 26,
+        "eligibleRelationStatements": 26,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-01-10.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "lecture2_student_guide.html",
+      "format": "html",
+      "topic": "topic-2",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 11,
+        "relationStatements": 78,
+        "eligibleRelationStatements": 78,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-01-10.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "seminar2_production_case.html",
+      "format": "html",
+      "topic": "topic-2",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 6,
+        "relationStatements": 25,
+        "eligibleRelationStatements": 25,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-01-10.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "Практикумы №1–2 — разбор.html",
+      "format": "html",
+      "topic": "topic-2",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 2,
+        "relationStatements": 19,
+        "eligibleRelationStatements": 19,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-01-10.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "Практикум №3–6 — разбор.html",
+      "format": "html",
+      "topic": "topic-2",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 7,
+        "relationStatements": 23,
+        "eligibleRelationStatements": 23,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-01-10.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "Практикумы №7–8 — разбор.html",
+      "format": "html",
+      "topic": "topic-2",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 5,
+        "relationStatements": 8,
+        "eligibleRelationStatements": 8,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-01-10.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "seminar1_toir_notes.html",
+      "format": "html",
+      "topic": "topic-3",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 7,
+        "relationStatements": 9,
+        "eligibleRelationStatements": 9,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-01-10.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "seminar2_toir_execution.html",
+      "format": "html",
+      "topic": "topic-3",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 4,
+        "relationStatements": 7,
+        "eligibleRelationStatements": 7,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-01-10.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "topic4_sales_purchasing_lecture.html",
+      "format": "html",
+      "topic": "topic-4",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 9,
+        "relationStatements": 40,
+        "eligibleRelationStatements": 40,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-11-20.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "topic4_sales_purchasing_practicum.html",
+      "format": "html",
+      "topic": "topic-4",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 0,
+        "relationStatements": 8,
+        "eligibleRelationStatements": 8,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-11-20.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "topic4_purchasing_practicum.html",
+      "format": "html",
+      "topic": "topic-4",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 0,
+        "relationStatements": 7,
+        "eligibleRelationStatements": 7,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-11-20.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "topic4_logistics_lecture.html",
+      "format": "html",
+      "topic": "topic-4",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 3,
+        "relationStatements": 32,
+        "eligibleRelationStatements": 18,
+        "productObservations": 14,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-11-20.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "topic4_logistics_practicum.html",
+      "format": "html",
+      "topic": "topic-4",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 0,
+        "relationStatements": 7,
+        "eligibleRelationStatements": 7,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-11-20.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "topic5_finance_lecture.html",
+      "format": "html",
+      "topic": "topic-5",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 0,
+        "relationStatements": 4,
+        "eligibleRelationStatements": 4,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-11-20.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "topic5_finance_practicum.html",
+      "format": "html",
+      "topic": "topic-5",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 0,
+        "relationStatements": 4,
+        "eligibleRelationStatements": 4,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-11-20.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "topic6_data_lecture.html",
+      "format": "html",
+      "topic": "topic-6",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 0,
+        "relationStatements": 6,
+        "eligibleRelationStatements": 6,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-11-20.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "topic6_data_practicum.html",
+      "format": "html",
+      "topic": "topic-6",
+      "linkedFrom": "ontology/knowledge_ontology.json:meta.courseSources",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 0,
+        "relationStatements": 6,
+        "eligibleRelationStatements": 6,
+        "productObservations": 0,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-11-20.md",
+      "candidateExclusions": []
+    },
+    {
+      "path": "assets/downloads/erp_concept_v8.pdf",
+      "format": "pdf",
+      "topic": "topic-1, topic-2, topic-3",
+      "linkedFrom": "assets/index.html: Методические материалы; ссылка также из курса",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 18,
+        "relationStatements": 120,
+        "eligibleRelationStatements": 76,
+        "productObservations": 29,
+        "excludedRelationStatements": 15
+      },
+      "auditRecord": "ontology/source_audit/attachments.md",
+      "candidateExclusions": [
+        {
+          "auditCandidateId": "PDF-M02",
+          "reason": "Vendor-reported manufacturing cost metric; a reported performance metric, not a method or practice."
+        },
+        {
+          "auditCandidateId": "PDF-M03",
+          "reason": "Vendor-reported material-stock metric; a reported performance metric, not a method or practice."
+        },
+        {
+          "auditCandidateId": "PDF-M04",
+          "reason": "Vendor-reported production-volume metric; a reported performance metric, not a method or practice."
+        },
+        {
+          "auditCandidateId": "PDF-M05",
+          "reason": "Vendor-reported labor-productivity metric; a reported performance metric, not a method or practice."
+        },
+        {
+          "auditCandidateId": "PDF-M06",
+          "reason": "Vendor-reported equipment-downtime metric; a reported performance metric, not a method or practice."
+        },
+        {
+          "auditCandidateId": "PDF-M07",
+          "reason": "Vendor-reported defect metric; a reported performance metric, not a method or practice."
+        },
+        {
+          "auditCandidateId": "PDF-M08",
+          "reason": "Vendor-reported stock-turnover metric; a reported performance metric, not a method or practice."
+        },
+        {
+          "auditCandidateId": "PDF-M09",
+          "reason": "Vendor-reported order-fulfilment-time metric; a reported performance metric, not a method or practice."
+        },
+        {
+          "auditCandidateId": "PDF-M10",
+          "reason": "Vendor-reported operating-expense metric; a reported performance metric, not a method or practice."
+        },
+        {
+          "auditCandidateId": "PDF-M11",
+          "reason": "Vendor-reported profit metric; a reported performance metric, not a method or practice."
+        }
+      ]
+    },
+    {
+      "path": "assets/downloads/Семинар 1_Драфт 14-10-23.pptx",
+      "format": "pptx",
+      "topic": "topic-3",
+      "linkedFrom": "assets/index.html: Методические материалы",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 9,
+        "relationStatements": 57,
+        "eligibleRelationStatements": 43,
+        "productObservations": 1,
+        "excludedRelationStatements": 13
+      },
+      "auditRecord": "ontology/source_audit/attachments.md",
+      "candidateExclusions": [
+        {
+          "auditCandidateId": "S1-M01",
+          "reason": "Exercise completion rubric/score, not an enterprise method or reusable course practice."
+        }
+      ]
+    },
+    {
+      "path": "assets/downloads/Семинар 2_Драфт 21-10-23.pptx",
+      "format": "pptx",
+      "topic": "topic-3",
+      "linkedFrom": "assets/index.html: Методические материалы",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 4,
+        "relationStatements": 39,
+        "eligibleRelationStatements": 29,
+        "productObservations": 0,
+        "excludedRelationStatements": 10
+      },
+      "auditRecord": "ontology/source_audit/attachments.md",
+      "candidateExclusions": [
+        {
+          "auditCandidateId": "S2-M01",
+          "reason": "Exercise completion rubric/score, not an enterprise method or reusable course practice."
+        }
+      ]
+    },
+    {
+      "path": "topic4_warehouse_practicum.html",
+      "format": "html",
+      "topic": "topic-4",
+      "linkedFrom": "index.html#topic-4 (student-facing canonical practicum)",
+      "reviewState": "reviewed",
+      "present": true,
+      "auditCounts": {
+        "namedCandidates": 1,
+        "relationStatements": 37,
+        "eligibleRelationStatements": 19,
+        "productObservations": 18,
+        "excludedRelationStatements": 0
+      },
+      "auditRecord": "ontology/source_audit/html-11-20.md",
+      "candidateExclusions": []
+    }
+  ],
+  "exclusions": [
+    {
+      "category": "teacher-only pages and teacher scripts",
+      "paths": [
+        "ai_analyst_tools_teacher.html",
+        "lecture1_seminar1_deep.html",
+        "lecture2_seminar2_plan.html",
+        "topic4_warehouse_teacher_plan.html",
+        "new_topics_teacher_plan.html"
+      ],
+      "reason": "Teacher-facing scripts, answer keys, and lesson plans are not student-facing canonical course sources."
+    },
+    {
+      "category": "root-index navigation, auxiliary, or compatibility pages",
+      "paths": [
+        "1c_materials_index.html",
+        "assets/mes.html",
+        "Вопросы к практикуму №2.html",
+        "Ответы к вопросам практикума №2.html",
+        "Контрольные вопросы и расписание.html",
+        "toir_source_crosswalk.html",
+        "Аттестация.html"
+      ],
+      "reason": "These links are navigation, ancillary/reference, or compatibility pages, not canonical student-facing HTML material sources in the declared ontology corpus; not silently counted as source coverage."
+    },
+    {
+      "category": "separate-discipline transcripts and materials",
+      "reason": "Belong to another discipline and are explicitly out of scope for this course ontology."
+    },
+    {
+      "category": "private or credential-bearing absent source PDFs/drafts",
+      "reason": "Not present in this repository corpus and may contain private or credential-bearing material; no contents or credentials are copied or disclosed."
+    },
+    {
+      "category": "redirects and compatibility pages, if any",
+      "reason": "Navigation/legacy aliases are not canonical source materials; only the declared corpus and explicitly added canonical student-facing source are included."
+    }
+  ],
+  "completenessBoundary": "Coverage review is complete for the 20 declared student-facing HTML sources and three relevant local attachments listed here, as recorded in ontology/source_audit/html-01-10.md, html-11-20.md, and attachments.md. Teacher-only links, navigation/compatibility pages, other-discipline materials, and private/absent sources are excluded. Reviewed means the declared source was audited and its reusable statements inventoried under the documented boundary; it does not mean every claim was independently verified or that every source used in the course has been inventoried."
+}
