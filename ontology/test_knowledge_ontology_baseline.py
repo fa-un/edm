@@ -171,7 +171,7 @@ class OntologyBaselineTests(unittest.TestCase):
         self.assertIn("if(link.publishable!==true)continue;", html)
         self.assertNotIn("link.publishable===false", html)
         self.assertNotIn("record.link.publishable===false", html)
-        self.assertIn("непубликуемые редакторские гипотезы", html)
+        self.assertIn("Здесь показаны связи, подтверждённые учебными материалами.", html)
         self.assertIn("const hasScheme=/^[a-z][a-z\\d+.-]*:/i.test(path);", html)
         self.assertIn("const localDocument=!hasScheme&&", html)
 
@@ -305,9 +305,45 @@ class OntologyBaselineTests(unittest.TestCase):
             "if(term.entityLevel!=='unknown')heading.append(element('span','kind-label',`Уровень: ${entityLevelLabel(term.entityLevel)}`))",
             card_heading,
         )
-        self.assertIn("if(term.entityLevel!=='unknown'&&term.entityLevelReason)", card_heading)
-        self.assertIn("unknown-level-explanation", html)
+        self.assertNotIn("entityLevelReason", card_heading)
+        self.assertIn("kind!=='unclassified'", card_heading)
+        self.assertNotIn("unknown-level-explanation", html)
         self.assertIn("entity-level-filter", html)
+        self.assertIn("if(level==='unknown')continue", html)
+        self.assertIn("if(kind==='unclassified')continue", html)
+
+    def test_human_ontology_view_omits_machine_only_statuses_and_keeps_sources(self):
+        html = (ROOT / "ontology" / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn("ID утверждения:", html)
+        self.assertNotIn("Прямое утверждение источника", html)
+        self.assertNotIn("Упоминание не определяет проверяемую методику", html)
+        self.assertNotIn("method-status-filter", html)
+        self.assertNotIn(".method-controls", html)
+        self.assertNotIn(".status-unknown", html)
+        self.assertNotIn("Статус первоисточника", html)
+        self.assertIn("Источник: ", html)
+        self.assertIn("Место: ", html)
+
+        coverage_header = "for(const label of ['Тема РПД','Наличие материалов'])"
+        self.assertIn(coverage_header, html)
+        self.assertNotIn("'Проведение занятия'", html)
+        self.assertNotIn("'Запись об оценивании'", html)
+        self.assertNotIn("deliveryStatus", html)
+        self.assertNotIn("assessmentStatus", html)
+
+        self.assertIn("Само упоминание не подтверждает их применение", html)
+        self.assertNotIn("verificationLabel(", html)
+        self.assertNotIn("evidenceLabel(", html)
+        self.assertNotIn("modalityLabel(", html)
+        self.assertNotIn("kindReason}", html)
+        self.assertNotIn("entityLevelReason}", html)
+        self.assertNotIn(".relation-list li.hypothesis", html)
+
+        # The human view is simplified; the machine-readable source stays intact.
+        self.assertIn("sourceAssertionId", self.data["methodPractices"][0])
+        self.assertIn("verificationStatus", self.data["methodPractices"][0])
+        self.assertIn("deliveryStatus", self.data["coverage"][0])
+        self.assertIn("assessmentStatus", self.data["coverage"][0])
 
     def test_rpd_material_status_labels_are_localized_and_complete(self):
         html = (ROOT / "ontology" / "index.html").read_text(encoding="utf-8")

@@ -51,7 +51,7 @@
     .status-table{min-width:680px}
     .status-table th,.status-table td{padding:10px 12px;text-align:left;vertical-align:top;border:1px solid var(--line)}
     .status-table th{background:var(--wash)}
-    .status-value{font-weight:700}.status-unknown{color:#4d5853}
+    .status-value{font-weight:700}
     .definition-variant{padding:10px 12px;margin:8px 0;background:#fffefa;border:1px solid var(--line)}
     .definition-variant>summary{cursor:pointer;font-weight:650}
     .provenance{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
@@ -60,7 +60,6 @@
     .term-links h5{margin:0 0 5px;font-size:14px}
     .method-card{padding:13px 15px;background:#fff;border-left:3px solid #9473a0}
     .method-card h3{margin:0 0 5px;font-size:16px}.method-card p{margin:5px 0}
-    .method-controls{max-width:28rem}
     .controls select{max-width:100%}
     :focus-visible{outline:3px solid #235c9b;outline-offset:2px}
     .controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:18px 0}
@@ -79,7 +78,6 @@
     .kind-label{display:inline-block;margin-left:7px;padding:1px 7px;background:var(--wash);color:var(--muted);font:600 11px/1.7 system-ui,sans-serif;vertical-align:2px}
     .relation-list,.action-list,.function-list{list-style:none;padding:0;display:grid;gap:10px}
     .relation-list li,.action-list li,.function-list li{max-width:none;margin:0;padding:14px 16px;background:#fff;border-left:3px solid #a7beb1}
-    .relation-list li.hypothesis{border-left-style:dashed;border-left-color:#bd8b3d}
     .relation-line{font-size:16px;font-weight:650}
     .relation-meta,.action-meta,.function-meta{display:block;color:var(--muted);font-size:14px;margin-top:5px}
     .action-list h3,.function-list h3{font-size:17px;margin:0 0 6px}
@@ -121,8 +119,8 @@
   </section>
 
   <section aria-labelledby="coverage-status-heading">
-    <h2 id="coverage-status-heading">Структурированные статусы покрытия</h2>
-    <p>Наличие материалов, подтверждение проведения занятия и наличие записи об оценивании — независимые оси. «Не установлено» означает, что в этой модели нет прямого свидетельства по оси; это не означает отсутствие материала, непроведение занятия или неосвоение темы. Ссылки выше ведут к имеющимся учебным материалам.</p>
+    <h2 id="coverage-status-heading">Материалы по темам РПД</h2>
+    <p>Наличие материалов не подтверждает проведение занятия или освоение темы.</p>
     <div id="coverage-status"></div>
   </section>
 
@@ -245,7 +243,6 @@
       <div class="model-node"><h3>Функции</h3><p>Правила вычисления результата по входным данным, например остатка или показателя.</p></div>
     </div>
     <p>Узлы ниже — понятия и типы, а не записи учебной базы. Типизация пока частичная; отсутствие типа не означает отдельный объектный тип. Стрелка показывает предметную связь или переход, но сама по себе не доказывает, что в базе есть соответствующее поле-ссылка или таблица связей. Это не объектно-ориентированный список «методов класса»: действие меняет состояние данных, функция вычисляет результат. Наличие описанного действия не доказывает физическое выполнение события, а статус документа не доказывает состояние объекта предприятия.</p>
-    <p id="unknown-level-explanation">Карточки не повторяют отметку «уровень не установлен»: источники не позволяют различить класс и экземпляр. Значение сохранено в данных и доступно в фильтре.</p>
   </section>
 
   <section aria-labelledby="clusters-heading">
@@ -256,7 +253,7 @@
 
   <section aria-labelledby="relations-heading">
     <h2 id="relations-heading">Связи между объектами</h2>
-    <p>Здесь показываются только публикуемые связи, подтверждённые источниками. Условные переходы помечены; непубликуемые редакторские гипотезы остаются в JSON для аудита и не отображаются.</p>
+    <p>Здесь показаны связи, подтверждённые учебными материалами. Условные переходы отмечены отдельно.</p>
     <ul id="relation-list" class="relation-list"></ul>
   </section>
 
@@ -272,20 +269,16 @@
   </section>
 
   <section aria-labelledby="methods-heading">
-    <h2 id="methods-heading">Реестр упоминаний методов и практик</h2>
-    <p>Реестр отражает кандидатов и статус проверки их первоисточника. Упоминание в учебном материале не доказывает применение метода, настройку 1С или выполнение действия; связи с понятиями не выводятся из одного упоминания.</p>
-    <div class="controls method-controls">
-      <label for="method-status-filter">Статус первоисточника</label>
-      <select id="method-status-filter"><option value="all">Все статусы</option></select>
-    </div>
+    <h2 id="methods-heading">Методы и практики в материалах курса</h2>
+    <p>В списке собраны подходы, модели и практики, упомянутые в материалах курса. Само упоминание не подтверждает их применение; источник доступен по ссылке.</p>
     <p id="method-count" class="count" aria-live="polite"></p>
-    <p id="no-methods" class="gap-note" hidden>Нет кандидатов с выбранным статусом.</p>
+    <p id="no-methods" class="gap-note" hidden>В материалах курса упоминания не найдены.</p>
     <div id="method-register" class="term-grid"></div>
   </section>
 
   <section aria-labelledby="definitions-heading">
     <h2 id="definitions-heading">Словарь определений</h2>
-    <p>Узел понятия объединяет его определения из разных материалов; каждая формулировка сохраняет ссылку на свой источник и ID утверждения. Фильтры темы РПД, кластера, вида сущности и уровня можно сочетать. Действия и вычисления выделены отдельно от понятий; связи с ними показаны только по отдельному типизированному свидетельству. Группировка по кластерам служит навигации и сама по себе не означает отношение «род—вид».</p>
+    <p>Для понятия собраны формулировки из разных материалов со ссылками на источники. Фильтры темы РПД, кластера, вида и уровня можно сочетать. Действия и вычисления отделены от понятий; группировка по кластерам помогает навигации и не означает отношение «род—вид».</p>
     <p id="corpus-count" class="count">Загрузка состава словаря…</p>
     <div class="controls">
       <label for="term-search">Найти понятие</label>
@@ -326,7 +319,6 @@ const clusterFilter=document.getElementById('cluster-filter');
 const topicFilter=document.getElementById('topic-filter');
 const kindFilter=document.getElementById('kind-filter');
 const entityLevelFilter=document.getElementById('entity-level-filter');
-const methodStatusFilter=document.getElementById('method-status-filter');
 const termSearch=document.getElementById('term-search');
 const termCount=document.getElementById('term-count');
 const methodCount=document.getElementById('method-count');
@@ -348,29 +340,23 @@ function addSource(parent,path,label){
 }
 function addTag(parent,text,cls=''){parent.append(element('span',`evidence-tag ${cls}`.trim(),text));}
 function sourceFor(assertion,sourceById){return assertion?sourceById.get(assertion.sourceId):null;}
-function evidenceLabel(status){return ({direct:'Прямое утверждение источника',indirect:'Косвенное свидетельство','not-established':'Не установлено',contradicted:'Противоречие отмечено источником','secondary-only':'Только вторичный источник'})[status]||status||'Статус не указан';}
-function modalityLabel(value){return ({definition:'определение','source-mention':'упоминание источника',relation:'связь',coverage:'покрытие',action:'действие',function:'функция'})[value]||value||'модальность не указана';}
 function relationLabel(value){return ({conditional:'условная связь',references:'ссылается на','normative-basis':'нормативное основание для',comparison:'сравнивается с','related-to':'связано с',hypothesis:'гипотеза','used-in':'используется в действии','computed-by':'вычисляется функцией'})[value]||value||'тип связи не указан';}
-function kindLabel(value){return ({unclassified:'не классифицировано','collective-agent':'коллективный субъект','derived-quantity':'производная величина',document:'документ','state-property':'свойство состояния','business-process':'бизнес-процесс','business-function':'бизнес-функция',resource:'ресурс','data-concept':'понятие данных',system:'система',method:'метод',event:'событие',record:'запись','physical-location':'физическое место',quantity:'величина',status:'статус','normative-description':'нормативное описание','work-record':'запись о работе'})[value]||value||'не установлено';}
-function entityLevelLabel(value){return ({class:'класс',instance:'экземпляр','not-applicable':'неприменимо',unknown:'не установлено'})[value]||value||'не установлено';}
-function verificationLabel(value){return ({verified_against_primary_source:'Проверено по первоисточнику',secondary_source_only:'Есть только вторичный источник',primary_source_unavailable:'Первоисточник недоступен',mention_does_not_define_verifiable_method:'Упоминание не определяет проверяемую методику'})[value]||value||'Статус не указан';}
+function kindLabel(value){return ({'collective-agent':'коллективный субъект','derived-quantity':'производная величина',document:'документ','state-property':'свойство состояния','business-process':'бизнес-процесс','business-function':'бизнес-функция',resource:'ресурс','data-concept':'понятие данных',system:'система',method:'метод',event:'событие',record:'запись','physical-location':'физическое место',quantity:'величина',status:'статус','normative-description':'нормативное описание','work-record':'запись о работе'})[value]||'';}
+function entityLevelLabel(value){return ({class:'класс',instance:'экземпляр','not-applicable':'неприменимо'})[value]||'';}
 function candidateTypeLabel(value){return ({practice:'практика',model:'модель',metric:'метрика',standard:'стандарт',method:'метод','product-workflow':'сценарий продукта'})[value]||value||'кандидат';}
 function actionStatusLabel(status){return ({'student-method':'Учебный метод','student-write-task':'Практическое действие по заданию','student-read-only':'Только просмотр; факт изменения не выводится','student-simulation':'Учебная симуляция; факт операции не выводится','described-method':'Метод описан в материале','described-process':'Процесс описан; выполнение не выводится','described-capability':'Возможность описана; конфигурация базы не подтверждена','described-metric':'Показатель описан в материале','described-tool-method':'Метод/инструмент описан в материале',hypothesis:'Редакторская гипотеза'})[status]||status||'Статус не указан';}
-function appendProvenance(parent,assertionId,sourceById,assertionById,pathOverride,labelOverride){
+function appendProvenance(parent,assertionId,sourceById,assertionById,pathOverride,labelOverride,locatorOverride){
  const assertion=assertionById.get(assertionId);
  if(!assertion){
-  const p=element('p','provenance');p.append('Источник/утверждение: ');addSource(p,pathOverride,labelOverride||'Открыть материал');
-  if(assertionId)addTag(p,`ID утверждения: ${assertionId}`);
+  const p=element('p','provenance');p.append('Источник: ');addSource(p,pathOverride,labelOverride||'Открыть материал');
+  if(locatorOverride)p.append(document.createElement('br'),element('span','provenance',`Место: ${locatorOverride}`));
   parent.append(p);return;
  }
  const source=sourceFor(assertion,sourceById);
  const p=element('p','provenance');
  p.append('Источник: ');addSource(p,pathOverride||source?.uri,labelOverride||source?.label||source?.uri||'Открыть источник');
- p.append(' · ');addTag(p,`ID утверждения: ${assertion.id}`);
- addTag(p,evidenceLabel(assertion.evidenceStatus));
- addTag(p,modalityLabel(assertion.modality));
- if(assertion.publishable===false)addTag(p,'не публикуется как подтверждённый факт','caution');
- if(assertion.locator){const locator=element('span','provenance',`Место: ${assertion.locator}`);p.append(document.createElement('br'),locator);}
+ const locator=locatorOverride||assertion.locator;
+ if(locator)p.append(document.createElement('br'),element('span','provenance',`Место: ${locator}`));
  parent.append(p);
 }
 function sourceAssertionId(item){return item.sourceAssertionId||item.assertionId||null;}
@@ -426,11 +412,9 @@ function render(data){
   const option=element('option','',cluster.label);option.value=cluster.id;clusterFilter.append(option);
  }
  const kindValues=data.meta.kindVocabulary||[];
- for(const kind of kindValues){const option=element('option','',kindLabel(kind));option.value=kind;kindFilter.append(option);}
+ for(const kind of kindValues){if(kind==='unclassified')continue;const option=element('option','',kindLabel(kind));option.value=kind;kindFilter.append(option);}
  const levels=data.meta.entityLevelVocabulary||['class','instance','not-applicable','unknown'];
- for(const level of levels){const option=element('option','',entityLevelLabel(level));option.value=level;entityLevelFilter.append(option);}
- const methodStatusValues=data.meta.methodPracticeVerificationStatuses||[];
- for(const status of methodStatusValues){const option=element('option','',verificationLabel(status));option.value=status;methodStatusFilter.append(option);}
+ for(const level of levels){if(level==='unknown')continue;const option=element('option','',entityLevelLabel(level));option.value=level;entityLevelFilter.append(option);}
 
  const relationListByTerm=new Map(data.terms.map(term=>[term.id,[]]));
  const validRelations=[];
@@ -443,10 +427,9 @@ function render(data){
   relationListByTerm.get(link.to)?.push({...record,direction:'in'});
  }
  function relationNode(record){
-  const {link,from,to}=record;const li=element('li',link.evidenceStatus==='not-established'?'hypothesis':'');
+  const {link,from,to}=record;const li=element('li');
   const statement=element('div','relation-line',`${from.label} — ${link.label||relationLabel(link.relationType)} → ${to.label}`);li.append(statement);
-  const meta=element('p','relation-meta');addTag(meta,relationLabel(link.relationType));addTag(meta,`Статус свидетельства: ${evidenceLabel(link.evidenceStatus)}`);
-  if(link.status==='hypothesis')addTag(meta,'гипотеза; не подтверждённая связь','caution');
+  const meta=element('p','relation-meta');addTag(meta,relationLabel(link.relationType));
   if(link.direction)appendText(meta,` Направление: ${link.direction==='source_to_target'?'от источника к цели':link.direction}.`);
   li.append(meta);appendProvenance(li,link.sourceAssertionId,sourceById,assertionById,link.source,link.sourceLabel);return li;
  }
@@ -465,7 +448,6 @@ function render(data){
    const p=element('p','');const other=record.direction==='out'?record.to:record.from;
    appendText(p,record.direction==='out'?`${relationLabel(record.link.relationType)} → `:`Связано с (${relationLabel(record.link.relationType)}): `);
    const a=element('a','',other.label);a.href=`#term-${other.id}`;p.append(a);
-   if(record.link.evidenceStatus)p.append(document.createTextNode(` · ${evidenceLabel(record.link.evidenceStatus)}`));
    box.append(p);appendProvenance(box,record.link.sourceAssertionId,sourceById,assertionById,record.link.source,record.link.sourceLabel);
   }
   card.append(box);
@@ -476,7 +458,7 @@ function render(data){
   for(const edge of edges){
    const target=edge.to||{};const item=target.type==='action'?actionsById.get(target.id):target.type==='function'?functionsById.get(target.id):null;
    if(!item)continue;
-   box.append(element('p','',`${target.type==='action'?'Действие':'Функция'}: ${item.label} · ${relationLabel(edge.relationType)} · ${evidenceLabel(edge.evidenceStatus)}`));
+   box.append(element('p','',`${target.type==='action'?'Действие':'Функция'}: ${item.label} · ${relationLabel(edge.relationType)}`));
    appendProvenance(box,edge.sourceAssertionId,sourceById,assertionById);
   }
   card.append(box);
@@ -489,12 +471,10 @@ function render(data){
   for(const term of terms.slice().sort((a,b)=>a.label.localeCompare(b.label,'ru'))){
    const card=element('article','term-card');card.id=`term-${term.id}`;card.dataset.cluster=term.cluster;card.dataset.term=term.id;
    const defs=term.definitions||[];
-   const searchable=[term.label,term.kind,term.entityLevel,term.kindReason,term.entityLevelReason,...defs.flatMap(def=>[def.text,def.context,def.sourceLabel])].join(' ').toLocaleLowerCase('ru');card.dataset.search=searchable;
+   const searchable=[term.label,term.kind,term.entityLevel,...defs.flatMap(def=>[def.text,def.context,def.sourceLabel])].join(' ').toLocaleLowerCase('ru');card.dataset.search=searchable;
    const heading=element('h4','',term.label);
-   heading.append(element('span','kind-label',`Вид: ${kindLabel(term.kind)}`));
+   if(term.kind!=='unclassified')heading.append(element('span','kind-label',`Вид: ${kindLabel(term.kind)}`));
    if(term.entityLevel!=='unknown')heading.append(element('span','kind-label',`Уровень: ${entityLevelLabel(term.entityLevel)}`));card.append(heading);
-   if(term.kindReason)card.append(element('p','context',`Основание классификации: ${term.kindReason}`));
-   if(term.entityLevel!=='unknown'&&term.entityLevelReason)card.append(element('p','context',`Основание уровня: ${term.entityLevelReason}`));
    if(term.rpdTopics?.length){
     const p=element('p','provenance');p.append('Темы РПД: ');
     for(const [i,topicNumber] of term.rpdTopics.entries()){
@@ -532,46 +512,43 @@ function render(data){
   appendProvenance(li,fn.sourceAssertionId,sourceById,assertionById,fn.source,fn.sourceLabel);functionList.append(li);
  }
  const coverageRows=new Map((data.coverage||[]).map(row=>[row.rpdTopicId,row]));
- const statusLabels={
-  materialAvailability:{available:'Материалы доступны',partial:'Материалы доступны частично',unavailable:'Материалы недоступны',unknown:'Не установлено'},
-  deliveryStatus:{confirmed:'Проведение подтверждено',not_confirmed:'Проведение не подтверждено',unknown:'Не установлено'},
-  assessmentStatus:{record_present:'Есть запись об оценивании',record_absent:'Запись об оценивании отсутствует',unknown:'Не установлено'}
- };
- const table=element('table','status-table');const caption=element('caption','',`Структурированные статусы; источник: ${data.meta.coverageSemantics?.materialAvailability||'модель онтологии'}`);table.append(caption);
- const thead=element('thead','');const header=element('tr','');for(const label of ['Тема РПД','Наличие материалов','Проведение занятия','Запись об оценивании'])header.append(element('th','',label));thead.append(header);table.append(thead);
+ const statusLabels={materialAvailability:{available:'Материалы доступны',partial:'Материалы доступны частично',unavailable:'Материалы недоступны'}};
+ const table=element('table','status-table');table.append(element('caption','','Наличие учебных материалов по темам РПД'));
+ const thead=element('thead','');const header=element('tr','');for(const label of ['Тема РПД','Наличие материалов'])header.append(element('th','',label));thead.append(header);table.append(thead);
  const tbody=element('tbody','');
  for(const topic of topics){
   const row=element('tr','');const titleCell=element('th','');titleCell.scope='row';const link=element('a','',`${topic.number}. ${topic.title}`);link.href=`../index.html#${topic.indexSection}`;titleCell.append(link);row.append(titleCell);
   const coverage=coverageRows.get(topic.number)||{};
-  for(const axis of ['materialAvailability','deliveryStatus','assessmentStatus']){
-   const cell=element('td','');const state=coverage[axis]||{status:'unknown',evidenceIds:[]};const label=axis==='materialAvailability'&&topic.number===7&&state.status==='unavailable'?'Отдельные материалы в текущем индексе не представлены':(statusLabels[axis]||{})[state.status]||'Не установлено';
-   cell.append(element('span',state.status==='unknown'?'status-value status-unknown':'status-value',label));
+  const cell=element('td','');const state=coverage.materialAvailability;
+  if(state?.status&&statusLabels.materialAvailability[state.status]){
+   const label=topic.number===7&&state.status==='unavailable'?'Отдельные материалы в текущем индексе не представлены':statusLabels.materialAvailability[state.status];
+   cell.append(element('span','status-value',label));
    const refs=state.evidenceIds||[];for(const ref of refs)appendProvenance(cell,ref,sourceById,assertionById);
    if(state.sourceAssertionId)appendProvenance(cell,state.sourceAssertionId,sourceById,assertionById);
-   row.append(cell);
   }
+  row.append(cell);
   tbody.append(row);
  }
  table.append(tbody);
  const coverageWrap=element('div','status-table-wrap');
  coverageWrap.tabIndex=0;
  coverageWrap.setAttribute('role','region');
- coverageWrap.setAttribute('aria-label','Таблица статусов покрытия; при узком экране доступна горизонтальная прокрутка');
+ coverageWrap.setAttribute('aria-label','Наличие учебных материалов по темам РПД');
  coverageWrap.append(table);
  coverageStatus.append(coverageWrap);
- for(const method of data.methodPractices||[]){
-  const card=element('article','method-card');card.dataset.status=method.verificationStatus;
+ const methods=data.methodPractices||[];
+ for(const method of methods){
+  const card=element('article','method-card');
   const type=method.candidateType?` · ${candidateTypeLabel(method.candidateType)}`:'';
   card.append(element('h3','',`${method.name}${type}`));
-  card.append(element('p','',verificationLabel(method.verificationStatus)));
   const assertion=assertionById.get(method.sourceAssertionId);const source=sourceFor(assertion,sourceById);
   const locator=method.locator||assertion?.locator;
-  if(locator)card.append(element('p','provenance',`Место в курсе: ${locator}`));
-  appendProvenance(card,method.sourceAssertionId,sourceById,assertionById,source?.uri,source?.label);
-  addTag(card,`ID утверждения: ${method.sourceAssertionId}`);
+  appendProvenance(card,method.sourceAssertionId,sourceById,assertionById,source?.uri,source?.label,locator);
   methodRegister.append(card);
  }
- filterDefinitions();filterMethods();
+ methodCount.textContent=`Упоминаний в реестре: ${methods.length}`;
+ noMethods.hidden=methods.length>0;
+ filterDefinitions();
 }
 function filterDefinitions(){
  const cluster=clusterFilter.value,topic=topicFilter.value,kind=kindFilter.value,level=entityLevelFilter.value;
@@ -594,12 +571,7 @@ function filterDefinitions(){
  document.querySelectorAll('.topic-button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.topic===topic)));
  termCount.textContent=`Найдено понятий: ${visible}`;if(noTerms)noTerms.hidden=visible!==0;
 }
-function filterMethods(){
- const status=methodStatusFilter.value;let visible=0;
- for(const card of methodRegister.querySelectorAll('.method-card')){const show=status==='all'||card.dataset.status===status;card.hidden=!show;if(show)visible++;}
- methodCount.textContent=`Кандидатов в реестре: ${visible}`;if(noMethods)noMethods.hidden=visible!==0;
-}
-clusterFilter.addEventListener('change',filterDefinitions);topicFilter.addEventListener('change',filterDefinitions);kindFilter.addEventListener('change',filterDefinitions);entityLevelFilter.addEventListener('change',filterDefinitions);termSearch.addEventListener('input',filterDefinitions);methodStatusFilter.addEventListener('change',filterMethods);
+clusterFilter.addEventListener('change',filterDefinitions);topicFilter.addEventListener('change',filterDefinitions);kindFilter.addEventListener('change',filterDefinitions);entityLevelFilter.addEventListener('change',filterDefinitions);termSearch.addEventListener('input',filterDefinitions);
 if(window.KNOWLEDGE_ONTOLOGY_DATA){render(window.KNOWLEDGE_ONTOLOGY_DATA);}
 else{document.getElementById('corpus-count').textContent='Не удалось загрузить данные карты. Проверьте файл ontology/knowledge_ontology_data.js.';}
 </script>
