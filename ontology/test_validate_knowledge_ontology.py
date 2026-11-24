@@ -47,6 +47,21 @@ class OntologyValidatorTests(unittest.TestCase):
     def test_current_repository_passes_complete_publication_validator(self):
         self.assertEqual([], self.validate())
 
+    def test_evidence_status_vocabulary_must_be_present_nonempty_and_well_formed(self):
+        invalid_vocabularies = {
+            "missing": None,
+            "empty": [],
+            "malformed": [[]],
+        }
+        for case, vocabulary in invalid_vocabularies.items():
+            with self.subTest(case=case):
+                data = copy.deepcopy(self.data)
+                if case == "missing":
+                    data["meta"].pop("evidenceStatusVocabulary", None)
+                else:
+                    data["meta"]["evidenceStatusVocabulary"] = vocabulary
+                self.assert_issue(self.validate(data=data), "meta.evidenceStatusVocabulary")
+
     def test_reviewed_html_count_must_match_source_manifest(self):
         data = copy.deepcopy(self.data)
         data["meta"]["pagesReviewed"] -= 1

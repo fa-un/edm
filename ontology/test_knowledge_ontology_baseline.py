@@ -294,6 +294,21 @@ class OntologyBaselineTests(unittest.TestCase):
     def test_entity_level_legacy_vocabulary_matches_canonical_vocabulary(self):
         self.assertEqual(self.data["meta"]["entityLevelVocabulary"], self.data["meta"]["entityLevels"])
 
+    def test_unknown_entity_levels_are_not_repeated_in_term_cards(self):
+        html = (ROOT / "ontology" / "index.html").read_text(encoding="utf-8")
+        unknown_terms = [term for term in self.data["terms"] if term["entityLevel"] == "unknown"]
+        self.assertGreater(len(unknown_terms), 200)
+        start = html.index("const heading=element('h4','',term.label);")
+        end = html.index("if(term.rpdTopics?.length)", start)
+        card_heading = html[start:end]
+        self.assertIn(
+            "if(term.entityLevel!=='unknown')heading.append(element('span','kind-label',`Уровень: ${entityLevelLabel(term.entityLevel)}`))",
+            card_heading,
+        )
+        self.assertIn("if(term.entityLevel!=='unknown'&&term.entityLevelReason)", card_heading)
+        self.assertIn("unknown-level-explanation", html)
+        self.assertIn("entity-level-filter", html)
+
     def test_rpd_material_status_labels_are_localized_and_complete(self):
         html = (ROOT / "ontology" / "index.html").read_text(encoding="utf-8")
         statuses = {row["materialStatus"] for row in self.data["meta"]["rpdCrosswalk"]}

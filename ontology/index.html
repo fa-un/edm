@@ -245,6 +245,7 @@
       <div class="model-node"><h3>Функции</h3><p>Правила вычисления результата по входным данным, например остатка или показателя.</p></div>
     </div>
     <p>Узлы ниже — понятия и типы, а не записи учебной базы. Типизация пока частичная; отсутствие типа не означает отдельный объектный тип. Стрелка показывает предметную связь или переход, но сама по себе не доказывает, что в базе есть соответствующее поле-ссылка или таблица связей. Это не объектно-ориентированный список «методов класса»: действие меняет состояние данных, функция вычисляет результат. Наличие описанного действия не доказывает физическое выполнение события, а статус документа не доказывает состояние объекта предприятия.</p>
+    <p id="unknown-level-explanation">Карточки не повторяют отметку «уровень не установлен»: источники не позволяют различить класс и экземпляр. Значение сохранено в данных и доступно в фильтре.</p>
   </section>
 
   <section aria-labelledby="clusters-heading">
@@ -491,9 +492,9 @@ function render(data){
    const searchable=[term.label,term.kind,term.entityLevel,term.kindReason,term.entityLevelReason,...defs.flatMap(def=>[def.text,def.context,def.sourceLabel])].join(' ').toLocaleLowerCase('ru');card.dataset.search=searchable;
    const heading=element('h4','',term.label);
    heading.append(element('span','kind-label',`Вид: ${kindLabel(term.kind)}`));
-   heading.append(element('span','kind-label',`Уровень: ${entityLevelLabel(term.entityLevel)}`));card.append(heading);
+   if(term.entityLevel!=='unknown')heading.append(element('span','kind-label',`Уровень: ${entityLevelLabel(term.entityLevel)}`));card.append(heading);
    if(term.kindReason)card.append(element('p','context',`Основание классификации: ${term.kindReason}`));
-   if(term.entityLevelReason)card.append(element('p','context',`Основание уровня: ${term.entityLevelReason}`));
+   if(term.entityLevel!=='unknown'&&term.entityLevelReason)card.append(element('p','context',`Основание уровня: ${term.entityLevelReason}`));
    if(term.rpdTopics?.length){
     const p=element('p','provenance');p.append('Темы РПД: ');
     for(const [i,topicNumber] of term.rpdTopics.entries()){

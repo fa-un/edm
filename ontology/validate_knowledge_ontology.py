@@ -198,8 +198,12 @@ def validate_ontology(
     if meta.get("legacyDefinitionEntries") != legacy_count:
         errors.append(f"meta.legacyDefinitionEntries is stale: expected {legacy_count}")
 
-    allowed_evidence = set(meta.get("evidenceStatusVocabulary", [])) or ALLOWED_EVIDENCE
-    if allowed_evidence != ALLOWED_EVIDENCE:
+    evidence_vocabulary = meta.get("evidenceStatusVocabulary")
+    if (
+        not isinstance(evidence_vocabulary, list)
+        or any(not isinstance(status, str) for status in evidence_vocabulary)
+        or set(evidence_vocabulary) != ALLOWED_EVIDENCE
+    ):
         errors.append("meta.evidenceStatusVocabulary does not match the supported evidence status vocabulary")
     relation_catalog = meta.get("relationTypes", [])
     relation_types = {row if isinstance(row, str) else row.get("id") for row in relation_catalog}
@@ -225,7 +229,7 @@ def validate_ontology(
             errors.append(f"source assertion {assertion.get('id')} has dangling sourceId")
         if assertion.get("claimType") not in {"definition", "action", "function", "relation", "method_practice", "coverage"}:
             errors.append(f"source assertion {assertion.get('id')} has invalid claimType")
-        if assertion.get("evidenceStatus") not in allowed_evidence:
+        if assertion.get("evidenceStatus") not in ALLOWED_EVIDENCE:
             errors.append(f"source assertion {assertion.get('id')} has invalid evidenceStatus")
         if not all(assertion.get(key) for key in ("claimText", "locator", "modality")):
             errors.append(f"source assertion {assertion.get('id')} is missing claimText/locator/modality")
