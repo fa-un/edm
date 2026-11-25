@@ -6,15 +6,13 @@
 
 ### 1. Откройте PowerShell
 
-В Windows обычно уже установлен **Windows PowerShell**. Откройте меню «Пуск» и найдите PowerShell или Windows Terminal.
-
-Чтобы установить современный **PowerShell 7**, выполните эту команду в Windows PowerShell, командной строке или Terminal:
+Откройте **Windows PowerShell** из меню «Пуск» или **Windows Terminal**. PowerShell 7 для этих команд устанавливать необязательно; если хотите использовать его, выполните:
 
 ```powershell
 winget install --id Microsoft.PowerShell --source winget
 ```
 
-Затем откройте **PowerShell 7** из меню «Пуск».
+После установки PowerShell 7 откройте его из меню «Пуск».
 
 ### 2. Установите Hermes Agent
 
@@ -24,7 +22,7 @@ winget install --id Microsoft.PowerShell --source winget
 iex (irm https://hermes-agent.nousresearch.com/install.ps1)
 ```
 
-Откройте новый терминал и запустите Hermes. При первом запуске следуйте настройке модели и провайдера:
+Откройте новое окно PowerShell, чтобы обновить PATH. Если установщик не запустил мастер или настройка не завершилась, выполните `hermes setup`. Затем запустите Hermes:
 
 ```powershell
 hermes
@@ -58,14 +56,13 @@ codex
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 ```
 
-Откройте новое окно Terminal, настройте провайдера, затем запустите агента:
+Откройте новое окно Terminal, чтобы обновить PATH. Если установщик не запустил мастер или настройка не завершилась, выполните `hermes setup`. Затем запустите агента:
 
 ```bash
-hermes setup
 hermes
 ```
 
-Основной поддерживаемый вариант Hermes для macOS — Apple Silicon. На Intel Mac можно установить CLI; Desktop-пакет для Intel не выпускается.
+На используемом Intel Mac работают и Hermes CLI, и Desktop. При этом Nous не включает Intel macOS в список поддерживаемых платформ, а официальные macOS Desktop-сборки заявлены для Apple Silicon. Поэтому этот опыт подтверждает работу на конкретном Mac, но не гарантирует её на всех Intel Mac.
 
 ### 2. Установите Codex CLI
 
@@ -91,3 +88,12 @@ codex
 - [Установка Hermes Agent](https://hermes-agent.nousresearch.com/docs/getting-started/installation)
 - [Поддержка платформ Hermes](https://hermes-agent.nousresearch.com/docs/getting-started/platform-support)
 - [Codex CLI: быстрый старт](https://learn.chatgpt.com/docs/codex/cli)
+
+## Проверка установки
+
+В новом окне PowerShell или Terminal проверьте, что обе команды доступны и выводят версии:
+
+```text
+codex --version
+hermes --version
+```
