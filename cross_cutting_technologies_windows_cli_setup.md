@@ -40,9 +40,10 @@ hermes
 powershell -ExecutionPolicy Bypass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
 ```
 
-Откройте новый терминал, запустите Codex и войдите через ChatGPT:
+Откройте новый терминал и войдите в Codex под своей учётной записью:
 
 ```powershell
+codex login
 codex
 ```
 
@@ -74,9 +75,10 @@ hermes
 curl -fsSL https://chatgpt.com/codex/install.sh | sh
 ```
 
-Откройте новое окно Terminal, запустите Codex и войдите через ChatGPT:
+Откройте новое окно Terminal и войдите в Codex под своей учётной записью:
 
 ```bash
+codex login
 codex
 ```
 
@@ -90,6 +92,8 @@ codex
 - [Установка Hermes Agent](https://hermes-agent.nousresearch.com/docs/getting-started/installation)
 - [Поддержка платформ Hermes](https://hermes-agent.nousresearch.com/docs/getting-started/platform-support)
 - [Codex CLI: быстрый старт](https://learn.chatgpt.com/docs/codex/cli)
+- [Авторизация Codex и хранение токенов](https://learn.chatgpt.com/docs/auth?surface=cli)
+- [Слеш-команды Codex, включая `/status`](https://learn.chatgpt.com/docs/reference/slash-commands)
 
 ## Проверка установки
 
@@ -99,3 +103,14 @@ codex
 codex --version
 hermes --version
 ```
+
+## Авторизация Codex и файл `auth.json`
+
+После `codex login` Codex сохраняет авторизацию локально. Не устанавливайте файл `auth.json`, полученный от другого человека: он может содержать действующие токены доступа. При файловом хранении путь — `%USERPROFILE%\.codex\auth.json` в Windows и `~/.codex/auth.json` в macOS; если выбрано системное хранилище учётных данных, отдельного файла может не быть.
+
+## Просмотр лимитов Codex
+
+- **Codex Desktop:** в поле ввода сообщения наберите `/status` и отправьте команду. В ответе отображаются использование контекста и текущие лимиты.
+- **Codex CLI:** запустите `codex`, затем в интерактивном терминале наберите `/status`. Команда показывает состояние текущего сеанса, использование контекста и доступные лимиты.
+
+`/status` показывает текущее состояние; лимиты и способы входа зависят от учётной записи и выбранного способа авторизации.
