@@ -16,6 +16,8 @@ winget install --id Microsoft.PowerShell --source winget
 
 ### 2. Установите Hermes Agent
 
+Чтобы установить Hermes Desktop для Windows, скачайте [установщик Hermes-Setup.exe](https://hermes-assets.nousresearch.com/Hermes-Setup.exe?build=b4db4842723a).
+
 В PowerShell запустите официальный установщик:
 
 ```powershell
