@@ -44,6 +44,10 @@ powershell -ExecutionPolicy Bypass -c "irm https://chatgpt.com/codex/install.ps1
 codex
 ```
 
+## AI-инструменты бизнес-аналитика
+
+В соседнем курсе «Управление данными предприятия» есть [обзор AI-инструментов аналитика](https://fa-un.github.io/edm/ai_analyst_tools.html): там показано, как проверять выводы AI по источнику и использовать инструменты для перехода от интервью к проверяемому требованию.
+
 ## Официальные инструкции
 
 - [Установка PowerShell 7 в Windows](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows)
