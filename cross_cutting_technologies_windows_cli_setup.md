@@ -92,6 +92,7 @@ codex
 - [Установка Hermes Agent](https://hermes-agent.nousresearch.com/docs/getting-started/installation)
 - [Поддержка платформ Hermes](https://hermes-agent.nousresearch.com/docs/getting-started/platform-support)
 - [Codex CLI: быстрый старт](https://learn.chatgpt.com/docs/codex/cli)
+- [Модели и доступность Codex](https://learn.chatgpt.com/docs/models)
 - [Авторизация Codex и хранение токенов](https://learn.chatgpt.com/docs/auth?surface=cli)
 - [Слеш-команды Codex, включая `/status`](https://learn.chatgpt.com/docs/reference/slash-commands)
 - [Лимиты и расход Codex](https://learn.chatgpt.com/docs/pricing)
@@ -122,7 +123,7 @@ hermes --version
 
 3. Выберите **OpenAI**, затем **ChatGPT or Codex Subscription**.
 4. Если Hermes предложит импортировать найденные учётные данные Codex из `auth.json`, подтвердите импорт (`y`). Если в Hermes уже сохранён другой вход, проверьте, что выбираете импорт текущей учётной записи Codex.
-5. Переключите модель на `gpt-6-luna` (GPT-6 Luna). Для этой инструкции выбор Luna обязателен: по наблюдению преподавателя, на типовых заданиях курса она расходует лимит примерно в 10 раз медленнее. Фактический расход зависит от задачи, объёма контекста, режима скорости и тарифа.
+5. Переключите модель на `gpt-6-luna` (GPT-6 Luna). Для этой инструкции выбор Luna обязателен: по наблюдению преподавателя, на типовых заданиях курса она расходует лимит примерно в 10 раз медленнее. Фактический расход зависит от задачи, объёма контекста, режима скорости и тарифа. Если Luna нет в списке, остановитесь и обратитесь к преподавателю или администратору доступа: доступность зависит от тарифа и настроек рабочего пространства.
 
 Hermes ищет `auth.json` в каталоге `CODEX_HOME`, если эта переменная задана (`%CODEX_HOME%\auth.json` в Windows, `$CODEX_HOME/auth.json` в macOS), иначе — в `%USERPROFILE%\.codex\auth.json` в Windows или `~/.codex/auth.json` в macOS. В файле должны быть действующие токен доступа и токен обновления. Если предложения импорта нет или файл не найден, остановитесь и проверьте путь и способ хранения входа Codex. При системном хранилище учётных данных этот способ может быть недоступен; без явного запроса владельца не начинайте новую OAuth-авторизацию.
 
